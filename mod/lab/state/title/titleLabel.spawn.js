@@ -4,6 +4,8 @@ const titleLabel = {
     ry:  .35,
     font:  env.style.font.title.head,
     color: env.style.color.title,
-    text: 'Z-Alert: Anti-Ballistix',
+    text:  () => {
+        return res.txt.label.title
+    }
 }
 

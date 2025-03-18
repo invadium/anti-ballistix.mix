@@ -53,14 +53,14 @@
  */
 
 const defaultColorTheme = {
-    main:        '#f2c157',
-    selected:    '#e35730',
+    main:        '#ac29ce',
+    selected:    '#f8e3c4',
     highlighted: '#de7118',
-    deactivated: '#808080',
+    deactivated: '#4e6ea8',
     disabled:    '#ffff80',
 
     background:     '#404040',
-    shadow:         '#00000080',
+    shadow:         '#2e1f49',
     backline:       '#606060',
     activeBackline: '#808080',
 }
@@ -99,7 +99,7 @@ class Menu extends sys.LabFrame {
             h: 40,
             step: 60,
             border: 2,
-            shadowShift: 6,
+            shadowShift: 3,
             IDLE_TIMEOUT: 20,
 
             OPTION_PREFIX: '< ',
