@@ -1,8 +1,9 @@
 function level(st) {
     // TODO find and setup the level
     // ...
-    lab.control.game.level({
-        level: 1,
-    })
+    const levelConfig = $.lvl._ls[0]
+
+    lab.control.game.level(levelConfig)
+
     lab.control.state.transitTo('city', st)
 }

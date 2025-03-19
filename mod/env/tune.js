@@ -1,5 +1,7 @@
 const tune = {
 
+    friendlyFire: false,
+
     title: {
         hold: 5,
     },
