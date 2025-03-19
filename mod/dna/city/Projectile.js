@@ -13,7 +13,7 @@ class Projectile extends Platform {
         }, st) )
 
         this.install([
-            new dna.city.pod.Solid({
+            new dna.city.pod.SolidCircle({
                 r: 2.5,
             }),
             new dna.city.pod.Attitude(),
@@ -46,7 +46,7 @@ class Projectile extends Platform {
         translate(this.x, this.y)
         rotate(HALF_PI + this.dir)
 
-        let c = hsl(0, 0, .9)
+        //let c = hsl(0, 0, .9)
         /*
         switch (this.team) {
         case 1: c = hsl(.7, .7, .6); break
@@ -58,7 +58,9 @@ class Projectile extends Platform {
         lineWidth(3)
         line(0, -this.r, 0, this.r)
         */
-        neon.line(0, -this.r, 0, this.r, c, c)
+        const c = env.team.color(this),
+              g = env.team.glow(this)
+        neon.line(0, -this.r, 0, this.r, c, g)
 
         super.draw()
 

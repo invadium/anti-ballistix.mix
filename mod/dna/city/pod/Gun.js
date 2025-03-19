@@ -20,7 +20,7 @@ class Gun {
         const dx = cos(dir),
               dy = sin(dir)
 
-        lab.port.spawn( dna.space.Projectile, {
+        lab.port.spawn( dna.city.Projectile, {
             team:   this.__.team,
             source: this.__,
             x:      x + dx * r2,
