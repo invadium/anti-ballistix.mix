@@ -8,7 +8,7 @@ class Projectile extends Platform {
         super( extend({
             name:     'projectile' + (++id),
             r:        5,
-            lifespan: 5,
+            lifespan: 15,
             force:    20,
         }, st) )
 
