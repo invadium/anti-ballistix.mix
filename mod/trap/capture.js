@@ -5,10 +5,15 @@ function capture(st) {
     // TODO create a flak?
     // ...
 
-    const flak = lab.port.flak
-    lab.monitor.controller.bind(st.action.controllerId, flak.control)
+    const freeFlaks = lab.port.filter(e => (e instanceof dna.city.Flak && !e.control._controllerId) )
 
-    // activate
-    if (st.action.pushable) lab.monitor.controller.push(st.action, st.dt, st.source)
-    else lab.monitor.controller.act(st.action, st.source)
+    if (freeFlaks.length > 0) {
+        const flak = freeFlaks[0]
+        lab.monitor.controller.bind(st.action.controllerId, flak.control)
+
+        // activate
+        if (st.action.pushable) lab.monitor.controller.push(st.action, st.dt, st.source)
+        else lab.monitor.controller.act(st.action, st.source)
+    }
+
 }

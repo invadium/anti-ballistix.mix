@@ -13,9 +13,24 @@ class BallisticMissile extends Platform {
         }, st) )
 
         this.install([
+            // noze code solid
             new dna.city.pod.SolidCircle({
-                r: 5,
+                alias: '',
+                name:  'solid1',
+                x:      0,
+                y:     -6,
+                r:      5,
             }),
+            // engine solid
+            new dna.city.pod.SolidCircle({
+                alias: '',
+                name:  'solid2',
+                x: 0,
+                y: 7,
+                r: 7,
+            }),
+            new dna.city.pod.MultiSolid(),
+
             new dna.city.pod.Attitude(),
             new dna.city.pod.Thruster({
                 velocity: 200,
@@ -26,6 +41,7 @@ class BallisticMissile extends Platform {
     hit(source) {
         if (source instanceof dna.city.Projectile) {
             kill(this)
+            kill(source)
         }
     }
 

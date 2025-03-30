@@ -1,10 +1,11 @@
 const df = {
+    debug:         true,
     name:          'statusBar',
     message:       '',
     color:         hsl(.14, .4, .5),
     background:    '#000000C0',
     margin:        8,
-    hideWhenEmpty: false,
+    hideWhenEmpty: true,
 }
 
 class StatusBar {
@@ -14,6 +15,7 @@ class StatusBar {
     }
 
     draw() {
+        if (this.debug && !env.debug) return
         const message = env.status || this.message
         if (this.hideWhenEmpty && !message) return
 

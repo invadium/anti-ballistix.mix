@@ -49,8 +49,8 @@ class SolidCircle {
 
     draw() {
         if (!env.showSolids) return
-        lineWidth(1)
-        stroke('#b0b020')
-        circle(0, 0, this.r)
+        lineWidth(2)
+        stroke('#FFFF00')
+        circle(this.x, this.y, this.r)
     }
 }

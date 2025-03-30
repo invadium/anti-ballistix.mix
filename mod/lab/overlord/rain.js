@@ -10,7 +10,7 @@ function ballistic() {
         dir: .4 * PI + .2 * PI * rnd(),
     })
 
-    log(`new missile @${m.x}:${m.y}`)
+    log(`new ballistic missile @${m.x}:${m.y}`)
 }
 
 function evo(dt) {

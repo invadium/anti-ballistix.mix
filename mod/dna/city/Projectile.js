@@ -14,7 +14,7 @@ class Projectile extends Platform {
 
         this.install([
             new dna.city.pod.SolidCircle({
-                r: 2.5,
+                r: 5,
             }),
             new dna.city.pod.Attitude(),
             new dna.city.pod.Thruster({
