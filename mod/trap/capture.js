@@ -1,6 +1,5 @@
 function capture(st) {
     if (env.state !== 'city') return
-    log('capturing the player')
 
     // TODO create a flak?
     // ...
@@ -8,6 +7,7 @@ function capture(st) {
     const freeFlaks = lab.port.filter(e => (e instanceof dna.city.Flak && !e.control._controllerId) )
 
     if (freeFlaks.length > 0) {
+        log('capturing the player')
         const flak = freeFlaks[0]
         lab.monitor.controller.bind(st.action.controllerId, flak.control)
 

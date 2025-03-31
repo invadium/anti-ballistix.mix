@@ -14,6 +14,11 @@ const team = [
         color: '#ff0000',
         glow:  '#ff0000',
     },
+    {
+        name: 'danger',
+        color: '#ffff00',
+        glow:  '#ffff00',
+    },
 ]
 
 function matchTeam(e) {

@@ -6,7 +6,8 @@ class BallisticMissile extends Platform {
 
     constructor(st) {
         super( extend({
-            name:     'ballisticMissile' + (++id),
+            team:     2,
+            name:    'ballisticMissile' + (++id),
             r:        15,
             lifespan: 5,
             force:    20,
@@ -42,6 +43,11 @@ class BallisticMissile extends Platform {
         if (source instanceof dna.city.Projectile) {
             kill(this)
             kill(source)
+            lab.port.spawn(dna.city.Explosion, {
+                team: this.team + 1,
+                x: this.x,
+                y: this.y,
+            })
         }
     }
 
@@ -52,6 +58,14 @@ class BallisticMissile extends Platform {
         if (this.y >= cry(20)) {
             // ground hit
             kill(this)
+            lab.port.spawn(dna.city.Explosion, {
+                team:       this.team,
+                x:          this.x,
+                y:          this.y,
+                force:      8,
+                baseAngle:  1.1 * PI,
+                spread:    .9 * PI,
+            })
         }
     }
 
