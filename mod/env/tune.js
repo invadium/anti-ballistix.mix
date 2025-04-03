@@ -10,4 +10,8 @@ const tune = {
         hold: 8,
     },
 
+    mixer: {
+        fadeOutSpeed: 0.25,
+        fadeInSpeed:  0.50,
+    },
 }
