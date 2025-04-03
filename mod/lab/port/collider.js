@@ -1,3 +1,5 @@
+const Z = 0
+
 function evo(dt) {
     this.__.collide(
         (hitter, target) => {

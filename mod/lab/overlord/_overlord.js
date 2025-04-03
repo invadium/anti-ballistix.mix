@@ -1,2 +1,2 @@
-const Z = 1
+const Z    = 0
 const name = 'overlord'

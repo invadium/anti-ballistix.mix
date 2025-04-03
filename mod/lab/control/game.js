@@ -11,5 +11,5 @@ function level(levelConfig) {
     env.gameState = 'started'
 
     // TODO determine the level-specific background
-    lab.background = env.style.color.sky
+    lab.background = null
 }
