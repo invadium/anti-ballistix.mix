@@ -10,8 +10,9 @@ function postSetup() {
             fadein: 0,
         })
     }
-
+    /*
     if (!lab.control.mixer.isPlaying()) {
         lab.control.mixer.play()
     }
+    */
 }

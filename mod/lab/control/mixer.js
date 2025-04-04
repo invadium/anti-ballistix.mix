@@ -140,7 +140,6 @@ function stop() {
 }
 
 function sync() {
-
     if (this.state === PLAYING && (!env.opt.sound || !env.opt.music)) {
         if (track) pause()
     }
@@ -161,6 +160,16 @@ function isPlaying() {
 }
 
 function evo(dt) {
+    // determine state change
+    if (env._touched && env.opt.music && !this.isPlaying()) {
+        this.play()
+    } else if (this.isPlaying() && !env.opt.music) {
+        const mixer = this
+        this.fadeout(() => {
+            mixer.stop()
+        })
+    }
+
     if (!track) return
     if (this.state === FADEOUT) {
         track.volume = max(track.volume - env.tune.mixer.fadeOutSpeed * env.opt.musicVolume * dt, 0)

@@ -37,18 +37,11 @@ const options = [
         options: [ 'on', 'off' ],
     },
     {
-        title: 'Confirm',
+        title: 'Back',
         select: function() {
             syncOut(this.__.items)
             this.__.returnBack(true)
             //this.__.focusOn('Credits')
-        },
-    },
-    {
-        title: 'Cancel',
-        select: function() {
-            this.__.returnBack(true)
-            this.__.focusOn('Credits')
         },
     },
 ]

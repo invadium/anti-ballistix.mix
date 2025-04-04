@@ -1,16 +1,5 @@
 # core
-> state control
-> title screen
-> menu subsystem
-> options submenu
-> tuning console
-> flak guns
-> keyboard/gamepad control subsystem
-> flak autocapture by players
-> AA projectiles
 > drones
-> collision detection
-> vectorized explosions
 > city in the background
 > infrastructure layer
 > drone attacks with explosions
@@ -43,3 +32,15 @@
 # future
 > global high score table?
 
+V state control
+V title screen
+V menu subsystem
+V options submenu
+> tuning console
+V flak guns
+V keyboard/gamepad control subsystem
+V flak autocapture by players
+V AA projectiles
+V collision detection
+V vectorized explosions
+V soundtrack mixer
