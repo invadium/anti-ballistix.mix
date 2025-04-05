@@ -12,6 +12,8 @@ function syncOut(opt) {
 
     log('music: ' + env.opt.music)
     log('sfx: '   + env.opt.sfx)
+
+    lib.storage.saveOpt()
 }
 
 const options = [
