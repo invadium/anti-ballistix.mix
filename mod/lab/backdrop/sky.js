@@ -2,7 +2,7 @@ const Z = 1
 
 function draw() {
     const w = ctx.width,
-          h = .5 * ctx.height
+          h = env.tune.horizonLine * ctx.height
 
     const gradient = ctx.createLinearGradient(0, 0, 0, h)
 

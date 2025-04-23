@@ -9,6 +9,7 @@
 > score overlay
 > mission success/fail conditions
 > end of the mission screen (with stat and infographics)
+> call them scenarios or missions instead of levels?
 
 # advanced
 >>> more projectiles

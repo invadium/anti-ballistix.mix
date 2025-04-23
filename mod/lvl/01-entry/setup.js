@@ -1,6 +1,11 @@
 function setup() {
     log('!!! setting up the level !!!')
 
+    this.src = math.createRandomGenerator()
+    this.src.setSeed = 2145
+
+    this.city()
+
     lab.port.spawn( dna.city.Flak, {
         team: 1,
         name: 'flak1',
