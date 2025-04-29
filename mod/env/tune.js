@@ -1,6 +1,6 @@
 const tune = {
     horizonLine:    .6,
-    citySkyLine:    .68,
+    citySkyLine:     0,
     cityBaseHeight: .14,
 
     building: {

@@ -1,6 +1,8 @@
 # core
 > drones
 > city in the background
+> stars appearing in the sky
+> vaporwave grid wanishin in the horizon
 > infrastructure layer
 > drone attacks with explosions
 > infrastructure damage

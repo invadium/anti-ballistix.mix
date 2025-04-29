@@ -9,16 +9,19 @@ class Building extends Body {
             name: 'building' + (++id)
         }, st) )
         const W  = ctx.width,
-              BY = env.tune.horizonLine * ctx.height - env.tune.citySkyLine * ctx.height,
-              BH = env.tune.cityBaseHeight * ctx.height,  // expected to be <= BY
+              H  = ctx.height,
+              BY = env.tune.citySkyLine * H,
+              BH = env.tune.cityBaseHeight * H,  // expected to be <= BY
               FH = env.tune.building.floorHeight * BH,
-              bh = env.tune.building.baseHeight * ctx.height,
-              vh = env.tune.building.varHeight * ctx.height,
-              bw = env.tune.building.baseWidth * ctx.height,
-              vw = env.tune.building.varWidth * ctx.height
+              bh = env.tune.building.baseHeight * H,
+              vh = env.tune.building.varHeight * H,
+              bw = env.tune.building.baseWidth * H,
+              vw = env.tune.building.varWidth * H 
               
         this.x = this.rx * W
-        this.y = BY + this.rz * BH
+        //this.y = BY + this.rz * BH
+        this.y = 0
+
         this.z = this.rz
         this.Z = round(this.z * 1000)
 
@@ -52,6 +55,7 @@ class Building extends Body {
         const WH = windowHeight
         let by = y - floorHeight
         for (let i = 0; i < this.floors; i++) {
+            // window
             rect( x - hw + 2*WH, by, w - 4*WH, WH )
             by -= floorHeight
         }

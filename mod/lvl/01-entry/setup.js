@@ -2,7 +2,7 @@ function setup() {
     log('!!! setting up the level !!!')
 
     this.src = math.createRandomGenerator()
-    this.src.setSeed = 2145
+    this.src.setSeed(868)
 
     this.city()
 

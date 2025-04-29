@@ -14,8 +14,9 @@ function draw() {
     fill(gradient)
     rect(0, 0, w, h)
 
+    // ground
     fill('#2c0148')
-    rect(0, .5 * ctx.height, ctx.width, .5 * ctx.height)
+    rect(0, h, ctx.width, ctx.height - h)
     //background('#6f0cc3')
     //fill('#ff0000')
     //rect(0, 0, .5 * ctx.width, .5 * ctx.height)
