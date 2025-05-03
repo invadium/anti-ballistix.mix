@@ -6,7 +6,7 @@ const tune = {
     building: {
         baseHeight:   .07,
         varHeight:    .15,
-        baseWidth:    .025,
+        baseWidth:    .04,
         varWidth:     .10,
         floorHeight:  .075,  // relative to BH
         windowHeight: .35, // relative to the floor height

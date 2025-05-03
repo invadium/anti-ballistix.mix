@@ -1,6 +1,7 @@
 function setup() {
     log('!!! setting up the level !!!')
 
+    // TODO generalize into a common level generator
     this.src = math.createRandomGenerator()
     this.src.setSeed(868)
 

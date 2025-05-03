@@ -34,6 +34,7 @@ class Building extends Body {
 
     draw() {
         save()
+        // move to the horizon coordinate system
         translate(.5 * ctx.width, env.tune.horizonLine * ctx.height)
 
         const { x, y, z, w, h, floorHeight, windowHeight } = this

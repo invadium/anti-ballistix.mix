@@ -1,5 +1,12 @@
 const Z = 1
 
+const src = math.createRandomGenerator()
+
+function init() {
+    // TODO reinitialize with each new level with a new seed?
+    src.setSeed(7512)
+}
+
 function draw() {
     const w = ctx.width,
           h = env.tune.horizonLine * ctx.height
