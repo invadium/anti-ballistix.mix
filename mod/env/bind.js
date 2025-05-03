@@ -73,9 +73,10 @@ const keyboardControllersMapping = [
     [ 'KeyW', 'KeyA', 'KeyS', 'KeyD',
         'KeyV', 'KeyB', 'KeyF', 'KeyG',
         'Key1', 'Key2', 'Key3', 'Key4',  
-        'KeyR', 'KeyT',                     // menu, select
-        '', '', '', '',                     // alternative mapping
-        'Space', 'AltLeft', 'KeyE', 'KeyQ'
+        'KeyR', 'KeyT',                        // menu, select
+        'None',                                // alternative mapping
+        '', '', '', '',                    
+        'Space', 'ShiftLeft', 'KeyE', 'KeyQ'
     ],
     // arrower
     [ 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight',
@@ -83,6 +84,7 @@ const keyboardControllersMapping = [
         'PageUp', 'PageDown', 'Insert', 'Delete',
     ],
     // vimer
+    // TODO remap - totally inconvenient
     [ 'KeyK', 'KeyH', 'KeyJ', 'KeyL',
         'KeyM', 'KeyN', 'KeyY', 'KeyU',
         '', '', '', '',

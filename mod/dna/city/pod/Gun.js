@@ -21,7 +21,7 @@ class Gun {
               dy = sin(dir)
 
         lab.port.spawn( dna.city.Projectile, {
-            team:   this.__.team,
+            team:   this.__.team + 2,
             source: this.__,
             x:      x + dx * r2,
             y:      y + dy * r2,

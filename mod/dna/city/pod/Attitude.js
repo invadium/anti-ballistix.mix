@@ -13,7 +13,7 @@ class Attitude {
 
             neutral:         -HALF_PI,
             sector:          .9 * PI,
-            turnVelocity:    PI,
+            turnVelocity:    .4 * PI,
         }, st)
     }
 

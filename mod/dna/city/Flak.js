@@ -14,7 +14,6 @@ class Flak extends Platform {
             scanned: true,
 
             // specs
-            turnVelocity: PI,
             maxHull:      100,
         }, st) )
 
