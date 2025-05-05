@@ -1,10 +1,12 @@
-
 const Platform = require('dna/city/Platform')
+
+let id = 0
 
 class Flak extends Platform {
 
     constructor(st) {
         super( extend({
+            name:   'flak' + (++id),
             r:       10,
             r2:      8,
 
