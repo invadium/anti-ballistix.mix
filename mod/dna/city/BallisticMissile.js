@@ -37,6 +37,8 @@ class BallisticMissile extends Platform {
                 velocity: 200,
             }),
         ])
+
+        this.targetCRY = 10 + 20 * rnd()
     }
 
     hit(source) {
@@ -54,8 +56,7 @@ class BallisticMissile extends Platform {
     evo(dt) {
         super.evo(dt)
 
-
-        if (this.y >= cry(20)) {
+        if (this.y >= cry(this.targetCRY)) {
             // ground hit
             kill(this)
             lab.port.spawn(dna.city.Explosion, {

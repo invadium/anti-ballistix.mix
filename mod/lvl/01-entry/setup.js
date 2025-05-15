@@ -2,7 +2,7 @@ function setup() {
     log('!!! setting up the level !!!')
 
     // TODO generalize into a common level generator
-    this.src = math.createRandomGenerator()
+    const src = this.src = math.createRandomGenerator()
     this.src.setSeed(868)
 
     this.city()
@@ -17,7 +17,7 @@ function setup() {
             Z:    11,
             team: 1,
             x:    crx(bx),
-            ry:   env.tune.powerStationLine,
+            ry:   env.tune.powerStationLine + .1 * src.rnd(),
         })
         bx += step
     }
