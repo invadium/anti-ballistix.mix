@@ -11,6 +11,7 @@ function setup() {
           step = 100 / (N+1)
     let   bx   = step
 
+    // create power stations
     for (let i = 0; i < N; i++) {
         lab.port.spawn( dna.city.PowerStation, {
             Z:    11,

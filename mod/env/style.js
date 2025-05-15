@@ -14,6 +14,11 @@ const style = {
             front: '#62aadd',
             back:  '#3a1e7e',
         },
+
+        status: {
+            front:  hsl(.14, .4, .5),
+            back:  '#000000C0',
+        }
     },
     
     font: {

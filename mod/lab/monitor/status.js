@@ -15,9 +15,11 @@ function evo(dt) {
             }
         } else {
             if (env.debug) {
-                const wx = round(lab.port.lx(mouse.x)),
+                const mx = round(mouse.x),
+                      my = round(mouse.y),
+                      wx = round(lab.port.lx(mouse.x)),
                       wy = round(lab.port.ly(mouse.y))
-                env.status = `${wx}:${wy}`
+                env.status = `${mx}:${my} >> ${wx}:${wy}`
             }
         }
 

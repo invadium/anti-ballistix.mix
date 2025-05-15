@@ -32,16 +32,20 @@ class PowerStation extends Platform {
               hw = .5 * w,
               hh = .5 * h
 
-        neon.rect(-hw, -hh, w, h, c, g)
-        neon.rect(-.6 * hw, -1.05 * h, .7*w, .5*h, c, g)
+        fill(.7, .2, .1)
+        //neon.rect(-hw, -hh, w, h, c, g)
+        //neon.rect(-.6 * hw, -1.05 * h, .7*w, .5*h, c, g)
+        rect(-hw, -hh, w, h, c, g)
+        rect(-.6 * hw, -1 * h, .7*w, .5*h, c, g)
 
         let bx = -.4 * hw,
-            by = -2.6*h,
+            by = -2.5*h,
             pw = .1 * w,
             ph = 1.5 * h,
             ps = .4 * hw
         for (let i = 0; i < 3; i++) {
-            neon.rect(bx, by, pw, ph)
+            //neon.rect(bx, by, pw, ph)
+            rect(bx, by, pw, ph)
             bx += ps
         }
 

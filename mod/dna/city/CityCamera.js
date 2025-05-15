@@ -15,7 +15,11 @@ class CityCamera extends dna.SlideCamera {
 
     evo(dt) {
         super.evo(dt)
+    }
+
+    draw() {
         this.pin()
+        super.draw()
     }
 
 }
