@@ -1,5 +1,10 @@
 function environment() {
-    env.debug = !!env.config.debug
+    for(let p in env.config) {
+        console.log(p)
+        if (p.startsWith('debug') || p.startsWith('show')) {
+            env[p] = env.config[p]
+        }
+    }
 
     // define the playable field
     env.playfield = {

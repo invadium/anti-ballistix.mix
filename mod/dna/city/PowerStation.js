@@ -9,6 +9,63 @@ class PowerStation extends Platform {
             name: 'powerStation' + (++id),
             r:     200,
         }, st) )
+
+
+        this.install([
+            new dna.city.pod.SolidCircle({
+                alias: '',
+                name:  'solid1',
+                x: 0,
+                y: 0,
+                r: 30,
+                onDeactivate: function() {
+                    this.hidden = false
+                },
+            }),
+            new dna.city.pod.SolidCircle({
+                alias: '',
+                name:  'solid2',
+                x: -60,
+                y: 0,
+                r: 30,
+                onDeactivate: function() {
+                    this.hidden = false
+                },
+            }),
+            new dna.city.pod.SolidCircle({
+                alias: '',
+                name:  'solid3',
+                x: 60,
+                y: 0,
+                r: 30,
+                onDeactivate: function() {
+                    this.hidden = false
+                },
+            }),
+            new dna.city.pod.MultiSolid(),
+            /*
+            new dna.city.pod.SolidCircle({
+                name:  'solid2',
+                x: -100,
+                y: 0,
+                r: 50,
+            }),
+            new dna.city.pod.SolidCircle({
+                name:  'solid3',
+                x: 100,
+                y: 0,
+                r: 50,
+            }),
+            */
+        ])
+    }
+
+    hit(source) {
+        if (source instanceof dna.city.BallisticMissile) {
+            kill(this)
+            kill(source)
+            source.groundExplosion()
+        }
     }
 
     draw() {

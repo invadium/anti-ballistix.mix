@@ -25,6 +25,13 @@ class SolidCircle {
     }
 
     contact(hitter, hitterSolid, resolveContact) {
+        if (hitterSolid instanceof dna.city.pod.MultiSolid) {
+            for (let subSolid of hitterSolid._ls) {
+                if (this.contact(hitter, subSolid, resolveContact)) return true
+            }
+            return false
+        }
+
         const wxy = hitterSolid.wxy(0, 0)
         const lxy = this.lxy( wxy[0], wxy[1] )
         const dist = math.length(lxy[0], lxy[1])
@@ -44,7 +51,9 @@ class SolidCircle {
                 this,
                 contactData
             )
+            return true
         }
+        return false
     }
 
     draw() {

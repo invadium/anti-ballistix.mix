@@ -5,7 +5,6 @@ class MultiSolid {
             type:      'pod',
             name:      'multiSolid',
             alias:     'solid',
-            noContact: true,
         }, st)
     }
 

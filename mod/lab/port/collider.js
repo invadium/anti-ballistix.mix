@@ -10,15 +10,15 @@ function evo(dt) {
                     }
                 })
             }
-            /*
             if (env.debugSolids) {
-                log(source.name + ' <*contact*> ' + target.name)
-                console.dir(source)
+                /*
+                log(hitter.name + ' <*contact*> ' + target.name)
+                console.dir(hitter)
                 console.dir(target)
-                console.dir(contact)
-                log(contact.info)
+                //console.dir(contact)
+                //log(contact.info)
+                */
             }
-            */
         },
         e => (e.solid && !e.dead)
     )
