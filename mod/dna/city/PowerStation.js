@@ -98,7 +98,8 @@ class PowerStation extends Platform {
               hw = .5 * w,
               hh = .5 * h
 
-        fill(.7, .2, .1)
+        //fill(.7, .2, .1)
+        fill(env.style.color.powerStation)
         //neon.rect(-hw, -hh, w, h, c, g)
         //neon.rect(-.6 * hw, -1.05 * h, .7*w, .5*h, c, g)
         rect(-hw, -hh, w, h, c, g)

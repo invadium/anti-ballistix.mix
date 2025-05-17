@@ -5,6 +5,9 @@ const style = {
         title: '#6b1fb1',
 
         sky: '#1f123a',
+        grid: '#9e0abf',
+
+        powerStation: '#110f14',
 
         menu: {
             title: '#6b1fb1',
