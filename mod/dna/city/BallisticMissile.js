@@ -10,7 +10,7 @@ class BallisticMissile extends Platform {
             name:    'ballisticMissile' + (++id),
             r:        15,
             lifespan: 5,
-            force:    20,
+            force:    500,
         }, st) )
 
         this.install([

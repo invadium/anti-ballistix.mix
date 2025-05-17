@@ -17,6 +17,8 @@ class Platform extends Body {
         }
     }
 
+    /*
+    // platform in general MUST be hitless!!!
     hit(hitter) {
         if (hitter.force) {
             if (hitter.source !== this && (env.tune.friendlyFire || hitter.team !== this.team)) {
@@ -25,4 +27,5 @@ class Platform extends Body {
             }
         }
     }
+    */
 }

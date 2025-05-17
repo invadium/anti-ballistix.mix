@@ -5,10 +5,13 @@ let id = 0
 class PowerStation extends Platform {
 
     constructor(st) {
+
         super( extend({
             name: 'powerStation' + (++id),
             r:     200,
+            maxHP: 1500,
         }, st) )
+        this.hp = this.maxHP
 
 
         this.install([
@@ -60,11 +63,17 @@ class PowerStation extends Platform {
         ])
     }
 
-    hit(source) {
-        if (source instanceof dna.city.BallisticMissile) {
-            kill(this)
-            kill(source)
-            source.groundExplosion()
+    damage(force) {
+        this.hp -= force
+        if (this.hp <= 0) kill(this)
+    }
+
+    hit(hitter) {
+        if (hitter instanceof dna.city.BallisticMissile) {
+            kill(hitter)
+            hitter.groundExplosion()
+
+            this.damage(hitter.force)
         }
     }
 
@@ -95,13 +104,27 @@ class PowerStation extends Platform {
         rect(-hw, -hh, w, h, c, g)
         rect(-.6 * hw, -1 * h, .7*w, .5*h, c, g)
 
-        let bx = -.4 * hw,
-            by = -2.5*h,
+        let hp = this.hp,
+            pipeHP = this.maxHP / 3,
+            bx = -.4 * hw,
             pw = .1 * w,
-            ph = 1.5 * h,
-            ps = .4 * hw
+            ps = .4 * hw,
+            PH = 1.5 * h
+        let by, ph
         for (let i = 0; i < 3; i++) {
             //neon.rect(bx, by, pw, ph)
+            if (hp >= pipeHP) {
+                // full pipe height
+                ph = PH
+                by = -h - ph,
+                hp -= pipeHP
+            } else {
+                const dmgRate = hp/pipeHP,
+                      yShift  = .9 * PH * dmgRate
+                ph = .1 * PH + yShift
+                by = -h - ph
+                hp = 0
+            }
             rect(bx, by, pw, ph)
             bx += ps
         }
