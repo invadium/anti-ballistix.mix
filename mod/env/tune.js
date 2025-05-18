@@ -13,8 +13,9 @@ const tune = {
         windowHeight: .35, // relative to the floor height
     },
 
-    friendlyFire: false,
+    gameOverTimeout: 3,
 
+    friendlyFire: false,
 
     title: {
         hold: 5,
