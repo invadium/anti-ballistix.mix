@@ -15,6 +15,18 @@ function checkEndOfGameConditions() {
     }
 }
 
+function balanceElectricity() {
+    const power = lab.port.select(e => e instanceof dna.city.PowerStation).reduce(
+        (currentPower, powerStation) => currentPower + powerStation.getCurrentPower(),
+        0
+    )
+
+    const powerCoverage = power / env.powerDemand
+
+    // TODO determine how many buildings needs to be switch on/off
+    //      then go over all of them randomly and turn on/off depending on the demand
+}
+
 function evo(dt) {
     if (!env.gameState === 'started') return
 
@@ -27,6 +39,7 @@ function evo(dt) {
     }  else if (gameOverCountdown === 0) {
         if (env.time > lastCheck + CHECK_FQ) {
             checkEndOfGameConditions()
+            balanceElectricity()
             lastCheck = env.time
         }
     }

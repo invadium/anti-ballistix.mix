@@ -7,12 +7,12 @@ class PowerStation extends Platform {
     constructor(st) {
 
         super( extend({
-            name: 'powerStation' + (++id),
-            r:     200,
-            maxHP: 1500,
+            name:    'powerStation' + (++id),
+            r:        200,
+            maxHP:    1500,
+            maxPower: 100,
         }, st) )
         this.hp = this.maxHP
-
 
         this.install([
             new dna.city.pod.SolidCircle({
@@ -133,5 +133,13 @@ class PowerStation extends Platform {
         super.draw()
 
         restore()
+    }
+
+    getNormalHealth = function() {
+        return this.hp / this.maxHP
+    }
+
+    getCurrentPower() {
+        return this.maxPower * this.getNormalHealth()
     }
 }
