@@ -1,6 +1,8 @@
 
 const CHECK_FQ = 1
 
+const POWER_GAP = .1
+
 let lastCheck = 0
 let gameOverCountdown = 0
 
@@ -21,10 +23,21 @@ function balanceElectricity() {
         0
     )
 
-    const powerCoverage = power / env.powerDemand
+    const powerProduced = power / env.powerDemand // normalized value 0..1
 
-    // TODO determine how many buildings needs to be switch on/off
-    //      then go over all of them randomly and turn on/off depending on the demand
+    const buildings = lab.backdrop.city._ls
+    const poweredBuildings  = buildings.filter(b => b.powerState)
+    const blackoutBuildings = buildings.filter(b => !b.powerState)
+
+    const powerConsumed = poweredBuildings.length / buildings.length
+
+    if (powerProduced < powerConsumed) {
+        // need to cut off electricity to some buildings
+        math.rnde(poweredBuildings).cutOff()
+    } else if (powerProduced > powerConsumed + POWER_GAP) {
+        // need to power on some buildings
+        math.rnde(blackoutBuildings).powerOn()
+    }
 }
 
 function evo(dt) {

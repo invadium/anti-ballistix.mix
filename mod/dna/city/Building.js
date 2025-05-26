@@ -6,7 +6,8 @@ class Building extends Body {
 
     constructor(st) {
         super( augment({
-            name: 'building' + (++id)
+            name:       'building' + (++id),
+            powerState:  true,
         }, st) )
         const W  = ctx.width,
               H  = ctx.height,
@@ -32,6 +33,14 @@ class Building extends Body {
         this.floors = floor(this.h / FH) - 2
     }
 
+    cutOff() {
+        this.powerState = false
+    }
+
+    powerOn() {
+        this.powerState = true
+    }
+
     draw() {
         save()
         // move to the horizon coordinate system
@@ -47,11 +56,20 @@ class Building extends Body {
         )
         rect( x - hw, y - h, w, h )
 
-        fill(
-            .8 + .4 * z,
-            .2 + .2 * z,
-            .45 + .15 * z
-        )
+        // render windows
+        if (this.powerState) {
+            fill(
+                .8 + .4 * z,
+                .2 + .2 * z,
+                .45 + .15 * z
+            )
+        } else {
+            fill(
+                .85 - .18 * z, // H
+                .50 - .30 * z, // S
+                .32 - .22 * z  // L
+            )
+        }
 
         const WH = windowHeight
         let by = y - floorHeight
