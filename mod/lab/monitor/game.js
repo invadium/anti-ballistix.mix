@@ -39,7 +39,7 @@ function balanceElectricity() {
 }
 
 function evo(dt) {
-    if (!env.gameState === 'started') return
+    if (!(env.gameState === 'started')) return
 
     if (gameOverCountdown > 0) {
         gameOverCountdown -= dt

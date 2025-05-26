@@ -100,7 +100,7 @@ class Menu extends sys.LabFrame {
             step: 60,
             border: 2,
             shadowShift: 6,
-            IDLE_TIMEOUT: 20,
+            IDLE_TIMEOUT: 30,
 
             OPTION_PREFIX: '< ',
             OPTION_SUFIX:  ' >',
@@ -145,7 +145,7 @@ class Menu extends sys.LabFrame {
 
         this.adjust()
         this.hidden = false
-        this.lastTouch = Date.now()
+        this.touchIt()
 
         lab.monitor.controller.saveTargetMap()
         this._capture = true
@@ -431,6 +431,10 @@ class Menu extends sys.LabFrame {
         }
     }
 
+    touchIt() {
+        this.lastTouch = Date.now()
+    }
+
     mouseSelect() {
         const i = this.highlightedItem()
         if (i < 0) return
@@ -448,7 +452,7 @@ class Menu extends sys.LabFrame {
     }
 
     actuate(action) {
-        this.lastTouch = Date.now()
+        this.touchIt()
 
         const i = this.highlightedItem()
         if (i >= 0) return
@@ -609,7 +613,7 @@ class Menu extends sys.LabFrame {
     evo(dt) {
         const idle = (Date.now() - this.lastTouch)/1000
         if (idle >= this.IDLE_TIMEOUT) {
-            this.lastTouch = Date.now()
+            this.touchIt()
             if (isFun(this.items.onIdle)) {
                 this.items.onIdle()
             }

@@ -5,6 +5,7 @@ V vaporwave grid wanishin in the horizon
 V infrastructure layer
 V infrastructure damage
 
+> player jumping between flaks
 > proper Z-ordering for infrastructure and projectiles
 > powerstation hit/destroy particle effects
 > drones

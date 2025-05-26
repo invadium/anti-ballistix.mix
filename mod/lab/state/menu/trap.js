@@ -14,7 +14,12 @@ module.exports = {
     },
 
     onIdle: function() {
-        log('user is idle')
+        if (lab.control.game.inProgress()) return
+
+        // TODO start the game in demo mode
+        signal('game/level', {
+            level: 1,
+        })
     },
 
     onHide: function() {
@@ -31,6 +36,11 @@ module.exports = {
     },
 
     mouseDown(e) {
+        this.__.touchIt()
         this.__.mouseSelect()
+    },
+
+    mouseMove(e) {
+        this.__.touchIt()
     },
 }

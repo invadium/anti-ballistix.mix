@@ -2,7 +2,7 @@ const items = [
     {
         title: 'New Game',
         select: function(menu) {
-            trap('game/level', {
+            signal('game/level', {
                 level: 1,
             })
             /*
