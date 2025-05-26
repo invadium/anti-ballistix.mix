@@ -2,12 +2,20 @@
 //
 // Sound effects are configured in /env/sfx
 //
-module.exports = function(name, vol, pan) {
+module.exports = function(nameOrClip, vol, pan) {
     vol = vol || 1
     vol *= env.opt.sfxVolume
 
     const container = res.sfx
-    let clip = container[name]
+
+    let name, clip
+    if (isObj(nameOrClip)) {
+        clip = nameOrClip
+        name = clip.name
+    } else {
+        name = nameOrClip
+        clip = container[name]
+    }
     let config = env.sfx[name]
 
     if (!config) {
@@ -24,5 +32,5 @@ module.exports = function(name, vol, pan) {
     }
 
     //log(`plaing [${name}]`)
-    sfx(clip, vol, pan)
+    sys.sfx(clip, vol, pan)
 }
