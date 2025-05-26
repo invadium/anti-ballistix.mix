@@ -7,12 +7,10 @@ let lastCheck = 0
 let gameOverCountdown = 0
 
 function checkEndOfGameConditions() {
-    let powerStations = 0
-    lab.port._ls.forEach(e => {
-        if (e instanceof dna.city.PowerStation && !e.dead) powerStations++
-    })
+    const buildings = lab.backdrop.city._ls,
+          poweredBuildings  = buildings.filter(b => b.powerState)
 
-    if (powerStations === 0) {
+    if (poweredBuildings.length === 0) {
         gameOverCountdown = env.tune.gameOverTimeout
     }
 }
@@ -25,9 +23,9 @@ function balanceElectricity() {
 
     const powerProduced = power / env.powerDemand // normalized value 0..1
 
-    const buildings = lab.backdrop.city._ls
-    const poweredBuildings  = buildings.filter(b => b.powerState)
-    const blackoutBuildings = buildings.filter(b => !b.powerState)
+    const buildings = lab.backdrop.city._ls,
+          poweredBuildings  = buildings.filter(b => b.powerState),
+          blackoutBuildings = buildings.filter(b => !b.powerState)
 
     const powerConsumed = poweredBuildings.length / buildings.length
 

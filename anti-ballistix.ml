@@ -1,17 +1,20 @@
 # core
+V city in the background
+V stars appearing in the sky
+V vaporwave grid wanishin in the horizon
+V infrastructure layer
+V infrastructure damage
+
+> proper Z-ordering for infrastructure and projectiles
+> powerstation hit/destroy particle effects
 > drones
-> city in the background
-> stars appearing in the sky
-> vaporwave grid wanishin in the horizon
-> infrastructure layer
 > drone attacks with explosions
-> infrastructure damage
 > core sfx
 > game stat subsystem
 > score overlay
 > mission success/fail conditions
-> end of the mission screen (with stat and infographics)
-> call them scenarios or missions instead of levels?
+> end of the wave screen (with stat and infographics)
+> call them scenarios or missions or waves instead of levels?
 
 # advanced
 >>> more projectiles
