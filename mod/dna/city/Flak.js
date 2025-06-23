@@ -24,7 +24,12 @@ class Flak extends Platform {
                 r: 15,
             }),
             new dna.city.pod.Attitude(),
-            new dna.city.pod.Gun(),
+            new dna.city.pod.DoubleGun({
+                x1: 8,
+                y1: -4,
+                x2: 8,
+                y2: 4,
+            }),
             new dna.city.pod.TurretPadControl(),
         ])
     }
@@ -48,13 +53,13 @@ class Flak extends Platform {
 
         // body
         //neon.circle(0, 0, r, color, gcolor)
-        neon.line( 1.1*r,    -r,     .7*r,   r,      color, gcolor)
-        neon.line( .7*r, r,      0,      .7*r,   color, gcolor)
+      / neon.line( .7*r, r,      0,      .7*r,   color, gcolor)
         neon.line( 0,    .7*r,   -.7*r,  r,      color, gcolor)
-        neon.line( -.7*r,r,      -1.1*r,      -r,     color, gcolor)
 
-        // barrel
-        neon.line(0, 0, 0, -r * 1.4, color, gcolor)
+        // barrels
+        neon.line( -.4*r,     r,  -.4*r,  -r,     color, gcolor)
+        neon.line(  .4*r,    -r,   .4*r,   r,     color, gcolor)
+        //neon.line(0, 0, 0, -r * 1.4, color, gcolor)
 
         super.draw()
 

@@ -1,9 +1,10 @@
 
 // TODO make configurable by Wave #N data
 
-const FQ = .25
+const BFQ = .25
+const DFQ = .07
 
-function ballistic() {
+function spawnBallistic() {
     const viewport = lab.port.viewport()
 
     const m = lab.port.spawn(dna.city.BallisticMissile, {
@@ -15,7 +16,19 @@ function ballistic() {
     // log(`new ballistic missile @${m.x}:${m.y}`)
 }
 
+function spawnDrone() {
+    const viewport = lab.port.viewport()
+
+    const m = lab.port.spawn(dna.city.Drone, {
+        x: -crx(100),
+        y: (.55 + .2 * rnd()) * viewport.y,
+        //dir: .4 * PI + .2 * PI * rnd(),
+        dir: 0,
+    })
+}
+
 function evo(dt) {
-    if (rnd() < FQ * dt) ballistic()
+    if (rnd() < BFQ * dt) spawnBallistic()
+    if (rnd() < DFQ * dt) spawnDrone()
 }
 
