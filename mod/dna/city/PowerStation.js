@@ -69,7 +69,7 @@ class PowerStation extends Platform {
     }
 
     hit(hitter) {
-        if (hitter instanceof dna.city.BallisticMissile) {
+        if (hitter.team !== this.team && hitter instanceof dna.city.GuidedWeapon) {
             kill(hitter)
             hitter.groundExplosion()
 

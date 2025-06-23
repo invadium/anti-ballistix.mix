@@ -1,15 +1,14 @@
 let id = 0
 
-const Platform = require('dna/city/Platform')
+const GuidedWeapon = require('dna/city/GuidedWeapon')
 
-class BallisticMissile extends Platform {
+class BallisticMissile extends GuidedWeapon {
 
     constructor(st) {
         super( extend({
             team:     2,
             name:    'ballisticMissile' + (++id),
             r:        15,
-            lifespan: 5,
             force:    500,
         }, st) )
 

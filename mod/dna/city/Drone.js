@@ -1,16 +1,20 @@
 let id = 0
 
-const Platform = require('dna/city/Platform')
+const GuidedWeapon = require('dna/city/GuidedWeapon')
 
-class Drone extends Platform {
+const FLYING = 1,
+      DIVING = 2
+
+class Drone extends GuidedWeapon {
 
     constructor(st) {
         super( extend({
-            team:     2,
-            name:    'drone' + (++id),
-            r:        15,
-            lifespan: 5,
-            force:    500,
+            team:      2,
+            name:     'drone' + (++id),
+            state:     FLYING,
+            r:         15,
+            powerTime: 15 + 45 * rnd(),
+            force:     50,
         }, st) )
 
         this.install([
@@ -29,6 +33,14 @@ class Drone extends Platform {
                 x: 0,
                 y: 7,
                 r: 7,
+            }),
+            // tail solid
+            new dna.city.pod.SolidCircle({
+                alias: '',
+                name:  'solid3',
+                x:      0,
+                y:     20,
+                r:      5,
             }),
             new dna.city.pod.MultiSolid(),
 
@@ -76,8 +88,23 @@ class Drone extends Platform {
     evo(dt) {
         super.evo(dt)
 
-        if (this.dir === 0 && this.x > crx(100)) this.flip()
-        if (this.dir === PI && this.x < -crx(100)) this.flip()
+        switch(this.state) {
+            case FLYING:
+                this.powerTime -= dt
+                if (this.dir === 0 && this.x > crx(100)) this.flip()
+                if (this.dir === PI && this.x < -crx(100)) this.flip()
+
+                if (this.powerTime < 0) {
+                    this.state = DIVING
+
+                    if (this.dir === 0) this.dir = .25 * PI
+                    else this.dir = .75 * PI
+                }
+                break
+
+            case DIVING:
+                break
+        }
 
         if (this.y >= cry(this.targetCRY)) {
             // ground hit

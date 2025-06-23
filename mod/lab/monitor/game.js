@@ -31,10 +31,10 @@ function balanceElectricity() {
 
     if (powerProduced < powerConsumed) {
         // need to cut off electricity to some buildings
-        math.rnde(poweredBuildings).cutOff()
+        math.rnde(poweredBuildings)?.cutOff()
     } else if (powerProduced > powerConsumed + POWER_GAP) {
         // need to power on some buildings
-        math.rnde(blackoutBuildings).powerOn()
+        math.rnde(blackoutBuildings)?.powerOn()
     }
 }
 

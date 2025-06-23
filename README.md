@@ -24,3 +24,15 @@ Use ```--level``` command line option to specify the exact level to jump into:
 ```
 jam -d --level 2
 ```
+
+
+### Debug Hit Boxes
+
+You need to set ```env.showSolids = true```.
+
+Use ```--showSolids``` command line flag for convenience:
+
+```
+jam -d --level 1 --showSolids
+```
+
