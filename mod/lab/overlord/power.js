@@ -6,6 +6,11 @@ const POWER_GAP = .1
 let lastCheck = 0
 let gameOverCountdown = 0
 
+function onNewMission() {
+    log('starting city power monitoring...')
+    gameOverCountdown = 0
+}
+
 function checkEndOfGameConditions() {
     const buildings = lab.backdrop.city._ls,
           poweredBuildings  = buildings.filter(b => b.powerState)
@@ -39,7 +44,8 @@ function balanceElectricity() {
 }
 
 function evo(dt) {
-    if (!(env.gameState === 'started')) return
+    if (!lab.control.game.inProgress()) return
+    //if (!(env.gameState === 'started')) return
 
     if (gameOverCountdown > 0) {
         gameOverCountdown -= dt

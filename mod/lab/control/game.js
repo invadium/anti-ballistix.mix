@@ -19,6 +19,7 @@ function level(levelConfig) {
 
     cleanUp()
     if (isFun(levelConfig.setup)) levelConfig.setup()
+    on('newMission')
 
     env.level = levelConfig
     env.gameState = 'started'

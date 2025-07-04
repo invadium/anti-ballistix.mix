@@ -21,6 +21,10 @@ const tune = {
         hold: 5,
     },
 
+    gameover: {
+        hold: 15,
+    },
+
     credits: {
         hold: 8,
     },

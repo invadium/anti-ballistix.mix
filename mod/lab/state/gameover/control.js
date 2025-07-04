@@ -12,7 +12,7 @@ function next() {
 }
 
 function evo(dt) {
-    if (this.startedAt && env.time > this.startedAt + env.tune.credits.keep) {
+    if (this.startedAt && env.time > this.startedAt + env.tune.gameover.hold) {
         this.next()
     }
 }

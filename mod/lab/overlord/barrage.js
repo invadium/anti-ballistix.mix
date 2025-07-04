@@ -4,6 +4,10 @@
 const BFQ = .25
 const DFQ = .07
 
+function onNewMission() {
+    log('starting drone/missile barrage')
+}
+
 function spawnBallistic() {
     const viewport = lab.port.viewport()
 

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# A launch script to debug collider.jam itself
+#
+# Open chrome://inspect in Chrome, launch the script and open dedicated DevTools for Node.
+#
+
+export NODE_OPTIONS="--inspect-brk"
+
+jam -d
+

@@ -25,6 +25,14 @@ Use ```--level``` command line option to specify the exact level to jump into:
 jam -d --level 2
 ```
 
+### Coding During Air Raid Alerts
+
+When coding during an air raid alert, it is important to be
+constantly aware of what is going on outside.
+
+It is advasiable to turn of sound and music from the main menu.
+
+
 
 ### Debug Hit Boxes
 
