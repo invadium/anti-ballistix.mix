@@ -22,7 +22,7 @@ class Attitude {
     }
 
     max() {
-        return this.neutral + .5 * this.secont
+        return this.neutral + .5 * this.sector
     }
 
     atMin() {

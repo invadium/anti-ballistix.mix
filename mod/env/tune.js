@@ -17,6 +17,10 @@ const tune = {
 
     friendlyFire: false,
 
+    player: {
+        releaseControlTimeout: 30,
+    },
+
     title: {
         hold: 5,
     },

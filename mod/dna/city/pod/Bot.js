@@ -15,10 +15,14 @@ class Bot {
 
     }
 
-    // TODO check if we have a fire control radar installed?
-    //preInstall(body) {
-        //if (!body.targeting) throw `a targeting pod is expected in [${body.name}]!`
-    //}
+    /*
+    // TODO figure out where to move these checks
+    //      shouldn't it be a dependency injection of some sorts?
+    preInstall(body) {
+        if (!body.attitude) throw `an attitude pod is expected in [${body.name}]!`
+        if (!body.primaryWeapon) throw `a primary weapon pod is expected in [${body.name}]!`
+    }
+    */
     
     onInstall() {
         this.botActions = [
@@ -33,7 +37,6 @@ class Bot {
                 evo: function(dt) {
                     this.flak.attitude.left(dt)
                     if (this.flak.attitude.atMin()) {
-                        log(`[this.flak.name] flip action: ${this.flak.bot.action.name}`)
                         this.flak.bot.action = this.flak.bot.botActions[MOVE_RIGHT]
                     }
                 },
@@ -46,7 +49,6 @@ class Bot {
                 evo: function(dt) {
                     this.flak.attitude.right(dt)
                     if (this.flak.attitude.atMax()) {
-                        log(`[this.flak.name] flip action: ${this.flak.bot.action.name}`)
                         this.flak.bot.action = this.flak.bot.botActions[MOVE_LEFT]
                     }
                 },
@@ -57,10 +59,10 @@ class Bot {
                 flak:  this.__,
                 name: 'fire',
                 start: function(dt) {
-                    if (this.flak.primaryWeapon) this.flak.primaryWeapon.trigger()
+                    this.flak.primaryWeapon.trigger()
                 },
                 stop: function(dt) {
-                    if (this.flak.primaryWeapon) this.flak.primaryWeapon.stop()
+                    this.flak.primaryWeapon.stop()
                 },
                 minTime:  1,
                 maxTime:  4,
@@ -95,6 +97,10 @@ class Bot {
         } else {
             this.selectNextAction()
         }
+    }
+
+    onDeactivate() {
+        this.__.primaryWeapon.stop()
     }
 
 }

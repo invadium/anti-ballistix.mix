@@ -2,8 +2,9 @@ class TurretPadControl {
 
     constructor(st) {
         extend(this, {
-            alias: 'control',
-            name:  'turretPadControl',
+            alias:   'control',
+            name:    'turretPadControl',
+            touched: -1,
         }, st)
     }
 
@@ -12,8 +13,20 @@ class TurretPadControl {
         if (!body.primaryWeapon) throw `a primary weapon pod is expected in [${body.name}]!`
     }
 
+    capture(controllerId) {
+        lab.monitor.controller.bind(controllerId, this)
+        this.__.activatePod(this)
+        log('human is taking over!')
+    }
+
+    release() {
+        this.__.activatePod(this.__.bot)
+        log('bot is taking over!')
+    }
+
     actuate(action) {
         const __ = this.__
+        this.touched = env.time
 
         switch(action.name) {
             case 'A':
@@ -25,6 +38,7 @@ class TurretPadControl {
 
     act(action, dt) {
         const __ = this.__
+        this.touched = env.time
 
         switch(action.name) {
             case 'LEFT':
@@ -38,6 +52,7 @@ class TurretPadControl {
 
     cutOff(action) {
         const __ = this.__
+        this.touched = env.time
         if (this.disabled || __.disabled) return
 
         switch(action.name) {
@@ -45,6 +60,14 @@ class TurretPadControl {
             case 'B':
                 if (__.primaryWeapon) __.primaryWeapon.stop()
                 break
+        }
+    }
+
+    evo(dt) {
+        if (this.touched < 0) return
+        if (env.time - this.touched > env.tune.player.releaseControlTimeout) {
+            this.touched = -1
+            this.release()
         }
     }
 }
