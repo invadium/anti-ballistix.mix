@@ -25,24 +25,41 @@ function setup() {
     }
     env.powerDemand = totalPower
 
-    lab.port.spawn( dna.city.Flak, {
+    // TODO we should suggest the number of players in the main menu
+    //      to create and spread our flaks
+    const flak1 = lab.port.spawn( dna.city.Flak, {
         Z:    101,
         team: 1,
         x:    crx(25),
         y:    cry(10),
+        pods:  [
+            new dna.city.pod.Bot(),
+            new dna.city.pod.FireControlRadar(),
+        ],
     })
+    flak1.activatePod(flak1.bot)
 
-    lab.port.spawn( dna.city.Flak, {
+    const flak2 = lab.port.spawn( dna.city.Flak, {
         Z:    101,
         team: 1,
         x:    crx(50),
         y:    cry(10),
+        pods:  [
+            new dna.city.pod.Bot(),
+            new dna.city.pod.FireControlRadar(),
+        ],
     })
+    flak2.activatePod(flak2.bot)
 
-    lab.port.spawn( dna.city.Flak, {
+    const flak3 = lab.port.spawn( dna.city.Flak, {
         Z:    101,
         team: 1,
         x:    crx(75),
         y:    cry(10),
+        pods:  [
+            new dna.city.pod.Bot(),
+            new dna.city.pod.FireControlRadar(),
+        ],
     })
+    flak3.activatePod(flak3.bot)
 }
