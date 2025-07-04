@@ -20,13 +20,19 @@ function checkEndOfGameConditions() {
     }
 }
 
-function balanceElectricity() {
-    const power = lab.port.select(e => e instanceof dna.city.PowerStation).reduce(
+function getPower() {
+    return lab.port.select(e => e instanceof dna.city.PowerStation).reduce(
         (currentPower, powerStation) => currentPower + powerStation.getCurrentPower(),
         0
     )
+}
 
-    const powerProduced = power / env.powerDemand // normalized value 0..1
+function getNormalPower() {
+    return getPower() / env.powerDemand // normalized value 0..1
+}
+
+function balanceElectricity() {
+    const powerProduced = getNormalPower() // normalized value 0..1
 
     const buildings = lab.backdrop.city._ls,
           poweredBuildings  = buildings.filter(b => b.powerState),

@@ -10,6 +10,9 @@ class BallisticMissile extends GuidedWeapon {
             name:    'ballisticMissile' + (++id),
             r:        15,
             force:    500,
+
+            score:    100,
+            cost:     1000,
         }, st) )
 
         this.install([
@@ -99,4 +102,7 @@ class BallisticMissile extends GuidedWeapon {
         restore()
     }
 
+    onKill() {
+        trap('game/kill', this)
+    }
 }

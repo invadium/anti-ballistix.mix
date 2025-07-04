@@ -29,6 +29,10 @@ const style = {
             family: 'moon',
             size:   24,
         },
+        titleBar: {
+            family: 'moon',
+            size:   32,
+        },
         title: {
             family: 'moon',
             size:   64,

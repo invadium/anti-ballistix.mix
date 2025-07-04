@@ -15,6 +15,9 @@ class Drone extends GuidedWeapon {
             r:         15,
             powerTime: 15 + 45 * rnd(),
             force:     50,
+
+            score:     10,
+            cost:      50,
         }, st) )
 
         this.install([
@@ -134,6 +137,10 @@ class Drone extends GuidedWeapon {
         super.draw()
 
         restore()
+    }
+
+    onKill() {
+        trap('game/kill', this)
     }
 
 }
