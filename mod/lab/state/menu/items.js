@@ -2,26 +2,26 @@ const items = [
     {
         title: 'New Game',
         select: function(menu) {
-            signal('game/level', {
-                level: 1,
+            signal('game/scenario', {
+                scenario: 1,
             })
             /*
-            // pick the selected level
-            const levelOptions = menu.items[2]
-            const idx = levelOptions.current || 0
-            trap('game/level', {
-                level: idx + 1,
+            // pick the selected scenario
+            const scenarioOptions = menu.items[2]
+            const idx = scenarioOptions.current || 0
+            trap('game/scenario', {
+                scenario: idx + 1,
             })
             */
         },
     },
     /*
     {
-        title: 'Level',
+        title: 'Scenario',
         section: true,
     },
     {
-        id:      'levels',
+        id:      'scenarios',
         options:  [],
     },
     */

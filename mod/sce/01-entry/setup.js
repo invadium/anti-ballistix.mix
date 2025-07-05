@@ -1,7 +1,7 @@
 function setup() {
-    log('!!! setting up the level !!!')
+    log('!!! setting up the scenario #1 !!!')
 
-    // TODO generalize into a common level generator
+    // TODO generalize into a common scenario generator
     const src = this.src = math.createRandomGenerator()
     this.src.setSeed(868)
 

@@ -1,4 +1,5 @@
-function compileLevelList() {
+function compileScenarioList() {
+    // TODO list all scenario ids and titles
 }
 
 function toggleResumeGameVisibility() {
@@ -9,7 +10,7 @@ function toggleResumeGameVisibility() {
 
 function onActivate() {
     this.__.items.title = res.txt.label.title 
-    this.compileLevelList()
+    this.compileScenarioList()
     this.toggleResumeGameVisibility()
     lab.background = env.style.color.sky
 }

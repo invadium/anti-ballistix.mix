@@ -1,8 +1,8 @@
 function postSetup() {
-    if (env.config.level) {
+    if (env.config.scenario) {
         // fast track
-        trap('game/level', {
-            level: env.config.level,
+        trap('game/scenario', {
+            scenario: env.config.scenario,
             fadein: 0,
         })
     } else {

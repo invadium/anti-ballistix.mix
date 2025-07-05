@@ -3,7 +3,7 @@ const Z = 1
 const src = math.createRandomGenerator()
 
 function init() {
-    // TODO reinitialize with each new level with a new seed?
+    // TODO reinitialize with a scenario-specific seed?
     src.setSeed(7512)
 }
 

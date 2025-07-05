@@ -17,8 +17,8 @@ module.exports = {
         if (lab.control.game.inProgress()) return
 
         // TODO start the game in demo mode
-        signal('game/level', {
-            level: 1,
+        signal('game/scenario', {
+            scenario: 1,
         })
     },
 
