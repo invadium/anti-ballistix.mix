@@ -16,17 +16,26 @@ class TurretPadControl {
     capture(controllerId) {
         lab.monitor.controller.bind(controllerId, this)
         this.__.activatePod(this)
-        log('human is taking over!')
+        log(`[${this.__.name}] captured by human #${controllerId}!`)
     }
 
-    release() {
+    botTakeover() {
+        log(`[${this.__.name}] bot takes over!`)
         this.__.activatePod(this.__.bot)
-        log('bot is taking over!')
+    }
+
+    humanTakeover() {
+        log(`[${this.__.name}] human takes over!`)
+        this.__.activatePod(this)
     }
 
     actuate(action) {
         const __ = this.__
         this.touched = env.time
+
+        if (this.deactivated) {
+            this.humanTakeover()
+        }
 
         switch(action.name) {
             case 'A':
@@ -65,9 +74,18 @@ class TurretPadControl {
 
     evo(dt) {
         if (this.touched < 0) return
-        if (env.time - this.touched > env.tune.player.releaseControlTimeout) {
+        if (env.time - this.touched > env.tune.player.botTakeoverTimeout) {
             this.touched = -1
-            this.release()
+            this.botTakeover()
         }
+    }
+
+    enable() {
+        this.disabled = false
+    }
+
+    disable() {
+        // ignore disabled flag flip
+        this.disabled = false
     }
 }

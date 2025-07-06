@@ -105,14 +105,24 @@ class Body extends LabFrame {
         if (this[pod.alias] && this[pod.alias] !== pod) {
             this.deactivatePod(pod.alias, pod)
         }
-        pod.deactivated = false 
-        pod.paused      = false
-        pod.hidden      = false
-        pod.disabled    = false
+
+        if (isFun(pod.deactivate)) {
+            pod.deactivate()
+        } else {
+            pod.deactivated = false 
+
+            if (isFun(pod.resume)) pod.resume()
+            else pod.paused = false
+            if (isFun(pod.show)) pod.show()
+            else pod.hidden = false
+            if (isFun(pod.enable)) pod.enable()
+            else pod.disabled = false
+        }
         if (pod.alias && pod.name !== pod.alias) {
+            // assign to the alias
             this[pod.alias] = pod
         }
-        if (pod.onActivate) pod.onActivate()
+        if (isFun(pod.onActivate)) pod.onActivate()
 
         return true
     }
@@ -121,14 +131,23 @@ class Body extends LabFrame {
         const pod = this._getPod(targetPod)
         if (!pod) return false
 
-        pod.deactivated = true
-        pod.disabled    = true
-        pod.paused      = true
-        pod.hidden      = true
+        if (isFun(pod.deactivate)) {
+            pod.deactivate()
+        } else {
+            pod.deactivated = true
+
+            if (isFun(pod.disable)) pod.disable()
+            else pod.disabled = true
+            if (isFun(pod.pause)) pod.pause()
+            else pod.paused = true
+            if (isFun(pod.hide)) pod.hide()
+            else pod.hidden = true
+        }
         if (pod.name !== pod.alias) {
+            // remove the aliased name
             delete this[pod.alias]
         }
-        if (pod.onDeactivate) pod.onDeactivate(nextPod)
+        if (isFun(pod.onDeactivate)) pod.onDeactivate(nextPod)
 
         return true
     }
