@@ -65,6 +65,10 @@ class TurretPadControl {
         }
     }
 
+    isOccupied() {
+        return !!this._controllerId
+    }
+
     actuate(action) {
         const __ = this.__
         this.touched = env.time
