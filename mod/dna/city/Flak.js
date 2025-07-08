@@ -8,7 +8,9 @@ class Flak extends Platform {
         super( extend({
             name:   'flak' + (++id),
             r:       10,
+            r1:      10,
             r2:      8,
+            r3:      25,
 
             hull:    100,
             //dir:     math.rnda(),
@@ -25,10 +27,9 @@ class Flak extends Platform {
             }),
             new dna.city.pod.Attitude(),
             new dna.city.pod.DoubleGun({
-                x1: 8,
-                y1: -4,
-                x2: 8,
-                y2: 4,
+                y0:  25,
+                x1: -8,
+                x2:  8,
             }),
             new dna.city.pod.TurretPadControl(),
         ])
@@ -40,7 +41,7 @@ class Flak extends Platform {
     }
 
     draw() {
-        const { x, y, r, r2, dir } = this
+        const { x, y, r, r1, r2, r3, dir } = this
 
         const bx = cos(dir),
               by = sin(dir),
@@ -51,18 +52,33 @@ class Flak extends Platform {
         translate(x, y)
         rotate(HALF_PI + dir)
 
-        // body
+        save()
+        translate(0, -r1)
+
+        // body front
         //neon.circle(0, 0, r, color, gcolor)
-      / neon.line( .7*r, r,      0,      .7*r,   color, gcolor)
-        neon.line( 0,    .7*r,   -.7*r,  r,      color, gcolor)
+        neon.line( .7*r1, r1,      0,      .7*r1,   color, gcolor)
+        neon.line( 0,    .7*r1,   -.7*r1,  r1,      color, gcolor)
+
+        if (this.bot.isInControl()) {
+            neon.line( .7*r1, r1,      .2*r1,      r3,   color, gcolor)
+            neon.line(-.7*r1, r1,     -.2*r1,      r3,   color, gcolor)
+            neon.line(-.2*r1, r3,      .2*r1,      r3,   color, gcolor)
+        } else {
+            neon.line( .7*r1, r1,      .4*r1,      r3,   color, gcolor)
+            neon.line(-.7*r1, r1,     -.4*r1,      r3,   color, gcolor)
+            neon.line(-.4*r1, r3,      .4*r1,      r3,   color, gcolor)
+
+            neon.line(     0, r1,          0,   .7*r3,   color, gcolor)
+        }
 
         // barrels
         neon.line( -.4*r,     r,  -.4*r,  -r,     color, gcolor)
         neon.line(  .4*r,    -r,   .4*r,   r,     color, gcolor)
         //neon.line(0, 0, 0, -r * 1.4, color, gcolor)
+        restore()
 
         super.draw()
-
         restore()
     }
 

@@ -18,17 +18,19 @@ class DoubleGun {
 
     fire() {
         const { x, y, r2, dir } = this.__
+        const { x1, x2, y0 } = this
         const dx = cos(dir),
               dy = sin(dir)
 
+        // spread
         let ddx = 0, ddy = 0
         if (this.barrel === 0) {
-            ddx = .5 * r2 * sin(dir)
-            ddy = .5 * r2 * cos(dir)
+            ddx = .5 * x1 * sin(dir)
+            ddy = .5 * x1 * cos(dir)
             this.barrel = 1
         } else {
-            ddx = .5 * -r2 * sin(dir)
-            ddy = .5 * -r2 * cos(dir)
+            ddx = .5 * x2 * sin(dir)
+            ddy = .5 * x2 * cos(dir)
             this.barrel = 0
         }
 
@@ -36,8 +38,8 @@ class DoubleGun {
         lab.port.spawn( dna.city.Projectile, {
             team:   this.__.team + 2,
             source: this.__,
-            x:      x + ddx + dx * r2,
-            y:      y + ddy + dy * r2,
+            x:      x + ddx + dx * y0,
+            y:      y + ddy + dy * y0,
             dir:    dir,
         })
     }

@@ -84,6 +84,10 @@ class Bot {
         this.timeout = 0
     }
 
+    isInControl() {
+        return !this.deactivated
+    }
+
     evo(dt) {
         const __ = this.__
         this.timeout -= dt
