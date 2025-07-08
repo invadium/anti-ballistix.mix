@@ -4,7 +4,7 @@ function capture(st) {
     // TODO create a flak?
     // ...
 
-    const freeFlaks = lab.port.filter(e => (e instanceof dna.city.Flak && !e.control._controllerId) )
+    const freeFlaks = lab.port.filter(e => (e instanceof dna.city.Flak && !e.turretPadControl._controllerId) )
 
     if (freeFlaks.length > 0) {
         log('capturing the player')

@@ -29,6 +29,42 @@ class TurretPadControl {
         this.__.activatePod(this)
     }
 
+    jumpNext() {
+        const __ = this.__
+
+        let nextFlak
+        const freeFlaks = lab.port.filter(e => (e instanceof dna.city.Flak && !e.turretPadControl._controllerId) )
+        if (freeFlaks.length > 0) {
+            // select the closest to the right
+            let minX = 999999
+            freeFlaks.forEach(flak => {
+                if (flak.x > __.x && flak.x < minX) {
+                    minX = flak.x
+                    nextFlak = flak
+                }
+            })
+
+            if (!nextFlak) {
+                let minX = 999999
+                freeFlaks.forEach(flak => {
+                    if (flak.x < minX) {
+                        minX = flak.x
+                        nextFlak = flak
+                    }
+                })
+            }
+        }
+
+        if (nextFlak) {
+            log('capturing the next flak')
+            nextFlak.turretPadControl.capture(this._controllerId)
+            __.activatePod(__.bot) // 
+            // TODO jump sfx
+        } else {
+            // TODO denied sfx
+        }
+    }
+
     actuate(action) {
         const __ = this.__
         this.touched = env.time
@@ -41,6 +77,10 @@ class TurretPadControl {
             case 'A':
             case 'B':
                 if (__.primaryWeapon) __.primaryWeapon.trigger()
+                break
+
+            case 'Y':
+                this.jumpNext()
                 break
         }
     }

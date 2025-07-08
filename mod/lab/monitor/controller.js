@@ -65,7 +65,7 @@ function release(controllerId) {
     const target = targetMap[icontroller]
     if (target) {
         cutOffAllActions(controllerId) // need to cut off all triggered actions before release
-        target._controller = 0
+        target._controllerId = 0
         targetMap[icontroller] = false
         return true
     } else {
