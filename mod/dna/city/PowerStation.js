@@ -65,11 +65,12 @@ class PowerStation extends Platform {
 
     damage(force) {
         this.hp -= force
-        if (this.hp <= 0) kill(this)
+        //if (this.hp <= 0) kill(this)
     }
 
     hit(hitter) {
         if (hitter.team !== this.team && hitter instanceof dna.city.GuidedWeapon) {
+            lib.vfx.hitDebris(hitter.x, hitter.y, hitter.force, env.style.color.powerStation)
             kill(hitter)
             hitter.groundExplosion()
 
@@ -102,32 +103,48 @@ class PowerStation extends Platform {
         fill(env.style.color.powerStation)
         //neon.rect(-hw, -hh, w, h, c, g)
         //neon.rect(-.6 * hw, -1.05 * h, .7*w, .5*h, c, g)
-        rect(-hw, -hh, w, h, c, g)
-        rect(-.6 * hw, -1 * h, .7*w, .5*h, c, g)
 
-        let hp = this.hp,
-            pipeHP = this.maxHP / 3,
-            bx = -.4 * hw,
-            pw = .1 * w,
-            ps = .4 * hw,
-            PH = 1.5 * h
-        let by, ph
-        for (let i = 0; i < 3; i++) {
-            //neon.rect(bx, by, pw, ph)
-            if (hp >= pipeHP) {
-                // full pipe height
-                ph = PH
-                by = -h - ph,
-                hp -= pipeHP
-            } else {
-                const dmgRate = hp/pipeHP,
-                      yShift  = .9 * PH * dmgRate
-                ph = .1 * PH + yShift
-                by = -h - ph
-                hp = 0
+        rect(-hw, -hh, w, h)
+
+        if (this.hp <= 0) {
+            // show destroyed
+            let bx = -.6 * hw
+            const sx = .3 * .7 * w
+            for (let i = 0; i < 3; i++) {
+                triangle(
+                    bx,        -0.5 * h,
+                    bx+.25*sx, -1.0 * h,
+                    bx+sx,     -0.5 * h,
+                )
+                bx += sx
             }
-            rect(bx, by, pw, ph)
-            bx += ps
+        } else {
+            rect(-.6 * hw, -1 * h, .7*w, .5*h)
+
+            let hp = this.hp,
+                pipeHP = this.maxHP / 3,
+                bx = -.4 * hw,
+                pw = .1 * w,
+                ps = .4 * hw,
+                PH = 1.5 * h
+            let by, ph
+            for (let i = 0; i < 3; i++) {
+                //neon.rect(bx, by, pw, ph)
+                if (hp >= pipeHP) {
+                    // full pipe height
+                    ph = PH
+                    by = -h - ph,
+                    hp -= pipeHP
+                } else {
+                    const dmgRate = hp/pipeHP,
+                          yShift  = .9 * PH * dmgRate
+                    ph = .1 * PH + yShift
+                    by = -h - ph
+                    hp = 0
+                }
+                rect(bx, by, pw, ph)
+                bx += ps
+            }
         }
 
         super.draw()
@@ -136,6 +153,7 @@ class PowerStation extends Platform {
     }
 
     getNormalHealth = function() {
+        if (this.hp <= 0) return 0
         return this.hp / this.maxHP
     }
 
