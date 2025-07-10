@@ -1,12 +1,20 @@
-> show debug coordinate grid
 > pause and time speed control
-> separate team and color
+> show debug coordinate grid # debug
 > introduce proper z-coordinate & the related Z-order
-> hit score
-> refactor levels => scenarios
-> multiple waves of attack with increasing difficulty curve
+
+> waves
+> scenario selection
+> scenario setup (number of players etc...)
+> separate team and color
 > wave stats
 > game over stats
-> power station hit particles
+> multiple waves of attack with increasing difficulty curve
 > grid vibes
 > incoming radar hints (for ballistics, cruise, drones etc...)
+> kill projectiles when leaving the screen area
+
+
+V power station hit particles
+V hit score
+V refactor levels => scenarios
+

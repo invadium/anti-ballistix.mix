@@ -2,6 +2,18 @@ function inProgress() {
     return (env.gameState === 'started')
 }
 
+function pause() {
+    lab.port.pause()
+    lab.overlord.pause()
+    lab.control.pause()
+}
+
+function resume() {
+    lab.port.resume()
+    lab.overlord.resume()
+    lab.control.resume()
+}
+
 function cleanUp() {
     lab.backdrop.city.detachAll()
 

@@ -41,21 +41,22 @@ const actions = [
 
 // globally fixed keys with no remap
 const fixed = {
-    enter:          'Enter',
-    escape:         'Escape',
-    backspace:      'Backspace',
-    startCheating:  'Backslash',
-
+    mainMenu:       'Escape',
     pause:          'KeyP',
-    //releaseAll:     'End',
-    menu:           'Escape',
-    zoomIn:         'Equal',
-    zoomOut:        'Minus',
-    autoZoom:       'Digit0',
+
     speedUp:        'BracketRight',
     slowDown:       'BracketLeft',
     speedNormal:    'Quote',
-    rewind:         'Comma',
+    fastForward:    'Comma',
+
+    enter:          'Enter',
+    backspace:      'Backspace',
+    startCheating:  'Backslash',
+
+    //releaseAll:     'End',
+    zoomIn:         'Equal',
+    zoomOut:        'Minus',
+    autoZoom:       'Digit0',
 }
 
 // keyboard controllers mapping

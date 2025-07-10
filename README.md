@@ -19,10 +19,10 @@
 ### Jump Straight to the Game
 
 Skip all preliminary screens and jump straight into the game.
-Use ```--level``` command line option to specify the exact level to jump into:
+Use ```--scenario``` command line option to specify the exact scenario to jump into:
 
 ```
-jam -d --level 2
+jam -d --scenario 2
 ```
 
 ### Coding During Air Raid Alerts
@@ -41,6 +41,6 @@ You need to set ```env.showSolids = true```.
 Use ```--showSolids``` command line flag for convenience:
 
 ```
-jam -d --level 1 --showSolids
+jam -d --scenario 1 --showSolids
 ```
 
