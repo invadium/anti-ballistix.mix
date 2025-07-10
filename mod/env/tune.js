@@ -33,6 +33,13 @@ const tune = {
         hold: 8,
     },
 
+    control: {
+        ffwSpeed:      8,
+        ffwStep:       1.5,
+        slowDownSpeed: 0.25,
+        slowDownStep:  0.75,
+    },
+
     mixer: {
         fadeOutSpeed: 0.25,
         fadeInSpeed:  0.50,

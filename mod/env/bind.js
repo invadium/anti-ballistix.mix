@@ -47,7 +47,6 @@ const fixed = {
     speedUp:        'BracketRight',
     slowDown:       'BracketLeft',
     speedNormal:    'Quote',
-    fastForward:    'Comma',
 
     enter:          'Enter',
     backspace:      'Backspace',
