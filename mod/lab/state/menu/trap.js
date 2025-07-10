@@ -43,4 +43,23 @@ module.exports = {
     mouseMove(e) {
         this.__.touchIt()
     },
+
+    keyDown(e) {
+        if (e.repeat || e.ctrlKey || e.altKey || e.metaKey) return
+
+        switch(e.code) {
+            case env.bind.fixed.mainMenu:
+
+                log('menu.state: ' + this.__.items.state)
+                switch(this.__.items.state) {
+                    case 'main':
+                        lab.control.state.transitTo('city')
+                        break
+                    case 'options':
+                        this.__.returnBack(true)
+                        break
+                }
+                break
+        }
+    },
 }

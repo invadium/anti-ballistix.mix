@@ -44,5 +44,6 @@ const items = [
         },
     },
 ]
+items.state = 'main'
 items.preservePos = true
 

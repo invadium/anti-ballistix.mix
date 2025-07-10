@@ -48,5 +48,6 @@ const options = [
     },
 ]
 options.title = 'Options'
+options.state = 'options'
 options.preservePos = true
 

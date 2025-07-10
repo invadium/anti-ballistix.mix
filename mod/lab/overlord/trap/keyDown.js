@@ -1,6 +1,5 @@
 function keyDown(e) {
-    if (e.repeat) return
-    if (e.ctrlKey || e.altKey || e.metaKey) return
+    if (e.repeat || e.ctrlKey || e.altKey || e.metaKey) return
 
     if (lab.port.paused) {
         lab.control.game.resume()
