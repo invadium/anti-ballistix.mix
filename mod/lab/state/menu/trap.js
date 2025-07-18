@@ -14,7 +14,7 @@ module.exports = {
     },
 
     onIdle: function() {
-        if (lab.control.game.inProgress()) return
+        if (lab.control.mission.inProgress()) return
 
         // TODO start the game in demo mode
         signal('game/scenario', {

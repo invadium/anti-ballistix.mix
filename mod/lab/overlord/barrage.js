@@ -4,7 +4,7 @@
 const BFQ = .25
 const DFQ = .07
 
-function onNewMission() {
+function onNewScenario() {
     log('starting drone/missile barrage')
 }
 

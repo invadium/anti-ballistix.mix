@@ -6,7 +6,7 @@ const POWER_GAP = .1
 let lastCheck = 0
 let gameOverCountdown = 0
 
-function onNewMission() {
+function onNewScenario() {
     log('starting city power monitoring...')
     gameOverCountdown = 0
 }
@@ -50,7 +50,7 @@ function balanceElectricity() {
 }
 
 function evo(dt) {
-    if (!lab.control.game.inProgress()) return
+    if (!lab.control.mission.inProgress()) return
     //if (!(env.gameState === 'started')) return
 
     if (gameOverCountdown > 0) {

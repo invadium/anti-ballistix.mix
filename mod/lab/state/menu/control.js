@@ -5,7 +5,7 @@ function compileScenarioList() {
 function toggleResumeGameVisibility() {
     const resumeItem = this.__.items.filter(e => e.id === 'resume')[0]
 
-    resumeItem.hidden = !lab.control.game.inProgress()
+    resumeItem.hidden = !lab.control.mission.inProgress()
 }
 
 function onActivate() {

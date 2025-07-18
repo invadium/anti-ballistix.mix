@@ -15,6 +15,7 @@ function resume() {
 }
 
 function cleanUp() {
+    lab.monitor.controller.releaseAll()
     lab.backdrop.city.detachAll()
 
     const ls = lab.port._ls
@@ -31,7 +32,7 @@ function resetEnv() {
     env.balance = 0
 }
 
-function scenario(scenarioConfig) {
+function newScenario(scenarioConfig) {
     if (!scenarioConfig) throw new Error("Can't start the scenario - scenario configuration is missing!")
 
     env.gameState = 'starting-scenario'
@@ -39,7 +40,7 @@ function scenario(scenarioConfig) {
     resetEnv()
 
     if (isFun(scenarioConfig.setup)) scenarioConfig.setup()
-    on('newMission') // TODO rename to newScenario?
+    on('newScenario')
 
     env.scenario = scenarioConfig
     env.gameState = 'started'

@@ -5,6 +5,7 @@ function capture(st) {
     // ...
 
     const freeFlaks = lab.port.filter(e => (e instanceof dna.city.Flak && !e.turretPadControl._controllerId) )
+    console.dir(freeFlaks)
 
     if (freeFlaks.length > 0) {
         log('capturing the player')

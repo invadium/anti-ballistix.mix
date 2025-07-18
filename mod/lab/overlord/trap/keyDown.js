@@ -2,7 +2,7 @@ function keyDown(e) {
     if (e.repeat) return
 
     if (lab.port.paused) {
-        lab.control.game.resume()
+        lab.control.mission.resume()
         return
     }
 
@@ -36,7 +36,7 @@ function keyDown(e) {
             break
 
         case env.bind.fixed.pause:
-            lab.control.game.pause()
+            lab.control.mission.pause()
             break
     }
 
