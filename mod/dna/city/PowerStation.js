@@ -78,6 +78,12 @@ class PowerStation extends Platform {
         }
     }
 
+    autoKill() {
+        const force = this.hp
+        lib.vfx.hitDebris(this.x, this.y, force, env.style.color.powerStation)
+        this.damage(force)
+    }
+
     draw() {
         const H  = ctx.height,
               PY = (env.tune.horizonLine + this.ry) * H,

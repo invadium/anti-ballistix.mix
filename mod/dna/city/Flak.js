@@ -84,6 +84,10 @@ class Flak extends Platform {
         restore()
     }
 
+    onKill() {
+        // TODO Maybe each entity should notify it's pods about onKill event?
+    }
+
     getStatus() {
         return `[${this.name}.${this.team}] HULL:${floor(this.hull)}/${this.maxHull}`
     }

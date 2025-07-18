@@ -108,6 +108,10 @@ function restoreTargetMap() {
     return true
 }
 
+function dropAllTargetMaps() {
+    targetMapStack.length = 0
+}
+
 // find the next free controller
 //
 // @returns {number} - controllerId, 0 if none were found
@@ -312,4 +316,8 @@ function evo(dt) {
             }
         }
     }
+}
+
+function getTargetMap() {
+    return targetMap
 }

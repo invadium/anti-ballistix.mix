@@ -4,7 +4,11 @@ function scenario(st) {
     // hardcoded for now
     const scenarioConfig = $.sce._ls[0]
 
-    lab.control.mission.newScenario(scenarioConfig)
+    lab.monitor.controller.dropAllTargetMaps()
 
-    lab.control.state.transitTo('city', st)
+    lab.control.state.transitTo('city', extend({
+        next: function() {
+            lab.control.mission.newScenario(scenarioConfig)
+        }
+    }, st))
 }

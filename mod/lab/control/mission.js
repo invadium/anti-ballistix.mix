@@ -22,7 +22,8 @@ function cleanUp() {
     for (let i = ls.length - 1; i >= 0; i--) {
         const e = ls[i]
         if (!e.transient) {
-            lab.port.detach(e)
+            kill(e)
+            //lab.port.detach(e)
         }
     }
 }

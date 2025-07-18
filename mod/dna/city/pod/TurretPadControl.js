@@ -14,9 +14,13 @@ class TurretPadControl {
     }
 
     capture(controllerId) {
-        lab.monitor.controller.bind(controllerId, this)
+        if (this._controllerId !== controllerId) {
+            lab.monitor.controller.bind(controllerId, this)
+            log(`[${this.__.name}] captured by controller #${controllerId}`)
+        } else {
+            log(`[${this.__.name}] human #${controllerId} takes over!`)
+        }
         this.__.activatePod(this)
-        log(`[${this.__.name}] captured by human #${controllerId}!`)
     }
 
     botTakeover() {
@@ -25,7 +29,7 @@ class TurretPadControl {
     }
 
     humanTakeover() {
-        log(`[${this.__.name}] human takes over!`)
+        log(`[${this.__.name}] human #${this._controllerId} takes over!`)
         this.__.activatePod(this)
     }
 
