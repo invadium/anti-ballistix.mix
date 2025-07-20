@@ -6,6 +6,7 @@ function pause() {
     lab.port.pause()
     lab.overlord.pause()
     lab.control.pause()
+    env.pauseTimestamp = env.realTime
 }
 
 function resume() {

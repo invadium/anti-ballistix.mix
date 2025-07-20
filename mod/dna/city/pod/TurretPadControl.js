@@ -77,6 +77,10 @@ class TurretPadControl {
         const __ = this.__
         this.touched = env.time
 
+        if (env.state === 'city' && lab.port.paused) {
+           lab.control.mission.resume()
+        }
+
         if (this.deactivated) {
             this.humanTakeover()
         }

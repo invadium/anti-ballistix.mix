@@ -22,5 +22,17 @@ class TitleBar {
         text(`Power:   ${power}%`, rx(.15), Y)
         text(`Score:   ${env.score}`, rx(.5), Y)
         text(`Balance: $${env.balance}k`, rx(.85), Y)
+
+        if (lab.port.paused) {
+            let by = ry(.25)
+            font(env.style.font.title.head)
+            text('Game Paused', rx(.5), by)
+
+            if ((env.realTime - env.pauseTimestamp) % 1 < .5) {
+                by += 80
+                font(env.style.font.titleBar.head)
+                text('Press any Key to Continue', rx(.5), by)
+            }
+        }
     }
 }

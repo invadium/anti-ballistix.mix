@@ -1,12 +1,7 @@
 function keyDown(e) {
     if (e.repeat) return
 
-    if (lab.port.paused) {
-        lab.control.mission.resume()
-        return
-    }
-
-    switch(e.code) {
+    switch(e.code && !lab.port.paused) {
         case env.bind.fixed.speedUp:
             if (e.ctrlKey || e.altKey) {
                 env._evoSpeed *= env.tune.control.ffwStep
@@ -33,11 +28,14 @@ function keyDown(e) {
             if (!env.transition) {
                 lab.control.state.transitTo('menu')
             }
-            break
+            return
 
         case env.bind.fixed.pause:
             lab.control.mission.pause()
-            break
+            return
     }
 
+    if (lab.port.paused) {
+        lab.control.mission.resume()
+    }
 }
