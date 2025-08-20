@@ -1,0 +1,35 @@
+name: Architecture 
+order: 2
+tags: alert, anti-ballistix, design, architecture
+-------------------------------------------------
+
+== Lab Structure
+
+We define a bunch of game states in the [/lab](#./lab).
+
+*The city state* is a synthetic state that groups
+a bunch of nodes in the [/lab](#./lab) and manages the game.
+
+Other game states are single-node support states
+placed in the [/lab/state](#./lab/state) folder.
+
+
+=== City
+
+The city represents the main game state and consists of several
+components enabled simultaneously:
+
+* [lab/overlord](#./lab/overlord) - holds ghost nodes to control the game and handle global events
+* [lab/backdrop](#./lab/backdrop) - the cityscape - the background, the sky, the stars, the skyline, the grid...
+* [lab/port](#./lab/port) - a camera panning on the anti-ballistix action
+* [lab/overlay](#./lab/overlay) - manages HUD elements like score etc...
+
+=== States
+
+Other states are single nodes in the [/lab/state](#./lab/state) folder:
+
+* [lab/state/title](#./lab/state/title) - manages Title Screen
+* [lab/state/menu](#./lab/state/menu) - main menu with submenues
+* [lab/state/credits](#./lab/state/credits) - holds Credits Screen
+* [lab/state/gameover](#./lab/state/gameover) - manages Game Over Screen
+

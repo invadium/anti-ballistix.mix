@@ -10,17 +10,23 @@ V score overlay
 V call them scenarios
 V player jumping between flaks
 
-> flak overheating
+> define coordinate spaces
+> proper Z-ordering for infrastructure and projectiles
+> drone attacks with explosions
+
 > scenario selection
 > scenario common setup utils
 > scenario life cycle
-> waves (part of scenario life cycle)
-> game stat subsystem
-> end of the wave screen (with stat and infographics) and wave transitions
-> proper Z-ordering for infrastructure and projectiles
-> drone attacks with explosions
-> core sfx
 > scenario success/fail conditions?
+> waves (part of scenario life cycle)
+> end of the wave screen (with stat and infographics) and wave transitions
+
+> flak overheating
+> game stat subsystem
+> core sfx
+
+> custom man pages with core design and structure
+
 
 # advanced
 >>> more projectiles
@@ -35,6 +41,8 @@ V player jumping between flaks
     > advanced radars?
     > hints on the incoming next and direction (based on advanced radar data?)
 > local high score table
+
+>>> gamepad remapping
 
 # meta
 > actual air raid alert checker and indicator

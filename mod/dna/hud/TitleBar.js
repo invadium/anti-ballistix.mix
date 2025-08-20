@@ -19,9 +19,11 @@ class TitleBar {
         alignCenter()
         fill( hsl(.6, .8, .7) )
 
-        text(`Power:   ${power}%`, rx(.15), Y)
-        text(`Score:   ${env.score}`, rx(.5), Y)
-        text(`Balance: $${env.balance}k`, rx(.85), Y)
+        // TODO inject the actual wave value
+        text(`Wave:    1`, rx(.15), Y)
+        text(`Power:   ${power}%`, rx(.30), Y)
+        text(`Score:   ${env.score}`, rx(.70), Y)
+        text(`Bounty:  $${env.balance}k`, rx(.85), Y)
 
         if (lab.port.paused) {
             let by = ry(.25)
