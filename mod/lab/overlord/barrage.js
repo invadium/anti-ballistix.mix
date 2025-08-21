@@ -1,3 +1,6 @@
+/*
+ * The ghost source of drones and missiles
+ */
 
 // TODO make configurable by Wave #N data
 
@@ -35,4 +38,3 @@ function evo(dt) {
     if (rnd() < BFQ * dt) spawnBallistic()
     if (rnd() < DFQ * dt) spawnDrone()
 }
-

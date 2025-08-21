@@ -21,8 +21,8 @@ class TitleBar {
 
         // TODO inject the actual wave value
         text(`Wave:    1`, rx(.15), Y)
-        text(`Power:   ${power}%`, rx(.30), Y)
-        text(`Score:   ${env.score}`, rx(.70), Y)
+        text(`Power:   ${power}%`, rx(.35), Y)
+        text(`Score:   ${env.score}`, rx(.65), Y)
         text(`Bounty:  $${env.balance}k`, rx(.85), Y)
 
         if (lab.port.paused) {

@@ -40,11 +40,15 @@ class BallisticMissile extends GuidedWeapon {
             }),
         ])
 
-        this.targetCRY = 10 + 20 * rnd()
+        this.z = rnd() // normalized depth
+        this.Z = 1000 + 1000 * this.z
+        // target in relative Y
+        this.targetCRY = 10 + 20 * this.z
     }
 
     airExplosion() {
         lab.port.spawn(dna.city.Explosion, {
+            Z: this.Z,
             team: this.team + 1,
             x: this.x,
             y: this.y,
@@ -53,6 +57,7 @@ class BallisticMissile extends GuidedWeapon {
 
     groundExplosion() {
         lab.port.spawn(dna.city.Explosion, {
+            Z:          this.Z,
             team:       this.team,
             x:          this.x,
             y:          this.y,

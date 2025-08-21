@@ -1,6 +1,6 @@
 name: Z-Alert: Anti-ballistix
 order: 1
-tags: alert, anti-ballistig
+tags: alert, anti-ballistix
 ------------------------------------------
 
 == Concept
@@ -9,4 +9,3 @@ An arcade shooter influenced by Missile Command
 and created exclusively during air raid alerts.
 
 <hr>
-

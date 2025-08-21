@@ -14,11 +14,13 @@ function setup() {
     // create power stations
     let totalPower = 0
     for (let i = 0; i < N; i++) {
+        const z = src.rnd()
         const powerStation = lab.port.spawn( dna.city.PowerStation, {
             Z:     11,
             team:  1,
             x:     crx(bx),
-            ry:    env.tune.powerStationLine + .1 * src.rnd(),
+            z:     z,
+            ry:    env.tune.powerStationLine + .1 * z,
         })
         totalPower += powerStation.getCurrentPower()
         bx += step

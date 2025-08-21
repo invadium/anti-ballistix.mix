@@ -53,7 +53,10 @@ class Drone extends GuidedWeapon {
             }),
         ])
 
-        this.targetCRY = 10 + 20 * rnd()
+        this.z = rnd() // normalized depth
+        this.Z = 1000 + 1000 * this.z
+        // target in relative Y
+        this.targetCRY = 10 + 20 * this.z
     }
 
     airExplosion() {

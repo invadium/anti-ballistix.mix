@@ -1,0 +1,30 @@
+name: Coordinate Spaces
+order: 3
+tags: alert, anti-ballistix
+------------------------------------------
+
+== Screen Coordinate Space
+
+This coordinate space is defined by the actual browser viewport.
+
+Absolute screen/canvas coordinates are used here.
+
+
+== Backdrop/CityScape Coordinate Space
+
+This space is used to define the sun, the stars, the skyline, the grid
+and all other background elemenets.
+
+
+== Arcade Coordinate Space
+
+It is defined by the city port camera that centers the x origin
+at the middle of the screen and always pans width
+to match _env.playfield.width_ (2000 by default)
+with height dynamically adjusted according to the current aspect ratio.
+
+To simplify addressing in the arcade space, you can use:
+
+* [crx(xP)](#./alt/crx) - translates percentage value into the x-coordinate, where 0 is the left edge and 100 is the right one
+* [cry(yP)](#./alt/cry) - translates percentage value into the y-coordinate, where 0 is the bottom and 100 is the top
+

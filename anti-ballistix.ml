@@ -11,8 +11,10 @@ V call them scenarios
 V player jumping between flaks
 
 > define coordinate spaces
+> normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 > proper Z-ordering for infrastructure and projectiles
 > drone attacks with explosions
+> fix the glitch with multi-explosions behind the power stations
 
 > scenario selection
 > scenario common setup utils
@@ -40,6 +42,8 @@ V player jumping between flaks
     > missile interceptors
     > advanced radars?
     > hints on the incoming next and direction (based on advanced radar data?)
+>>> more destructable objects
+    > destructable power towers and power lines connecting power stations
 > local high score table
 
 >>> gamepad remapping

@@ -5,12 +5,6 @@ function environment() {
         }
     }
 
-    // define the playable field
-    env.playfield = {
-        width:  1920,
-        height: 1080,
-    }
-
     lib.storage.loadOpt()
 }
 environment.Z = 1

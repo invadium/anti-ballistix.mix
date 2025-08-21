@@ -90,6 +90,12 @@ class PowerStation extends Platform {
               x  = this.x,
               y  = lab.port.ly(PY)
 
+        // TODO map power station z to missile z
+        // missiles spread verticaly 20%, power stations %10
+        // maybe 15-25%?
+        const mz = .25 + .5 * this.z
+        this.Z = 1000 + 1000 * mz
+
         // normalize y
         this.y = y
 

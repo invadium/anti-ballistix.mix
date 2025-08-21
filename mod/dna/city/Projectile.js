@@ -6,6 +6,7 @@ class Projectile extends Platform {
 
     constructor(st) {
         super( extend({
+            Z:        4000,
             name:     'projectile' + (++id),
             r:        5,
             lifespan: 15,

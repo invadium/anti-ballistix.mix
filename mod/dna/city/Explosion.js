@@ -4,6 +4,7 @@ class Explosion {
 
     constructor(st) {
         augment(this, {
+            Z:     10000,
             team:  1,
             name: 'explosion' + (++id),
             x:     0,
