@@ -2,6 +2,10 @@ function inProgress() {
     return (env.gameState === 'started')
 }
 
+function hasStarted() {
+    return (env.gameState === 'started' || env.gameState === 'gameOver')
+}
+
 function pause() {
     lab.port.pause()
     lab.overlord.pause()
@@ -49,4 +53,11 @@ function newScenario(scenarioConfig) {
 
     // TODO determine the scenario-specific background
     lab.background = null
+}
+
+function gameOver() {
+    env.gameState = 'gameOver'
+    lab.control.state.transitTo('gameover', {
+        fadein: 5,
+    })
 }
