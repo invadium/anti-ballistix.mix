@@ -70,9 +70,11 @@ class PowerStation extends Platform {
 
     hit(hitter) {
         if (hitter.team !== this.team && hitter instanceof dna.city.GuidedWeapon) {
-            lib.vfx.hitDebris(hitter.x, hitter.y, hitter.force, env.style.color.powerStation)
+            defer(() => {
+                lib.vfx.hitDebris(hitter.x, hitter.y, hitter.force, env.style.color.powerStation)
+                hitter.groundExplosion()
+            })
             kill(hitter)
-            hitter.groundExplosion()
 
             this.damage(hitter.force)
         }

@@ -9,12 +9,12 @@ V drones
 V score overlay
 V call them scenarios
 V player jumping between flaks
+V fix the glitch with multi-explosions behind the power stations
 
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 > proper Z-ordering for infrastructure and projectiles
 > drone attacks with explosions
-> fix the glitch with multi-explosions behind the power stations
 
 > scenario selection
 > scenario common setup utils

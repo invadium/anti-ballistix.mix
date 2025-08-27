@@ -1,8 +1,10 @@
 const Z = 0
 
+let frame = 0
 function evo(dt) {
-    this.__.collide(
+    const registeredHits = this.__.collide(
         (hitter, target) => {
+            if (hitter.dead) contacts ++
             if (!hitter.solid.noContact) {
                 target.solid.contact( hitter, hitter.solid, (contactTarget, contactSolid, contactPoint) => {
                     if (contactTarget.hit) {
