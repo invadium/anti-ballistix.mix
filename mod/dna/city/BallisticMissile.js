@@ -40,10 +40,12 @@ class BallisticMissile extends GuidedWeapon {
             }),
         ])
 
-        this.z = rnd() // normalized depth
-        this.Z = 1000 + 1000 * this.z
+        this.z = rnd() // normalized battlezone depth
+        this.Z = lab.overlord.battleZone.Z(this.z)
+        this.targetY = lab.overlord.battleZone.py(this.z)
+
         // target in relative Y
-        this.targetCRY = 10 + 20 * this.z
+        //this.targetCRY = 30 - 20 * this.z
     }
 
     airExplosion() {
@@ -78,7 +80,8 @@ class BallisticMissile extends GuidedWeapon {
     evo(dt) {
         super.evo(dt)
 
-        if (this.y >= cry(this.targetCRY)) {
+        //if (this.y >= cry(this.targetCRY)) {
+        if (this.y >= this.targetY) {
             // ground hit
             kill(this)
             this.groundExplosion()

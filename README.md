@@ -44,3 +44,9 @@ Use ```--showSolids``` command line flag for convenience:
 jam -d --scenario 1 --showSolids
 ```
 
+
+### Disable Idle Flak Capture
+
+Use ```--disableAutoFlak``` command line option or just set ```env.disableAutoFlak = true```.
+
+

@@ -27,6 +27,7 @@ function evo(dt) {
     const mx = round(mouse.x),
           my = round(mouse.y),
           wx = round(lab.port.lx(mouse.x)),
-          wy = round(lab.port.ly(mouse.y))
-    env.status = `${prefix}S[${mx}:${my}] >> C[${wx}:${wy}]`
+          wy = round(lab.port.ly(mouse.y)),
+          bz = round(lab.overlord.battleZone.lz(my) * 100)
+    env.status = `${prefix}S[${mx}:${my}] >> C[${wx}:${wy}] >> BZz: ${bz}`
 }

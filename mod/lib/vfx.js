@@ -1,6 +1,7 @@
-function hitDebris(x, y, force, color) {
+function hitDebris(x, y, Z, force, color) {
     const s = ry(.005)
     const emitter = lab.port.spawn(dna.Emitter, {
+        Z: Z,
         x: x,
         y: y,
         color: color,

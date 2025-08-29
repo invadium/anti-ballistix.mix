@@ -2,7 +2,16 @@ const tune = {
     horizonLine:      .6,
     citySkyLine:       0,
     cityBaseHeight:   .14,
-    powerStationLine: .1,
+    // powerStationLine: .1,  // TODO deprecate, it should be defined within the battleZone
+
+    battleZone: {
+        start:        .68,
+        end:          .95,
+    },
+    powerZone: {
+        start:        .2,    // within battleZone
+        end:          .6,
+    },
 
     building: {
         baseHeight:   .07,

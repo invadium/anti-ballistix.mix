@@ -13,6 +13,8 @@ class PowerStation extends Platform {
             maxPower: 100,
         }, st) )
         this.hp = this.maxHP
+        this.bz = env.tune.powerZone.start + this.z * (env.tune.powerZone.end - env.tune.powerZone.start)
+        this.Z  = lab.overlord.battleZone.Z(this.bz)
 
         this.install([
             new dna.city.pod.SolidCircle({
@@ -69,9 +71,9 @@ class PowerStation extends Platform {
     }
 
     hit(hitter) {
-        if (hitter.team !== this.team && hitter instanceof dna.city.GuidedWeapon) {
+        if (hitter.team !== this.team && hitter instanceof dna.city.GuidedWeapon && abs(hitter.Z - this.Z) < 10) {
             defer(() => {
-                lib.vfx.hitDebris(hitter.x, hitter.y, hitter.force, env.style.color.powerStation)
+                lib.vfx.hitDebris(hitter.x, hitter.y, this.Z + 1, hitter.force, env.style.color.powerStation)
                 hitter.groundExplosion()
             })
             kill(hitter)
@@ -87,31 +89,23 @@ class PowerStation extends Platform {
     }
 
     draw() {
-        const H  = ctx.height,
-              PY = (env.tune.horizonLine + this.ry) * H,
-              x  = this.x,
-              y  = lab.port.ly(PY)
-
-        // TODO map power station z to missile z
-        // missiles spread verticaly 20%, power stations %10
-        // maybe 15-25%?
-        const mz = .25 + .5 * this.z
-        this.Z = 1000 + 1000 * mz
-
-        // normalize y
-        this.y = y
-
-        save()
-        translate(x, y)
-        //rotate(HALF_PI + this.dir)
-
         const c  = env.team.color(this),
               g  = env.team.glow(this),
               r  = this.r,
               w  = r,
               h  = .3 * r,
               hw = .5 * w,
-              hh = .5 * h
+              hh = .5 * h,
+              H = ctx.height,
+              x = this.x,
+              y = lab.overlord.battleZone.py(this.bz) - hh
+
+        save()
+        translate(x, y)
+        //rotate(HALF_PI + this.dir)
+
+        // adjust y
+        this.y = y
 
         //fill(.7, .2, .1)
         fill(env.style.color.powerStation)

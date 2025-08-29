@@ -14,11 +14,16 @@ function onNewScenario() {
 function spawnBallistic() {
     const viewport = lab.port.viewport()
 
-    const m = lab.port.spawn(dna.city.BallisticMissile, {
+    const missile = lab.port.spawn(dna.city.BallisticMissile, {
         x: crx(10 + RND(80)),
         y: viewport.y,
         dir: .4 * PI + .2 * PI * rnd(),
     })
+    missile.install( new dna.city.probe.CoordinatesProbe({
+        x:   -20,
+        y:    20,
+        dir: -HALF_PI,
+    }) )
 
     // log(`new ballistic missile @${m.x}:${m.y}`)
 }
@@ -26,12 +31,17 @@ function spawnBallistic() {
 function spawnDrone() {
     const viewport = lab.port.viewport()
 
-    const m = lab.port.spawn(dna.city.Drone, {
+    const drone = lab.port.spawn(dna.city.Drone, {
         x: -crx(100),
         y: (.55 + .2 * rnd()) * viewport.y,
         //dir: .4 * PI + .2 * PI * rnd(),
         dir: 0,
     })
+    drone.install( new dna.city.probe.CoordinatesProbe({
+        x:   -40,
+        y:    20,
+        dir: -HALF_PI,
+    }) )
 }
 
 function evo(dt) {

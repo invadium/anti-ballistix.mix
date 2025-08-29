@@ -59,6 +59,7 @@ class Bot {
                 flak:  this.__,
                 name: 'fire',
                 start: function(dt) {
+                    if (env.disableAutoFlak) return
                     this.flak.primaryWeapon.trigger()
                 },
                 stop: function(dt) {
