@@ -1,7 +1,7 @@
 module.exports = {
 
     onShow: function() {
-        log('showing menu')
+        //log('showing menu')
     },
 
     onSelect: function(item, i) {
@@ -23,7 +23,7 @@ module.exports = {
     },
 
     onHide: function() {
-        log('hiding menu')
+        // log('hiding menu')
     }, 
 
     select: function(item, i) {

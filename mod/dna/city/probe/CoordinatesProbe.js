@@ -38,7 +38,7 @@ class CoordinatesProbe {
         baseTop()
         alignRight()
         font(env.style.font.debug.head)
-        text(`${round(this.__.x)}:${round(this.__.y)}`, 0, 0)
+        text(`${round(this.__.x)}:${round(this.__.y)}:Z${round(this.__.Z)}`, 0, 0)
 
         restore()
     }

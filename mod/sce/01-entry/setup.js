@@ -22,6 +22,10 @@ function setup() {
             z:     z,
             ry:    env.tune.powerStationLine + .1 * z,
         })
+        powerStation.install(new dna.city.probe.CoordinatesProbe({
+            x: -40,
+            y:  40,
+        }))
         totalPower += powerStation.getCurrentPower()
         bx += step
     }

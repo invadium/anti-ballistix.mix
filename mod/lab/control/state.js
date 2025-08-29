@@ -279,7 +279,7 @@ function switchTo(fuzzyTarget, force) {
 
     env.state = target.name
     env.transition = ''
-    log(`=== state [${target.name}] ===`)
+    log(`=== ${target.name} ===`)
     target.states.forEach(state => {
         if (force || !isActive(state)) activateState(state)
     })

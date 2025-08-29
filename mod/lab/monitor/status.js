@@ -1,29 +1,32 @@
+function setup() {
+    if (!env.debug) kill(this)
+}
+
 function evo(dt) {
-    if (!mouse.out) {
-        const ls = []
+    if (!env.debug) return
 
-        const last = lab.port.pick( mouse.x, mouse.y, ls )
-        if (last) {
-            if (isFun(last.getStatus)) {
-                env.status = last.getStatus()
-            } else if (last.status) {
-                env.status = last.status
-            } else if (last.name) {
-                env.status = last.name
-            } else {
-                env.status = ''
-            }
-        } else {
-            if (env.debug) {
-                const mx = round(mouse.x),
-                      my = round(mouse.y),
-                      wx = round(lab.port.lx(mouse.x)),
-                      wy = round(lab.port.ly(mouse.y))
-                env.status = `${mx}:${my} >> ${wx}:${wy}`
-            }
-        }
-
-    } else {
+    if (mouse.out) {
         env.status = ''
+        return
     }
+
+    const ls = []
+    const last = lab.port.pick( mouse.x, mouse.y, ls )
+
+    let prefix = ''
+    if (last) {
+        if (isFun(last.getStatus)) {
+            prefix = last.getStatus() + ' | '
+        } else if (last.status) {
+            prefix = last.status + ' | '
+        } else if (last.name) {
+            prefix = last.name + ' | '
+        }
+    }
+
+    const mx = round(mouse.x),
+          my = round(mouse.y),
+          wx = round(lab.port.lx(mouse.x)),
+          wy = round(lab.port.ly(mouse.y))
+    env.status = `${prefix}S[${mx}:${my}] >> C[${wx}:${wy}]`
 }
