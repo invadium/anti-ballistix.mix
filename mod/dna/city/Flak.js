@@ -44,6 +44,7 @@ class Flak extends Platform {
         const { x, y, r, r1, r2, r3, dir } = this
         const bot = this.bot.isInControl()
         const occupied = this.turretPadControl.isOccupied()
+        const temp = this.gun.temp
 
         const bx = cos(dir),
               by = sin(dir)
@@ -57,7 +58,6 @@ class Flak extends Platform {
         translate(0, -r1)
 
         // body front
-        //neon.circle(0, 0, r, color)
         neon.line( .7*r1, r1,      0,      .7*r1,   color)
         neon.line( 0,    .7*r1,   -.7*r1,  r1,      color)
 
@@ -76,8 +76,10 @@ class Flak extends Platform {
         }
 
         // barrels
-        neon.line( -.4*r,     r,  -.4*r,  -r,     color)
-        neon.line(  .4*r,    -r,   .4*r,   r,     color)
+        const g = bot? 0.7 : 1
+        const bcolor = rgb(temp, g * (1 - .4*temp), 1 - .8*temp)
+        neon.line( -.4*r,     r,  -.4*r,  -r,     bcolor)
+        neon.line(  .4*r,    -r,   .4*r,   r,     bcolor)
         //neon.line(0, 0, 0, -r * 1.4, color)
         restore()
 
