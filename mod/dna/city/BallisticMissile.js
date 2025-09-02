@@ -40,12 +40,9 @@ class BallisticMissile extends GuidedWeapon {
             }),
         ])
 
-        this.z = rnd() // normalized battlezone depth
-        this.Z = lab.overlord.battleZone.Z(this.z)
-        this.targetY = lab.overlord.battleZone.py(this.z)
-
-        // target in relative Y
-        //this.targetCRY = 30 - 20 * this.z
+        this.nz = rnd() // normalized battlezone depth
+        this.Z = lab.overlord.battleZone.Z(this.nz)
+        this.targetY = lab.overlord.battleZone.py(this.nz)
     }
 
     airExplosion() {
@@ -93,17 +90,16 @@ class BallisticMissile extends GuidedWeapon {
         translate(this.x, this.y)
         rotate(HALF_PI + this.dir)
 
-        const c  = env.team.color(this),
-              g  = env.team.glow(this),
+        const c  = env.style.color.neon.red,
               r  = this.r,
               hw = .4 * r,
               r2 = .4 * r
 
-        neon.line(-hw, -r2,   0,  -r, c, g)
-        neon.line( hw, -r2,   0,  -r, c, g)
-        neon.line(-hw, -r2, -hw,   r, c, g)
-        neon.line( hw, -r2,  hw,   r, c, g)
-        neon.line(-hw,  r,   hw,   r, c, g)
+        neon.line(-hw, -r2,   0,  -r, c)
+        neon.line( hw, -r2,   0,  -r, c)
+        neon.line(-hw, -r2, -hw,   r, c)
+        neon.line( hw, -r2,  hw,   r, c)
+        neon.line(-hw,  r,   hw,   r, c)
 
         super.draw()
 

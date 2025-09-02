@@ -42,11 +42,12 @@ class Flak extends Platform {
 
     draw() {
         const { x, y, r, r1, r2, r3, dir } = this
+        const bot = this.bot.isInControl()
+        const occupied = this.turretPadControl.isOccupied()
 
         const bx = cos(dir),
-              by = sin(dir),
-              color = env.team.color(this),
-              gcolor = env.team.glow(this)
+              by = sin(dir)
+              color = bot? env.style.color.neon.blue : env.style.color.neon.cyan
 
         save()
         translate(x, y)
@@ -56,28 +57,28 @@ class Flak extends Platform {
         translate(0, -r1)
 
         // body front
-        //neon.circle(0, 0, r, color, gcolor)
-        neon.line( .7*r1, r1,      0,      .7*r1,   color, gcolor)
-        neon.line( 0,    .7*r1,   -.7*r1,  r1,      color, gcolor)
+        //neon.circle(0, 0, r, color)
+        neon.line( .7*r1, r1,      0,      .7*r1,   color)
+        neon.line( 0,    .7*r1,   -.7*r1,  r1,      color)
 
-        if (this.bot.isInControl()) {
-            neon.line( .7*r1, r1,      .2*r1,      r3,   color, gcolor)
-            neon.line(-.7*r1, r1,     -.2*r1,      r3,   color, gcolor)
-            neon.line(-.2*r1, r3,      .2*r1,      r3,   color, gcolor)
+        if (bot) {
+            neon.line( .7*r1, r1,      .2*r1,      r3,   color)
+            neon.line(-.7*r1, r1,     -.2*r1,      r3,   color)
+            neon.line(-.2*r1, r3,      .2*r1,      r3,   color)
         } else {
-            neon.line( .7*r1, r1,      .4*r1,      r3,   color, gcolor)
-            neon.line(-.7*r1, r1,     -.4*r1,      r3,   color, gcolor)
-            neon.line(-.4*r1, r3,      .4*r1,      r3,   color, gcolor)
+            neon.line( .7*r1, r1,      .4*r1,      r3,   color)
+            neon.line(-.7*r1, r1,     -.4*r1,      r3,   color)
+            neon.line(-.4*r1, r3,      .4*r1,      r3,   color)
         }
 
-        if (this.turretPadControl.isOccupied()) {
-            neon.line(     0, r1,          0,   .7*r3,   color, gcolor)
+        if (occupied) {
+            neon.line(     0, r1,          0,   .7*r3,   color)
         }
 
         // barrels
-        neon.line( -.4*r,     r,  -.4*r,  -r,     color, gcolor)
-        neon.line(  .4*r,    -r,   .4*r,   r,     color, gcolor)
-        //neon.line(0, 0, 0, -r * 1.4, color, gcolor)
+        neon.line( -.4*r,     r,  -.4*r,  -r,     color)
+        neon.line(  .4*r,    -r,   .4*r,   r,     color)
+        //neon.line(0, 0, 0, -r * 1.4, color)
         restore()
 
         super.draw()

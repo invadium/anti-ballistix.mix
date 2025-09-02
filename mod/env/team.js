@@ -1,6 +1,7 @@
 const team = [
     {
         name: 'neutral',
+        // TODO color & glow is already deprecated?
         color: hsl(.01, 0, 1),
         glow:  hsl(.01, 0, 1),
     },

@@ -53,10 +53,9 @@ class Drone extends GuidedWeapon {
             }),
         ])
 
-        this.z = rnd() // normalized depth
-        this.Z = 1000 + 1000 * this.z
-        // target in relative Y
-        this.targetCRY = 10 + 20 * this.z
+        this.nz = rnd() // normalized battlezone depth
+        this.Z = lab.overlord.battleZone.Z(this.nz)
+        this.targetY = lab.overlord.battleZone.py(this.nz)
     }
 
     airExplosion() {
@@ -112,7 +111,7 @@ class Drone extends GuidedWeapon {
                 break
         }
 
-        if (this.y >= cry(this.targetCRY)) {
+        if (this.y >= this.targetY) {
             // ground hit
             kill(this)
             this.groundExplosion()
@@ -124,18 +123,17 @@ class Drone extends GuidedWeapon {
         translate(this.x, this.y)
         rotate(HALF_PI + this.dir)
 
-        const c  = env.team.color(this),
-              g  = env.team.glow(this),
+        const c  = env.style.color.neon.red, 
               r  = this.r,
               hw = .4 * r,
               r2 = .4 * r
 
-        neon.line(-hw, -r2,   0,  -r, c, g) // x2 nose cone
-        neon.line( hw, -r2,   0,  -r, c, g)
-        neon.line(-hw, -r2, -hw,   r, c, g)
-        neon.line( hw, -r2,  hw,   r, c, g)
-        neon.line(-hw,  r,   hw,   r, c, g)
-        neon.line(  0, -.4*r, 0,  2*r, c, g)  // wing
+        neon.line(-hw, -r2,   0,  -r, c) // x2 nose cone
+        neon.line( hw, -r2,   0,  -r, c)
+        neon.line(-hw, -r2, -hw,   r, c)
+        neon.line( hw, -r2,  hw,   r, c)
+        neon.line(-hw,  r,   hw,   r, c)
+        neon.line(  0, -.4*r, 0,  2*r, c)  // wing
 
         super.draw()
 

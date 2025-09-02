@@ -1,7 +1,7 @@
 // TODO make into a context-like API with a state for color etc
 //      make it chainable as well?
 
-function _line_ (x1, y1, x2, y2, lcolor, ncolor) {
+function _line_ (x1, y1, x2, y2, color) {
     ctx.lineCap = 'round'
 
     let glow = .05
@@ -11,7 +11,7 @@ function _line_ (x1, y1, x2, y2, lcolor, ncolor) {
     for (let i = 0; i < steps; i++) {
         alpha(glow);
         lineWidth(width);
-        stroke(ncolor);
+        stroke(color);
         line(x1, y1, x2, y2)
 
         glow += .02
@@ -19,15 +19,15 @@ function _line_ (x1, y1, x2, y2, lcolor, ncolor) {
     }
 
     lineWidth(3)
-    stroke(lcolor)
+    stroke(color)
     alpha(1)
-    stroke(lcolor)
+    stroke(color)
     line(x1, y1, x2, y2)
 
     return this
 }
 
-function _circle_(x, y, r, lcolor, ncolor) {
+function _circle_(x, y, r, color) {
     let glow  = .05
     let width = 12
     let steps = 5
@@ -35,7 +35,7 @@ function _circle_(x, y, r, lcolor, ncolor) {
     for (let i = 0; i < steps; i++) {
         alpha(glow);
         lineWidth(width);
-        stroke(ncolor);
+        stroke(color);
         circle(x, y, r)
 
         glow += .02
@@ -43,19 +43,19 @@ function _circle_(x, y, r, lcolor, ncolor) {
     }
 
     lineWidth(3)
-    stroke(lcolor)
+    stroke(color)
     alpha(1)
-    stroke(lcolor)
+    stroke(color)
     circle(x, y, r)
 
     return this
 }
 
-function _rect_(x, y, w, h, lcolor, ncolor) {
-    _line_(x,     y,     x,     y + h, lcolor, ncolor)
-    _line_(x,     y + h, x + w, y + h, lcolor, ncolor)
-    _line_(x + w, y + h, x + w, y,     lcolor, ncolor)
-    _line_(x + w, y,     x,     y,     lcolor, ncolor)
+function _rect_(x, y, w, h, color) {
+    _line_(x,     y,     x,     y + h, color)
+    _line_(x,     y + h, x + w, y + h, color)
+    _line_(x + w, y + h, x + w, y,     color)
+    _line_(x + w, y,     x,     y,     color)
     return this
 }
 

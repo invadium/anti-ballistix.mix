@@ -10,13 +10,21 @@ class DoubleGun {
             triggered:    false,
             charge:       0,
             barrel:       0,
+            temp:    0,
 
             // spec
-            rechargeTime: .25,
+            rechargeTime: .2,
+            heatFactor:   0.025,
+            coolFactor:   0.2,
+            blockTemp:    0.9,
         }, st)
     }
 
     fire() {
+        if (this.temp >= this.blockTemp) {
+            this.temp = 1
+            return
+        }
         const { x, y, r2, dir } = this.__
         const { x1, x2, y0 } = this
         const dx = cos(dir),
@@ -34,13 +42,14 @@ class DoubleGun {
             this.barrel = 0
         }
 
-
+        this.temp += this.heatFactor
         lab.port.spawn( dna.city.Projectile, {
             team:   this.__.team + 2,
             source: this.__,
             x:      x + ddx + dx * y0,
             y:      y + ddy + dy * y0,
             dir:    dir,
+            temp:   this.temp,
         })
     }
 
@@ -53,13 +62,18 @@ class DoubleGun {
     }
 
     evo(dt) {
+        // recharge
         this.charge += dt
 
+        // trigger
         if (this.triggered) {
             if (this.charge >= this.rechargeTime) {
                 this.fire()
                 this.charge = 0
             }
+        } else {
+            // cool down
+            this.temp = max(this.temp - this.coolFactor * dt, 0)
         }
     }
 }

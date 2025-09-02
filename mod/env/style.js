@@ -21,7 +21,17 @@ const style = {
         status: {
             front:  hsl(.14, .4, .5),
             back:  '#000000C0',
-        }
+        },
+
+        neon: {
+            red:     '#ff0000',
+            green:   '#00ff00',
+            blue:    '#00c0ff',
+            cyan:    '#00ffff',
+            yellow:  '#ffff00',
+            purple:  '#8060ff',
+            white:   '#ffffff',
+        },
     },
     
     font: {

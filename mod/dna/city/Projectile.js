@@ -59,9 +59,9 @@ class Projectile extends Platform {
         lineWidth(3)
         line(0, -this.r, 0, this.r)
         */
-        const c = env.team.color(this),
-              g = env.team.glow(this)
-        neon.line(0, -this.r, 0, this.r, c, g)
+
+        const color = rgb(1, 1 - .75*this.temp, 0)
+        neon.line(0, -this.r, 0, this.r, color)
 
         super.draw()
 
