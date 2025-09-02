@@ -13,8 +13,8 @@ V fix the glitch with multi-explosions behind the power stations
 V proper Z-ordering for infrastructure and projectiles
 V flak overheating
 V visual hint about flak barrel overheat (make the barrel redish or whitish?)
+V increase flak bullet spread when overheated (spread threshold, then increase)
 
-> increase flak bullet spread when overheated (spread threshold, then increase)
 > z-targeting to increase missile/drone precision
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
@@ -31,6 +31,11 @@ V visual hint about flak barrel overheat (make the barrel redish or whitish?)
 > core sfx
 
 > custom man pages with core design and structure
+
+
+# juice
+> incoming missile hint
+> incoming drone hint
 
 
 # advanced

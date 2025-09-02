@@ -17,6 +17,8 @@ class DoubleGun {
             heatFactor:   0.025,
             coolFactor:   0.2,
             blockTemp:    0.9,
+            spreadTemp:   0.5,
+            spreadFactor: .1,
         }, st)
     }
 
@@ -25,12 +27,14 @@ class DoubleGun {
             this.temp = 1
             return
         }
+        this.temp += this.heatFactor
+
         const { x, y, r2, dir } = this.__
-        const { x1, x2, y0 } = this
+        const { x1, x2, y0, temp } = this
         const dx = cos(dir),
               dy = sin(dir)
 
-        // spread
+        // barrel spread
         let ddx = 0, ddy = 0
         if (this.barrel === 0) {
             ddx = .5 * x1 * sin(dir)
@@ -42,14 +46,15 @@ class DoubleGun {
             this.barrel = 0
         }
 
-        this.temp += this.heatFactor
+        // calculate barrel overheat spread if needed
+        let projectileDir = temp < this.spreadTemp? dir : dir + (math.rnds() * rnd() * (1 - temp) * this.spreadFactor)
         lab.port.spawn( dna.city.Projectile, {
             team:   this.__.team + 2,
             source: this.__,
             x:      x + ddx + dx * y0,
             y:      y + ddy + dy * y0,
-            dir:    dir,
-            temp:   this.temp,
+            dir:    projectileDir,
+            temp:   temp,
         })
     }
 
