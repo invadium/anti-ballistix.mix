@@ -51,9 +51,16 @@ class Drone extends GuidedWeapon {
             new dna.city.pod.Thruster({
                 velocity: 200,
             }),
+
+            // TODO inject precision config
+            new dna.city.pod.TargetingPod(),
         ])
 
         this.nz = rnd() // normalized battlezone depth
+        this.adjustZ()
+    }
+
+    adjustZ() {
         this.Z = lab.overlord.battleZone.Z(this.nz)
         this.targetY = lab.overlord.battleZone.py(this.nz)
     }
@@ -90,6 +97,20 @@ class Drone extends GuidedWeapon {
         else this.dir = 0
     }
 
+    dive() {
+        this.state = DIVING
+
+        // nose down
+        if (this.dir === 0) this.dir = .25 * PI
+        else this.dir = .75 * PI
+
+        const target = this.targeting.lockOnTarget()
+        if (target) {
+            this.nz = target.bz
+            this.adjustZ()
+        }
+    }
+
     evo(dt) {
         super.evo(dt)
 
@@ -100,10 +121,7 @@ class Drone extends GuidedWeapon {
                 if (this.dir === PI && this.x < -crx(100)) this.flip()
 
                 if (this.powerTime < 0) {
-                    this.state = DIVING
-
-                    if (this.dir === 0) this.dir = .25 * PI
-                    else this.dir = .75 * PI
+                    this.dive()
                 }
                 break
 

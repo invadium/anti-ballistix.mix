@@ -1,3 +1,11 @@
+/*
+ * BattleZone is a ground area potentially targeted
+ * by drones and missiles.
+ *
+ * It is a strip of land where flaks and powerstations
+ * are located.
+ */
+
 // project battleZone-local z coordinate to screen y
 function sy(lz) {
     const y1 = ry(env.tune.battleZone.start),

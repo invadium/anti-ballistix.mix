@@ -49,4 +49,9 @@ jam -d --scenario 1 --showSolids
 
 Use ```--disableAutoFlak``` command line option or just set ```env.disableAutoFlak = true```.
 
+### Available Flags
+
+* --showSolids
+* --showCoordinates
+* --disableAutoFlak
 

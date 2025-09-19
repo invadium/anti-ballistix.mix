@@ -19,11 +19,14 @@ function spawnBallistic() {
         y: viewport.y,
         dir: .4 * PI + .2 * PI * rnd(),
     })
-    missile.install( new dna.city.probe.CoordinatesProbe({
-        x:   -20,
-        y:    20,
-        dir: -HALF_PI,
-    }) )
+
+    if (env.showCoordinates) {
+        missile.install( new dna.city.probe.CoordinatesProbe({
+            x:   -20,
+            y:    20,
+            dir: -HALF_PI,
+        }) )
+    }
 
     // log(`new ballistic missile @${m.x}:${m.y}`)
 }
@@ -37,11 +40,14 @@ function spawnDrone() {
         //dir: .4 * PI + .2 * PI * rnd(),
         dir: 0,
     })
-    drone.install( new dna.city.probe.CoordinatesProbe({
-        x:   -40,
-        y:    20,
-        dir: -HALF_PI,
-    }) )
+
+    if (env.showCoordinates) {
+        drone.install( new dna.city.probe.CoordinatesProbe({
+            x:   -40,
+            y:    20,
+            dir: -HALF_PI,
+        }) )
+    }
 }
 
 function evo(dt) {

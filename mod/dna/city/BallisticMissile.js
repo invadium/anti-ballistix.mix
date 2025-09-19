@@ -38,9 +38,17 @@ class BallisticMissile extends GuidedWeapon {
             new dna.city.pod.Thruster({
                 velocity: 200,
             }),
+
+            // TODO inject precision config
+            new dna.city.pod.TargetingPod(),
         ])
 
-        this.nz = rnd() // normalized battlezone depth
+        // try to lock on target
+        const target = this.targeting.lockOnTarget()
+
+        if (target) this.nz = target.bz
+        else this.nz = rnd() // normalized battlezone depth
+
         this.Z = lab.overlord.battleZone.Z(this.nz)
         this.targetY = lab.overlord.battleZone.py(this.nz)
     }

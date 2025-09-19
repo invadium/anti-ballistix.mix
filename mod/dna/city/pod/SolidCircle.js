@@ -56,6 +56,13 @@ class SolidCircle {
         return false
     }
 
+    lineTouch(px, py, phi) {
+        const pxy = this.__.pxy(this.x, this.y)
+
+        const d = abs( cos(phi)*(py - pxy[1]) - sin(phi)*(px - pxy[0]) )
+        return (d <= this.r)
+    }
+
     draw() {
         if (!env.showSolids) return
         lineWidth(2)
