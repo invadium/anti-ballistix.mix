@@ -50,10 +50,11 @@ module.exports = {
         switch(e.code) {
             case env.bind.fixed.mainMenu:
 
-                log('menu.state: ' + this.__.items.state)
                 switch(this.__.items.state) {
                     case 'main':
-                        lab.control.state.transitTo('city')
+                        if (lab.control.mission.inProgress()) {
+                            lab.control.state.transitTo('city')
+                        }
                         break
                     case 'options':
                         this.__.returnBack(true)

@@ -16,8 +16,8 @@ V visual hint about flak barrel overheat (make the barrel redish or whitish?)
 V increase flak bullet spread when overheated (spread threshold, then increase)
 V z-targeting to increase missile/drone precision
 V precision drone attacks with explosions
+V when in the main menu after game over, the Escape shouldn't start a new game
 
-> when in the main menu after game over, the Escape shouldn't start a new game
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 > custom man pages with core design and structure
