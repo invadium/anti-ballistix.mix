@@ -34,25 +34,28 @@ function cleanUp() {
 }
 
 function resetEnv() {
+    env.wave    = 0
     env.score   = 0
     env.balance = 0
 }
 
-function newScenario(scenarioConfig) {
-    if (!scenarioConfig) throw new Error("Can't start the scenario - scenario configuration is missing!")
+function newScenario(scenario) {
+    if (!scenario) throw new Error(`Missing scenario!`)
 
     env.gameState = 'starting-scenario'
+    log(`starting scenario [${scenario}]`)
+
     cleanUp()
     resetEnv()
 
-    if (isFun(scenarioConfig.setup)) scenarioConfig.setup()
+    env.scenario = scenario
+    if (isFun(scenario.setup)) scenario.setup()
     on('newScenario')
-
-    env.scenario = scenarioConfig
-    env.gameState = 'started'
 
     // TODO determine the scenario-specific background
     lab.background = null
+
+    env.gameState = 'started'
 }
 
 function gameOver() {

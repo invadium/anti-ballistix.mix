@@ -18,15 +18,15 @@ V z-targeting to increase missile/drone precision
 V precision drone attacks with explosions
 V when in the main menu after game over, the Escape shouldn't start a new game
 
+> waves (part of scenario life cycle)
+> custom man pages with core design and structure
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
-> custom man pages with core design and structure
 
 > scenario selection
 > scenario common setup utils
 > scenario life cycle
 > scenario success/fail conditions?
-> waves (part of scenario life cycle)
 > end of the wave screen (with stat and infographics) and wave transitions
 
 > game stat subsystem
