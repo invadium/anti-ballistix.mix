@@ -31,5 +31,5 @@ Other states are single nodes in the [/lab/state](#./lab/state) folder:
 * [lab/state/title](#./lab/state/title) - manages Title Screen
 * [lab/state/menu](#./lab/state/menu) - main menu with submenues
 * [lab/state/credits](#./lab/state/credits) - holds Credits Screen
-* [lab/state/gameover](#./lab/state/gameover) - manages Game Over Screen
+* [lab/state/gameOver](#./lab/state/gameOver) - manages Game Over Screen
 

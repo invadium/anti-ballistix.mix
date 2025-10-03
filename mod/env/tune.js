@@ -34,7 +34,7 @@ const tune = {
         hold: 5,
     },
 
-    gameover: {
+    gameOver: {
         hold: 15,
     },
 

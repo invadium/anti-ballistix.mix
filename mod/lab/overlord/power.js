@@ -17,6 +17,7 @@ function checkEndOfGameConditions() {
 
     if (poweredBuildings.length === 0) {
         gameOverCountdown = env.tune.gameOverTimeout
+        env.gameResult = 'blackout'
     }
 }
 

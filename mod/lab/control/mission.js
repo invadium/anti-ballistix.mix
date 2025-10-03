@@ -39,16 +39,22 @@ function resetEnv() {
     env.balance = 0
 }
 
-function newScenario(scenario) {
-    if (!scenario) throw new Error(`Missing scenario!`)
+function newScenario(scenarioDef) {
+    if (!scenarioDef) throw new Error(`Missing scenario definition!`)
 
     env.gameState = 'starting-scenario'
-    log(`starting scenario [${scenario}]`)
+    env.gameResult = 'undecided'
+    log(`starting scenario [${scenarioDef.info.title}]`)
 
     cleanUp()
     resetEnv()
 
+    // form the scenario object
+    const scenario = augment({}, $.sce['00-default']._dir, scenarioDef._dir)
+    console.dir(scenario)
+
     env.scenario = scenario
+
     if (isFun(scenario.setup)) scenario.setup()
     on('newScenario')
 
@@ -60,7 +66,7 @@ function newScenario(scenario) {
 
 function gameOver() {
     env.gameState = 'gameOver'
-    lab.control.state.transitTo('gameover', {
+    lab.control.state.transitTo('gameOver', {
         fadein: 5,
     })
 }

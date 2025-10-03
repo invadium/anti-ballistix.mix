@@ -1,5 +1,10 @@
 const waves = [
     {
+        // default wave for this scenario
+        delay: 10,
+        time:  30,
+    },
+    {
         time:  60,
         delay: 5,
 
@@ -9,8 +14,6 @@ const waves = [
         },
     },
     {
-        delay: 10,
-
         spawn: {
             ballisticMissiles: 20,
         },

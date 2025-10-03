@@ -13,12 +13,21 @@ function onNewScenario() {
     nextWave()
 }
 
+function raidOver() {
+    if (env.gameResult === 'undecided') {
+        env.gameResult = 'success'
+    }
+    trap('game/over')
+}
+
 function nextWave() {
     profile = env.scenario.nextWave()
+    if (!profile) raidOver()
 
     state = {
         started:           env.time,
 
+        // spawn stat
         spawn: {
             drones:            0,
             glideBombs:        0,

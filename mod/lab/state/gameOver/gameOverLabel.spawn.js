@@ -1,4 +1,4 @@
-const gameoverLabel = {
+const gameOverLabel = {
     DNA: 'hud/Label',
     rx:  .5,
     ry:  .5,
