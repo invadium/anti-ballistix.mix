@@ -1,4 +1,4 @@
-function city() {
+function genCity() {
     const src = this.src
 
     // TODO generalize into a common scenario generator

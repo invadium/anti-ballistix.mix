@@ -1,3 +1,5 @@
 const info = {
-    title: 'Entry Point',
+    title:        'Entry Point',
+    seed:          868,
+    powerStations: 5,
 }
