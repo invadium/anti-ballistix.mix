@@ -14,13 +14,14 @@ class TitleBar {
         const f = env.style.font.titleBar
         const Y = .5 * f.size
 
+        const wave = env.wave || 1
+
         font(f.head)
         baseTop()
         alignCenter()
         fill( hsl(.6, .8, .7) )
 
-        // TODO inject the actual wave value
-        text(`Wave:    1`, rx(.15), Y)
+        text(`Wave:    ${wave}`, rx(.15), Y)
         text(`Power:   ${power}%`, rx(.35), Y)
         text(`Score:   ${env.score}`, rx(.65), Y)
         text(`Bounty:  $${env.balance}k`, rx(.85), Y)
