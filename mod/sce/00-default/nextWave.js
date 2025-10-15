@@ -1,6 +1,9 @@
 function nextWave() {
     env.wave ++
-    if (env.wave >= this.waves.length) return
+    if (env.wave >= this.waves.length) {
+        if (this.info.loop) env.wave = 1
+        else return
+    }
 
     const defaultWave  = this.waves[0]
     // cycle through the waves

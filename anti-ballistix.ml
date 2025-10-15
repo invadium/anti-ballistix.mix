@@ -17,14 +17,16 @@ V increase flak bullet spread when overheated (spread threshold, then increase)
 V z-targeting to increase missile/drone precision
 V precision drone attacks with explosions
 V when in the main menu after game over, the Escape shouldn't start a new game
+V scenario selection
+V scenario common setup utils
 
+> include debug scenarios when debugging
+> configure the initial number of flaks
 > waves (part of scenario life cycle)
 > custom man pages with core design and structure
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 
-> scenario selection
-> scenario common setup utils
 > scenario life cycle
 > scenario success/fail conditions?
 > end of the wave screen (with stat and infographics) and wave transitions

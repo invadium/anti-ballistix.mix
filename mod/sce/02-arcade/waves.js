@@ -2,7 +2,7 @@ const waves = [
     {
         // default wave for this scenario
         delay: 10,
-        time:  30,
+        time:  150,
     },
     {
         time:  60,

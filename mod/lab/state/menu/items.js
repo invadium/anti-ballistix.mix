@@ -2,20 +2,13 @@ const items = [
     {
         title: 'New Game',
         select: function(menu) {
-            signal('game/scenario', {
-                scenario: 1,
-            })
-            /*
             // pick the selected scenario
-            const scenarioOptions = menu.items[2]
+            const scenarioOptions = menu.getItemById('scenarios')
             const idx = scenarioOptions.current || 0
-            trap('game/scenario', {
-                scenario: idx + 1,
-            })
-            */
+            const selectedScenario = scenarioOptions.options[idx]
+            signal('game/scenario', selectedScenario)
         },
     },
-    /*
     {
         title: 'Scenario',
         section: true,
@@ -24,7 +17,6 @@ const items = [
         id:      'scenarios',
         options:  [],
     },
-    */
     {
         title: 'Options',
         submenu: 'options',

@@ -46,6 +46,20 @@
  *          disabled: true,
  *          title: 'A Disabled Item',
  *      },
+ *      // complex option
+ *      {
+ *         title: 'Level', // optional title
+ *         options: [
+ *             {
+ *                 id:     101,
+ *                 title: 'Level 1',
+ *             }, 
+ *             {
+ *                 id:     102,
+ *                 title: 'Level 2',
+ *             }
+ *         ],
+ *      }
  *      'The Last Item',
  *
  *  ],
@@ -173,10 +187,21 @@ class Menu extends sys.LabFrame {
 
     itemTitle(item) {
         if (isSimpleItem(item)) return item
-        if (isSwitch(item)) return item[item.current || 0]
-        if (isOption(item)) return item.options[item.current || 0]
+        if (isSwitch(item)) {
+            const title = item[item.current || 0]
+            return this.OPTION_PREFIX + title + this.OPTION_SUFIX
+        }
+        if (isOption(item)) {
+            const opt = item.options[item.current || 0]
+            if (isObj(opt)) {
+                const prefix = item.title? item.title + ': ' : ''
+                return prefix + this.OPTION_PREFIX + opt.title + this.OPTION_SUFIX
+            } else {
+                return this.OPTION_PREFIX + opt + this.OPTION_SUFIX
+            }
+        }
         if (isComplexItem(item)) return item.title
-        return ''
+        return '[no title]'
     }
 
     normalizeItems() {
@@ -232,6 +257,10 @@ class Menu extends sys.LabFrame {
     setCurrent(current) {
         this.current = current
         this.touch()
+    }
+
+    getItemById(id) {
+        return this.items.filter(item => item.id === id)[0]
     }
 
     // select from items provided in st object
@@ -548,23 +577,8 @@ class Menu extends sys.LabFrame {
                 active = true,
                 curFont = env.style.font.menu.head
 
-            if (isSimpleItem(item)) {
-                title = item
-            } else if (isSwitch(item)) {
-                title = this.OPTION_PREFIX + item[item.current || 0] + this.OPTION_SUFIX
-            } else if (isComplexItem(item)) {
-                if (item.section) {
-                    active = false
-                    title = item.title
-                } else if (isOption(item)) {
-                    title = this.OPTION_PREFIX + (item.title? item.title + ': ' : '')
-                        + item.options[item.current || 0] + this.OPTION_SUFIX
-                } else {
-                    title = item.title
-                }
-            } else {
-                title = '[empty title]'
-            }
+            title = this.itemTitle(item)
+            if (isSection(item)) active = false
 
             if (!hidden) {
                 if (this.showBackline) {

@@ -1,5 +1,12 @@
 function compileScenarioList() {
     // TODO list all scenario ids and titles
+    const scenariosItem = this.__.items.filter(e => e.id === 'scenarios')[0]
+
+    scenariosItem.options = []
+
+    $.sce._menuList.forEach(scenarioItem => {
+        scenariosItem.options.push(scenarioItem)
+    })
 }
 
 function toggleResumeGameVisibility() {
