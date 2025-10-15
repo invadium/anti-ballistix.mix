@@ -16,10 +16,14 @@ module.exports = {
     onIdle: function() {
         if (lab.control.mission.inProgress()) return
 
+        this.__.control.newGame()
+
+        /*
         // TODO start the game in demo mode
         signal('game/scenario', {
-            scenario: 1,
+            id: 1,
         })
+        */
     },
 
     onHide: function() {

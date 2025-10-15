@@ -33,6 +33,7 @@ V scenario common setup utils
 
 > game stat subsystem
 > core sfx
+> configurable idle autostart [45 - 90 - 180 - never]
 
 
 # juice

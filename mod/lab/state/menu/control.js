@@ -15,6 +15,15 @@ function toggleResumeGameVisibility() {
     resumeItem.hidden = !lab.control.mission.inProgress()
 }
 
+function newGame() {
+    // pick the selected scenario
+    const __ = this.__
+    const scenarioOptions = __.getItemById('scenarios')
+    const idx = scenarioOptions.current || 0
+    const selectedScenario = scenarioOptions.options[idx]
+    signal('game/scenario', selectedScenario)
+}
+
 function onActivate() {
     this.__.items.title = res.txt.label.title 
     this.compileScenarioList()

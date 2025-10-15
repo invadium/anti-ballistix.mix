@@ -2,11 +2,7 @@ const items = [
     {
         title: 'New Game',
         select: function(menu) {
-            // pick the selected scenario
-            const scenarioOptions = menu.getItemById('scenarios')
-            const idx = scenarioOptions.current || 0
-            const selectedScenario = scenarioOptions.options[idx]
-            signal('game/scenario', selectedScenario)
+            menu.control.newGame()
         },
     },
     {
