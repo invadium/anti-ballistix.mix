@@ -4,13 +4,14 @@ let frame = 0
 function evo(dt) {
     const registeredHits = this.__.collide(
         (hitter, target) => {
-            if (hitter.dead) contacts ++
             if (!hitter.solid.noContact) {
-                target.solid.contact( hitter, hitter.solid, (contactTarget, contactSolid, contactPoint) => {
-                    if (contactTarget.hit) {
-                        contactTarget.hit(hitter)
-                    }
-                })
+                if (target.hit) {
+                    target.solid.contact( hitter, hitter.solid, (contactTarget, contactSolid, contactPoint) => {
+                        if (contactTarget.hit) {
+                            contactTarget.hit(hitter)
+                        }
+                    })
+                }
             }
             if (env.debugSolids) {
                 /*
