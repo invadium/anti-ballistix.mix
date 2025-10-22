@@ -1,9 +1,9 @@
-function postSetup() {
+function start() {
     if (env.config.scenario) {
-        // fast track
+        // warp directly into the game
         trap('game/scenario', {
-            scenario: env.config.scenario,
-            fadein: 0,
+            id:       env.config.scenario,
+            fadein:   0,
         })
     } else {
         lab.control.state.transitTo('title', {

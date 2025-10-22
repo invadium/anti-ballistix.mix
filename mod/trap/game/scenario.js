@@ -1,5 +1,6 @@
 function scenario(st) {
-    const scenarioProfile = $.sce._ls[st.id] || $.sce._ls[1]
+    //const scenarioProfile = $.sce._ls[st.id] || $.sce._ls[1]
+    const scenarioProfile = $.sce.locate(st.id) || $.sce._ls[1]
 
     lab.monitor.controller.dropAllTargetMaps()
 
