@@ -4,6 +4,22 @@ class CityCamera extends dna.SlideCamera {
         super(st)
     }
 
+    lookupZombie(targetDNA) {
+        for (let i = this._ls.length - 1; i >= 0; i--) {
+            const e = this._ls[i]
+            if (e.dead && (e instanceof targetDNA)) return e
+        }
+    }
+
+    spawn(targetDNA, st) {
+        if (isClass(targetDNA) && targetDNA.respawnable) {
+            // look for a zoombie with the same dna
+            const zombie = this.lookupZombie(targetDNA)
+            if (zombie) return zombie.respawn(st)
+        } 
+        return dna.SlideCamera.prototype.spawn.call(this, targetDNA, st)
+    }
+
     pin() {
         const pf = env.playfield
         const targetZoom = ctx.width / pf.width

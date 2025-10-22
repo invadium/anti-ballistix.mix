@@ -1,24 +1,36 @@
+const STATUS_REFRESH_TIME = 1
+
 function setup() {
     if (!env.debug) kill(this)
 
     env.statusInfo = {}
 }
 
+let lastStatus = 0
 function evoStatusInfo(dt) {
     const ls = lab.port._ls
 
-    let bullets = 0
+    let bullets     = 0,
+        deadBullets = 0
     for (let i = ls.length - 1; i >= 0; i--) {
-        if (ls[i] instanceof dna.Projectile) bullets++
+        const e = ls[i]
+        if (e instanceof dna.Projectile) {
+            if (e.dead) deadBullets++
+            else bullets++
+        }
     }
 
-    env.statusInfo.bullets = bullets
+    env.statusInfo.bullets = `${bullets}[--${deadBullets}--]`
+    env.statusInfo.shots = `${lab.overlord.stat.getData().shots}`
+    lastStatus = env.time
 }
 
 function evo(dt) {
     if (!env.debug) return
 
-    evoStatusInfo(dt)
+    if (env.time - lastStatus > STATUS_REFRESH_TIME) {
+        evoStatusInfo(dt)
+    }
 
     if (mouse.out) {
         env.status = ''

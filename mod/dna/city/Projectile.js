@@ -2,16 +2,19 @@ let id = 0
 
 const Platform = require('dna/city/Platform')
 
+const df = {
+    Z:        4000,
+    r:        5,
+    force:    20,
+    dead:     false,
+}
+
 class Projectile extends Platform {
 
     constructor(st) {
         super( extend({
-            Z:        4000,
-            name:     'projectile' + (++id),
-            r:        5,
-            lifespan: 15,
-            force:    20,
-        }, st) )
+            name: 'projectile' + (++id),
+        }, df, st) )
 
         this.install([
             new dna.city.pod.SolidCircle({
@@ -29,6 +32,15 @@ class Projectile extends Platform {
             }),
         ])
 
+        // TODO MUST be decoupled for direct reference to the stat
+        lab.overlord.stat.shot()
+    }
+
+    respawn(st) {
+        extend(this, df, st)
+        this.lifespanKillSwitch.respawn({
+            timer: 20,
+        })
     }
 
     pos() {
@@ -64,4 +76,9 @@ class Projectile extends Platform {
 
         restore()
     }
+
+    kill() {
+        this.dead = true
+    }
 }
+Projectile.respawnable = true

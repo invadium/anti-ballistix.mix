@@ -4,7 +4,7 @@ class LifespanKillSwitch {
         augment(this, {
             type:    'pod',
             subtype: 'control',
-            name:    'lifetimeKillSwitch',
+            name:    'lifespanKillSwitch',
 
             timer:    1,
         }, st)
@@ -16,6 +16,12 @@ class LifespanKillSwitch {
         if (this.timer < 0) {
             kill(this.__)
         }
+    }
+
+    respawn(st) {
+        augment(this, {
+            timer: 1,
+        }, st)
     }
 
 }
