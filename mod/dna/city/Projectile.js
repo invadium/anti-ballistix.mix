@@ -21,6 +21,12 @@ class Projectile extends Platform {
             new dna.city.pod.Thruster({
                 velocity: 200,
             }),
+            new dna.city.pod.OutOfRangeKillSwitch({
+                r: 10,
+            }),
+            new dna.city.pod.LifespanKillSwitch({
+                timer: 20,
+            }),
         ])
 
     }
@@ -30,15 +36,6 @@ class Projectile extends Platform {
             x: this.x,
             y: this.y,
             r: this.r,
-        }
-    }
-
-    evo(dt) {
-        super.evo(dt)
-
-        this.lifespan -= dt
-        if (this.lifespan < 0) {
-            kill(this)
         }
     }
 

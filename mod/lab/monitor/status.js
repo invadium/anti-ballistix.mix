@@ -1,9 +1,24 @@
 function setup() {
     if (!env.debug) kill(this)
+
+    env.statusInfo = {}
+}
+
+function evoStatusInfo(dt) {
+    const ls = lab.port._ls
+
+    let bullets = 0
+    for (let i = ls.length - 1; i >= 0; i--) {
+        if (ls[i] instanceof dna.Projectile) bullets++
+    }
+
+    env.statusInfo.bullets = bullets
 }
 
 function evo(dt) {
     if (!env.debug) return
+
+    evoStatusInfo(dt)
 
     if (mouse.out) {
         env.status = ''
