@@ -197,7 +197,8 @@ class Menu extends sys.LabFrame {
                 const prefix = item.title? item.title + ': ' : ''
                 return prefix + this.OPTION_PREFIX + opt.title + this.OPTION_SUFIX
             } else {
-                return this.OPTION_PREFIX + opt + this.OPTION_SUFIX
+                const prefix = item.title? item.title + ': ' : ''
+                return prefix + this.OPTION_PREFIX + opt + this.OPTION_SUFIX
             }
         }
         if (isComplexItem(item)) return item.title
