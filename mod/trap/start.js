@@ -1,8 +1,10 @@
 function start() {
     if (env.config.scenario) {
         // warp directly into the game
+        const flaks = parseInt(env.config.flaks)
         trap('game/scenario', {
             id:       env.config.scenario,
+            flaks:    isNum(flaks)? flaks : 0,
             fadein:   0,
         })
     } else {

@@ -16,16 +16,7 @@ const items = [
     {
         id:    'flaks',
         title: 'Flaks',
-        options: [
-            { title: '1', val: 1 },
-            { title: '2', val: 2 },
-            { title: '3', val: 3 },
-            { title: '4', val: 4 },
-            { title: '5', val: 5 },
-            { title: '6', val: 6 },
-            { title: '7', val: 7 },
-        ],
-        current: 2,
+        options: [],
     },
     {
         title: 'Options',

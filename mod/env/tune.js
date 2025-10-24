@@ -26,8 +26,13 @@ const tune = {
 
     friendlyFire: false,
 
+    flaks: {
+        min:     1,
+        default: 3,
+        max:     7,
+    },
+
     player: {
-        defaultFlaks:       3,
         botTakeoverTimeout: 30,
     },
 

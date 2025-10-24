@@ -1,12 +1,26 @@
 function compileScenarioList() {
     // TODO list all scenario ids and titles
-    const scenariosItem = this.__.items.filter(e => e.id === 'scenarios')[0]
+    const scenariosItem = this.__.getItemById('scenarios')
 
     scenariosItem.options = []
 
     $.sce._menuList.forEach(scenarioItem => {
         scenariosItem.options.push(scenarioItem)
     })
+}
+
+function compileFlaksSelectionList() {
+    const flaks = this.__.getItemById('flaks')
+
+    flaks.options = []
+
+    for (let i = env.tune.flaks.min; i <= env.tune.flaks.max; i++) {
+        flaks.options.push({
+            title: `${i}`,
+            val:   i,
+        })
+    }
+    flaks.current = env.tune.flaks.default
 }
 
 function toggleResumeGameVisibility() {
@@ -29,9 +43,13 @@ function newGame() {
     signal('game/scenario', selectedScenario)
 }
 
-function onActivate() {
+function setup() {
     this.__.items.title = res.txt.label.title 
     this.compileScenarioList()
+    this.compileFlaksSelectionList()
+}
+
+function onActivate() {
     this.toggleResumeGameVisibility()
     lab.background = env.style.color.sky
 }

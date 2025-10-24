@@ -1,4 +1,6 @@
 function genFlak(flaks) {
+    if (!isNum(flaks) || flaks < env.tune.flaks.min || flaks > env.tune.flaks.max) flaks = env.tune.flaks.default
+
     const step = 100 / (flaks+1)
     let   bx   = step
 
