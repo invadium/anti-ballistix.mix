@@ -19,27 +19,27 @@ V precision drone attacks with explosions
 V when in the main menu after game over, the Escape shouldn't start a new game
 V scenario selection
 V scenario common setup utils
+V configure the initial number of flaks
 
 > include debug scenarios when debugging
-> configure the initial number of flaks
 > waves (part of scenario life cycle)
-> custom man pages with core design and structure
-> define coordinate spaces
-> normalize coordinate naming - relative (0-1), percentage (0-100) etc...
-
+> wave indicator
 > scenario life cycle
 > scenario success/fail conditions?
+> define coordinate spaces
+> normalize coordinate naming - relative (0-1), percentage (0-100) etc...
+> custom man pages with core design and structure
+> proper readme with the project structure, prerequisites, how to play, how to debug etc...
 > end of the wave screen (with stat and infographics) and wave transitions
-
 > game stat subsystem
 > core sfx
 > configurable idle autostart [45 - 90 - 180 - never]
 
-
 # juice
 > incoming missile hint
 > incoming drone hint
-
+> overheat penalty (can't shoot for some time)
+> flak hit penalty (like overhead - can't shoot for some time)
 
 # advanced
 >>> more projectiles
@@ -55,6 +55,7 @@ V scenario common setup utils
     > hints on the incoming next and direction (based on advanced radar data?)
 >>> more destructable objects
     > destructable power towers and power lines connecting power stations
+    > destructable radars (buy as upgrades, can be destroyed by the drones/missiles)
 > local high score table
 
 >>> gamepad remapping

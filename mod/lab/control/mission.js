@@ -39,19 +39,15 @@ function resetEnv() {
     env.balance = 0
 }
 
-function newScenario(scenarioProfile) {
-    if (!scenarioProfile) throw new Error(`Missing scenario profile!`)
+function newScenario(scenario) {
+    if (!scenario) throw new Error(`Missing scenario profile!`)
 
     env.gameState = 'starting-scenario'
     env.gameResult = 'undecided'
-    log(`Starting [${scenarioProfile.info.title}]...`)
+    log(`Starting [${scenario.info.title}]...`)
 
     cleanUp()
     resetEnv()
-
-    // form the scenario object
-    const scenario = augment({}, $.sce['00-default']._dir, scenarioProfile._dir)
-    console.dir(scenario)
 
     env.scenario = scenario
 

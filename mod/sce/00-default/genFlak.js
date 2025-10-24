@@ -1,9 +1,8 @@
-function genFlak(st) {
-    const N = st.flaks
-          step = 100 / (N+1)
+function genFlak(flaks) {
+    const step = 100 / (flaks+1)
     let   bx   = step
 
-    for (let i = 0; i < N; i++) {
+    for (let i = 0; i < flaks; i++) {
 
         const flak = lab.port.spawn( dna.city.Flak, {
             Z:    101,

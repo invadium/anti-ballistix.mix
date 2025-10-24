@@ -21,6 +21,11 @@ function newGame() {
     const scenarioOptions = __.getItemById('scenarios')
     const idx = scenarioOptions.current || 0
     const selectedScenario = scenarioOptions.options[idx]
+
+    const flaksOptions = __.getItemById('flaks')
+    const flaks = flaksOptions.options[ flaksOptions.current || 0 ]
+    selectedScenario.flaks = flaks.val
+
     signal('game/scenario', selectedScenario)
 }
 

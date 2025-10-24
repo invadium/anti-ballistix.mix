@@ -3,6 +3,4 @@ const opt = {
     sfxVolume:      0.8,
     music:          true,
     musicVolume:    0.5,
-
-    flaks:          4,
 }

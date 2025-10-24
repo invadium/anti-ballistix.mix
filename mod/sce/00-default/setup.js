@@ -5,7 +5,9 @@ function setup() {
     const src = this.src = math.createRandomGenerator()
     this.src.setSeed(this.info.seed)
 
+    log(this.flaks)
+
     this.genCity(this.info)
     this.genPowerStations(this.info)
-    this.genFlak(env.opt)
+    this.genFlak(this.flaks)
 }

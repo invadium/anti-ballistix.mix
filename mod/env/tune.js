@@ -27,6 +27,7 @@ const tune = {
     friendlyFire: false,
 
     player: {
+        defaultFlaks:       3,
         botTakeoverTimeout: 30,
     },
 
