@@ -52,10 +52,11 @@ function newScenario(scenario) {
     env.scenario = scenario
 
     if (isFun(scenario.setup)) scenario.setup()
-    on('newScenario')
-
     // TODO determine the scenario-specific background
     lab.background = null
+    lab.overlay.messageBar.printOut(scenario.info.title)
+
+    on('newScenario')
 
     env.gameState = 'started'
 }

@@ -43,6 +43,10 @@ const style = {
             family: 'moon',
             size:   32,
         },
+        messageBar: {
+            family: 'moon',
+            size:   48,
+        },
         title: {
             family: 'moon',
             size:   64,
