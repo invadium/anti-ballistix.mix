@@ -100,7 +100,7 @@ const keyboardControllersMapping = [
 const padActionIdMaps = [
     {
         // xbox 360 gamepad profile
-        axesSensitivity: 0.35,
+        axesSensitivity: 0.75,
         axesPositive: [RIGHT,   DOWN,  RIGHT,  DOWN],
         axesNegative: [LEFT,    UP,    LEFT,   UP],
         buttonsSensitivity: 0.2, 
@@ -108,7 +108,7 @@ const padActionIdMaps = [
     },
     {
         // xbox 360 gamepad profile
-        axesSensitivity: 0.35,
+        axesSensitivity: 0.75,
         axesPositive: [12, 14, 12, 14],
         axesNegative: [13, 15, 13, 15],
         buttonsSensitivity: 0.2, 
@@ -116,7 +116,7 @@ const padActionIdMaps = [
     },
     {
         // xbox 360 gamepad profile
-        axesSensitivity: 0.35,
+        axesSensitivity: 0.75,
         axesPositive: [RIGHT,   DOWN,  RIGHT,  DOWN],
         axesNegative: [LEFT,    UP,    LEFT,   UP],
         buttonsSensitivity: 0.2, 
@@ -124,7 +124,7 @@ const padActionIdMaps = [
     },
     {
         // xbox 360 gamepad profile
-        axesSensitivity: 0.35,
+        axesSensitivity: 0.75,
         axesPositive: [RIGHT,   DOWN,  RIGHT,  DOWN],
         axesNegative: [LEFT,    UP,    LEFT,   UP],
         buttonsSensitivity: 0.2, 

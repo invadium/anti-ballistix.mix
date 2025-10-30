@@ -131,6 +131,7 @@ class Menu extends sys.LabFrame {
             showBackline:   false,
 
             trap:           {},
+            lastActionId:   0,
             menuStack:      [],
 
             debug:          false,
@@ -164,6 +165,7 @@ class Menu extends sys.LabFrame {
         lab.monitor.controller.saveTargetMap()
         this._capture = true
         lab.monitor.controller.bindAll(this)
+        this.releaseAnyAction()
         if (this.items.preservePos) {
             this.touch()
         } else {
@@ -481,11 +483,35 @@ class Menu extends sys.LabFrame {
         //lib.sfx('back')
     }
 
+    lockAction(action) {
+        if (action.id < 1 || action.id > 4) return
+
+        this.lastActionId = action.id
+    }
+
+    isActionLocked(action) {
+        if (this.lastActionId === 0 || action.id < 1 || action.id > 4) return false
+
+        if (this.lastActionId !== action.id) return true
+        return false
+    }
+
+    releaseAction(action) {
+        if (action.id < 1 || action.id > 4) return false
+
+        this.lastActionId = 0
+    }
+
+    releaseAnyAction() {
+        this.lastActionId = 0
+    }
+
     actuate(action) {
         this.touchIt()
 
         const i = this.highlightedItem()
         if (i >= 0) return
+        if (this.isActionLocked(action)) return
 
         switch(action.name) {
             case "UP":    this.prev();   break;
@@ -495,6 +521,11 @@ class Menu extends sys.LabFrame {
             case "A":     this.select(); break;
             case "B":     this.back();   break;
         }
+        this.lockAction(action)
+    }
+
+    cutOff(action) {
+        this.releaseAction(action)
     }
 
     focusOn(target) {

@@ -1,8 +1,8 @@
 # Z-Alert: Anti-Ballistix
 
-Welcome to Anti-Ballistix, a Missile Command inspired game about modern anti-aircraft defence.
+### Welcome to Anti-Ballistix, a Missile Command inspired game about modern anti-aircraft defence!
 
-> This is the only game I know of coded exclusively during air raid alerts.
+> This is the only game that I know of coded exclusively during air raid alerts.
 > Late evening/night alerts are usually long, so I start my coding stream
 > if there is no immediate threat and move slowly with my coding.
 
