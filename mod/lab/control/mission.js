@@ -54,7 +54,10 @@ function newScenario(scenario) {
     if (isFun(scenario.setup)) scenario.setup()
     // TODO determine the scenario-specific background
     lab.background = null
-    lab.overlay.messageBar.printOut(scenario.info.title)
+    lab.overlay.messageBar.typeOut({
+        text:  scenario.info.title,
+        delay: 2,
+    })
 
     on('newScenario')
 
