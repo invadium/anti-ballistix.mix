@@ -32,11 +32,19 @@ const items = [
         id:     'resume',
         hidden:  true,
         title:  'Resume Game',
-        select: function() {
-            lab.control.state.transitTo('city')
+        select: function(menu) {
+            menu.items.resumeGame()
+            // lab.control.state.transitTo('city')
         },
     },
 ]
 items.state = 'main'
 items.preservePos = true
 
+items.resumeGame = function() {
+    lab.control.state.transitTo('city')
+}
+
+items.onBack = function(item) {
+    this.resumeGame()
+}

@@ -57,7 +57,15 @@ const style = {
         },
         menuHigh: {
             family: 'moon',
-            size:   36,
+            size:   35,
+        },
+        menuSuperHigh: {
+            family: 'moon',
+            size:   38,
+        },
+        menuPressed: {
+            family: 'moon',
+            size:   30,
         },
         credits: {
             family: 'moon',

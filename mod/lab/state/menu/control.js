@@ -51,6 +51,7 @@ function setup() {
 
 function onActivate() {
     this.toggleResumeGameVisibility()
+    this.__.touch()
     lab.background = env.style.color.sky
 }
 

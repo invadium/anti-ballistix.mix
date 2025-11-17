@@ -41,6 +41,11 @@ module.exports = {
 
     mouseDown(e) {
         this.__.touchIt()
+        this.__.mousePush()
+    },
+
+    mouseUp(e) {
+        this.__.touchIt()
         this.__.mouseSelect()
     },
 

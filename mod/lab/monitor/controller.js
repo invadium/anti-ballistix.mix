@@ -100,7 +100,7 @@ function saveTargetMap() {
 // resume controls - try to restore previously stored target map state
 function restoreTargetMap() {
     if (targetMapStack.length === 0) {
-        log.warn("can't restore controller targets - the buffer is empty!")
+        // log.warn("can't restore controller targets - the buffer is empty!")
         return false
     }
     this.releaseAll()

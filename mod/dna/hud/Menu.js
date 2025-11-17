@@ -330,6 +330,8 @@ class Menu extends sys.LabFrame {
 
     // select the next menu item
     next(step) {
+        if (this.isPressed()) return
+
         const prev = this.current
         if (this.slideNext()) {
             // landed on the next item
@@ -349,7 +351,10 @@ class Menu extends sys.LabFrame {
         if (!item || (isObj(item) && (item.section || item.disabled || item.hidden))) {
             const prev = this.current
             if (!this.slideNext()) {
-                this.current = prev
+                if (prev !== 0) {
+                    this.current = 0
+                    this.touch()
+                }
             }
         }
     }
@@ -381,6 +386,8 @@ class Menu extends sys.LabFrame {
 
     // move to the previous available menu item
     prev() {
+        if (this.isPressed()) return
+
         const prev = this.current
         if (this.slidePrev()) {
             // landed on the previous item
@@ -393,7 +400,8 @@ class Menu extends sys.LabFrame {
     }
 
     left() {
-        if (this.hidden) return
+        if (this.hidden || this.isPressed()) return
+
         const item = this.currentItem()
         if (isSwitch(item)) {
             if (!item.current) item.current = 0
@@ -415,7 +423,8 @@ class Menu extends sys.LabFrame {
     }
 
     right(item) {
-        if (this.hidden) return
+        if (this.hidden || this.isPressed()) return
+
         item = item || this.currentItem()
         if (isSwitch(item)) {
             if (!item.current) item.current = 0
@@ -467,8 +476,28 @@ class Menu extends sys.LabFrame {
         this.lastTouch = Date.now()
     }
 
+    pressItem(i) {
+        if (i < 0) return
+
+        this._pressedItem = i
+    }
+
+    depressItem() {
+        const i = this._pressedItem
+        this._pressedItem = -1
+        return i
+    }
+
+    isPressed() {
+        return (this._pressedItem >= 0)
+    }
+
+    mousePush() {
+        this.pressItem( this.highlightedItem() )
+    }
+
     mouseSelect() {
-        const i = this.highlightedItem()
+        const i = this.depressItem()
         if (i < 0) return
         
         const item = this.items[i]
@@ -477,8 +506,8 @@ class Menu extends sys.LabFrame {
     }
 
     back() {
-        if (this.onBack) {
-            this.onBack( this.currentItem() )
+        if (isFun(this.items.onBack)) {
+            this.items.onBack( this.currentItem() )
         }
         //lib.sfx('back')
     }
@@ -518,14 +547,28 @@ class Menu extends sys.LabFrame {
             case "LEFT":  this.left();   break;
             case "DOWN":  this.next();   break;
             case "RIGHT": this.right();  break;
-            case "A":     this.select(); break;
-            case "B":     this.back();   break;
+
+            case "A":
+                this.pressItem( this.current )
+                break
         }
         this.lockAction(action)
     }
 
     cutOff(action) {
         this.releaseAction(action)
+        if (this.highlightedItem() >= 0) return
+
+        switch(action.name) {
+            case "A":
+                this.depressItem()
+                this.select()
+                break
+            case "B": case "Y":
+                this.depressItem()
+                this.back();
+                break;
+        }
     }
 
     focusOn(target) {
@@ -581,7 +624,7 @@ class Menu extends sys.LabFrame {
         if (!this.items) return // nothing to show!
         if (env.debug && this.debug) this.drawDebug()
 
-        const highlighted = this.highlightedItem()
+        const highlighted = this.isPressed()? false : this.highlightedItem()
         const n = this.items.length
         const cx = this.x
         const cy = this.y - floor(this.h/2)
@@ -604,7 +647,8 @@ class Menu extends sys.LabFrame {
         for (let i = 0; i < n; i++) {
             const item = this.items[i],
                   hidden = item? !!item.hidden : false,
-                  disabled = item? !!item.disabled : false
+                  disabled = item? !!item.disabled : false,
+                  pressed = i === this._pressedItem
             let title,
                 active = true,
                 curFont = env.style.font.menu.head
@@ -621,12 +665,20 @@ class Menu extends sys.LabFrame {
 
                 // text
                 let fillColor
-                if (!active) fillColor = this.color.deactivated
-                else if (disabled) fillColor = this.color.disabled
-                else if (i === highlighted) {
+                if (!active) {
+                    fillColor = this.color.deactivated
+                } else if (disabled) {
+                    fillColor = this.color.disabled
+                } else if (pressed) {
+                    fillColor = this.color.selected
+                    curFont = env.style.font.menuPressed.head
+                } else if (i === highlighted) {
+                    fillColor = this.color.selected
+                    curFont = env.style.font.menuSuperHigh.head
+                } else if (highlighted < 0 && i === this.current) {
                     fillColor = this.color.selected
                     curFont = env.style.font.menuHigh.head
-                } else if (highlighted < 0 && i === this.current) fillColor = this.color.selected
+                }
                 else fillColor = this.color.main
 
                 // shadow

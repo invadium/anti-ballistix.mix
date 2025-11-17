@@ -51,3 +51,8 @@ options.title = 'Options'
 options.state = 'options'
 options.preservePos = true
 
+options.onBack = function() {
+    syncOut(this.__.items)
+    this.__.returnBack(true)
+}
+
