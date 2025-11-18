@@ -501,7 +501,7 @@ class Menu extends sys.LabFrame {
         if (i < 0) return
         
         const item = this.items[i]
-        if (item.section || item.disabled || item.hidden) return
+        if (!item || item.section || item.disabled || item.hidden) return
         this.select( item )
     }
 

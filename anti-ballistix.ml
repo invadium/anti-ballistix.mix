@@ -20,12 +20,14 @@ V when in the main menu after game over, the Escape shouldn't start a new game
 V scenario selection
 V scenario common setup utils
 V configure the initial number of flaks
+V wave indicator
 
 > include debug scenarios when debugging
 > waves (part of scenario life cycle)
-> wave indicator
+> wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
 > scenario life cycle
 > scenario success/fail conditions?
+
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 > custom man pages with core design and structure

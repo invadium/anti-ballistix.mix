@@ -3,7 +3,7 @@ function onActivate() {
     lab.background = env.style.color.sky
 
     if (env.gameResult === 'blackout') {
-        this.__.gameOverLabel.text = 'Blackout!'
+        this.__.gameOverLabel.text = 'Total Blackout!'
     } else if (env.gameResult === 'success') {
         this.__.gameOverLabel.text = 'Air Raid is Over!'
     }

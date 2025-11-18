@@ -101,10 +101,11 @@ function isCompleted() {
 }
 
 function checkActiveTargets() {
-    // TODO check if we still have enemy drones and missiles in the air
+    const enemies = lab.port._ls.reduce((acc, e) => e.team === 2? acc + 1 : acc, 0)
     
-    // TODO if not - next wave
-    nextWave()
+    if (enemies === 0) {
+        nextWave()
+    }
 }
 
 function evo(dt) {
