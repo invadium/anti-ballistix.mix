@@ -41,6 +41,8 @@ class Flak extends Platform {
     }
 
     draw() {
+        if (this.gun.lock && (env.time - this.gun.lockTimestamp) % 1 < .5) return
+
         const { x, y, r, r1, r2, r3, dir } = this
         const bot = this.bot.isInControl()
         const occupied = this.turretPadControl.isOccupied()

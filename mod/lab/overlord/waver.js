@@ -112,9 +112,11 @@ function evo(dt) {
     if (!profile) return
     if (profile.delay && (env.time - state.started) < profile.delay) return
 
-    if (rnd() < profile.fq.ballisticMissiles * dt) spawnBallistic()
-    if (rnd() < profile.fq.drones * dt) spawnDrone()
-    // TODO ... the same for cruise missiles and glide bobms
+    if ((env.time - state.started) < profile.time) {
+        if (rnd() < profile.fq.ballisticMissiles * dt) spawnBallistic()
+        if (rnd() < profile.fq.drones * dt) spawnDrone()
+        // TODO ... the same for cruise missiles and glide bobms
+    }
 
     if (isCompleted()) checkActiveTargets()
 }

@@ -10,21 +10,26 @@ class DoubleGun {
             triggered:    false,
             charge:       0,
             barrel:       0,
-            temp:    0,
+            temp:         0,
+            lock:         0,
 
             // spec
             rechargeTime: .2,
-            heatFactor:   0.025,
-            coolFactor:   0.2,
+            heatFactor:   0.01,
+            coolFactor:   0.15,
             blockTemp:    0.9,
-            spreadTemp:   0.5,
-            spreadFactor: .1,
+            lockTime:     3,
+            spreadTemp:   0.3,
+            spreadFactor: .15,
         }, st)
     }
 
     fire() {
+        if (this.lock) return
         if (this.temp >= this.blockTemp) {
             this.temp = 1
+            this.lock = this.lockTime
+            this.lockTimestamp = env.time
             return
         }
         this.temp += this.heatFactor
@@ -47,7 +52,7 @@ class DoubleGun {
         }
 
         // calculate barrel overheat spread if needed
-        let projectileDir = temp < this.spreadTemp? dir : dir + (math.rnds() * rnd() * (1 - temp) * this.spreadFactor)
+        let projectileDir = temp < this.spreadTemp? dir : dir + (math.rnds() * rnd() * temp * this.spreadFactor)
         lab.port.spawn( dna.city.Projectile, {
             team:   this.__.team + 2,
             source: this.__,
@@ -69,6 +74,11 @@ class DoubleGun {
     evo(dt) {
         // recharge
         this.charge += dt
+
+        if (this.lock) {
+            // reduce lock
+            this.lock = max(this.lock - dt, 0)
+        }
 
         // trigger
         if (this.triggered) {
