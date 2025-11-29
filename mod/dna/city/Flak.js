@@ -11,6 +11,7 @@ class Flak extends Platform {
             r1:      10,
             r2:      8,
             r3:      25,
+            rdy:     8,
 
             hull:    100,
             //dir:     math.rnda(),
@@ -80,8 +81,12 @@ class Flak extends Platform {
         // barrels
         const g = bot? 0.7 : 1
         const bcolor = rgb(temp, g * (1 - .4*temp), 1 - .8*temp)
-        neon.line( -.4*r,     r,  -.4*r,  -r,     bcolor)
-        neon.line(  .4*r,    -r,   .4*r,   r,     bcolor)
+        
+        const dy0 = (1 - min((env.time - this.gun.lastShot0) / this.gun.rechargeTime, 1)) * this.rdy
+        neon.line( -.4*r,     r+dy0,  -.4*r,  -r+dy0,     bcolor)
+
+        const dy1 = (1 - min((env.time - this.gun.lastShot1) / this.gun.rechargeTime, 1)) * this.rdy
+        neon.line(  .4*r,     r+dy1,   .4*r,  -r+dy1,     bcolor)
         //neon.line(0, 0, 0, -r * 1.4, color)
         restore()
 

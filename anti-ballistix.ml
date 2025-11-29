@@ -21,6 +21,8 @@ V scenario selection
 V scenario common setup utils
 V configure the initial number of flaks
 V wave indicator
+V overheat penalty (can't shoot for some time)
+V barrel recoil 
 
 > waves (part of scenario life cycle)
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
@@ -40,8 +42,10 @@ V wave indicator
 # juice
 > incoming missile hint
 > incoming drone hint
-> overheat penalty (can't shoot for some time)
+> power plant hit shake
+> ground hit tectonic waves
 > flak hit penalty (like overhead - can't shoot for some time)
+> flak hit camera shake???
 
 # advanced
 >>> more projectiles

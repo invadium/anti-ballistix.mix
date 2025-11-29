@@ -12,10 +12,12 @@ class DoubleGun {
             barrel:       0,
             temp:         0,
             lock:         0,
+            lastShot0:    0,
+            lastShot1:    0,
 
             // spec
             rechargeTime: .2,
-            heatFactor:   0.01,
+            heatFactor:   0.015,
             coolFactor:   0.15,
             blockTemp:    0.9,
             lockTime:     3,
@@ -49,10 +51,12 @@ class DoubleGun {
             fv[1] = x1
             lib.vec2.mulM2(fv, fv, rm)
             this.barrel = 1
+            this.lastShot0 = env.time
         } else {
             fv[1] = x2
             lib.vec2.mulM2(fv, fv, rm)
             this.barrel = 0
+            this.lastShot1 = env.time
         }
 
         // calculate barrel overheat spread if needed
