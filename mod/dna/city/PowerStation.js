@@ -11,6 +11,9 @@ class PowerStation extends Platform {
             r:        200,
             maxHP:    1500,
             maxPower: 100,
+
+            dx:       0,
+            dy:       0,
         }, st) )
         this.hp = this.maxHP
         this.bz = env.tune.powerZone.start + this.z * (env.tune.powerZone.end - env.tune.powerZone.start)
@@ -71,6 +74,8 @@ class PowerStation extends Platform {
     }
 
     hit(hitter) {
+        const _ = this
+
         if (hitter.team !== this.team && hitter instanceof dna.city.GuidedWeapon && abs(hitter.Z - this.Z) < 10) {
             defer(() => {
                 lib.vfx.hitDebris(hitter.x, hitter.y, this.Z + 1, hitter.force, env.style.color.powerStation)
@@ -79,6 +84,13 @@ class PowerStation extends Platform {
             kill(hitter)
 
             this.damage(hitter.force)
+            lab.control.kinetix.key( _, {
+                map: v => _.dy = v * 20,
+                freq: 4,
+                easing: dna.kinetix.easing.triangle,
+                times: 8,
+                follow: true,
+           })
         }
     }
 
@@ -96,12 +108,14 @@ class PowerStation extends Platform {
               h  = .3 * r,
               hw = .5 * w,
               hh = .5 * h,
-              H = ctx.height,
-              x = this.x,
-              y = lab.overlord.battleZone.py(this.bz) - hh
+              H  = ctx.height,
+              x  = this.x,
+              y  = lab.overlord.battleZone.py(this.bz) - hh,
+              dx = this.dx,
+              dy = this.dy
 
         save()
-        translate(x, y)
+        translate(x + dx, y + dy)
         //rotate(HALF_PI + this.dir)
 
         // adjust y

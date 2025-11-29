@@ -23,6 +23,7 @@ V configure the initial number of flaks
 V wave indicator
 V overheat penalty (can't shoot for some time)
 V barrel recoil 
+V power plant hit shake
 
 > waves (part of scenario life cycle)
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
@@ -42,7 +43,6 @@ V barrel recoil
 # juice
 > incoming missile hint
 > incoming drone hint
-> power plant hit shake
 > ground hit tectonic waves
 > flak hit penalty (like overhead - can't shoot for some time)
 > flak hit camera shake???
