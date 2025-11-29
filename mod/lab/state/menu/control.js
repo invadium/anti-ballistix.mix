@@ -4,7 +4,7 @@ function compileScenarioList() {
 
     scenariosItem.options = []
 
-    $.sce._menuList.forEach(scenarioItem => {
+    $.scenario._menuList.forEach(scenarioItem => {
         scenariosItem.options.push(scenarioItem)
     })
 }

@@ -1,3 +1,3 @@
 function scenario() {
-    $.sce.catalog()
+    $.scenario.catalog()
 }

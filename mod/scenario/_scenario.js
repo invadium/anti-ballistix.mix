@@ -1,5 +1,5 @@
-const _sce = {
-    name: 'sce',
+const _scenario = {
+    name: 'scenario',
 
     catalog: function() {
         const menuList = this._menuList = []

@@ -1,5 +1,5 @@
 function scenario(st) {
-    const scenarioProfile = $.sce.locate(st.id)
+    const scenarioProfile = $.scenario.locate(st.id)
     scenarioProfile.flaks = st.flaks || env.tune.flaks.default
 
     lab.monitor.controller.dropAllTargetMaps()
