@@ -3,14 +3,11 @@ const waves = [
     {
         // default wave for this scenario
         delay: 10,
-        time:  60,
+        time:  120,
     },
 
     // wave 1
     {
-        time:  60,
-        delay: 5,
-
         fq: {
             drones:            .40,
             ballisticMissiles: 0,
@@ -18,7 +15,6 @@ const waves = [
     },
     // wave 2
     {
-        time: 180,
         fq: {
             drones:            .30,
             ballisticMissiles: .05,
@@ -26,7 +22,6 @@ const waves = [
     },
     // wave 3
     {
-        time: 180,
         fq: {
             drones:            .0,
             ballisticMissiles: .25,

@@ -7,7 +7,7 @@
 // const BFQ = .25
 // const DFQ = .07
 
-let state, profile
+let state, profile, enemyTargets = 0
 
 function onNewScenario() {
     nextWave()
@@ -101,23 +101,32 @@ function isCompleted() {
     return false
 }
 
-function checkActiveTargets() {
-    const enemies = lab.port._ls.reduce((acc, e) => e.team === 2? acc + 1 : acc, 0)
-    
-    if (enemies === 0) {
-        nextWave()
-    }
+function countEnemyTargets() {
+    enemyTargets = lab.port._ls.reduce((acc, e) => e.team === 2? acc + 1 : acc, 0)
+}
+
+function getEnemyTargets() {
+    return enemyTargets
+}
+
+function tryToLaunchNextWave() {
+    if (enemyTargets !== 0) return
+
+    nextWave()
+}
+
+function evoSpawn(dt) {
+        if (rnd() < profile.fq.ballisticMissiles * dt) spawnBallistic()
+        if (rnd() < profile.fq.drones * dt) spawnDrone()
+        // TODO ... the same for cruise missiles and glide bobms
 }
 
 function evo(dt) {
     if (!profile) return
     if (profile.delay && (env.time - state.started) < profile.delay) return
 
-    if ((env.time - state.started) < profile.time) {
-        if (rnd() < profile.fq.ballisticMissiles * dt) spawnBallistic()
-        if (rnd() < profile.fq.drones * dt) spawnDrone()
-        // TODO ... the same for cruise missiles and glide bobms
-    }
+    if ((env.time - state.started) < profile.time) evoSpawn(dt)
 
-    if (isCompleted()) checkActiveTargets()
+    countEnemyTargets()
+    if (isCompleted()) tryToLaunchNextWave()
 }

@@ -60,6 +60,8 @@ class Bot {
                 name: 'fire',
                 start: function(dt) {
                     if (env.disableAutoFlak) return
+                    if (lab.overlord.waver.getEnemyTargets() === 0) return
+
                     this.flak.primaryWeapon.trigger()
                 },
                 stop: function(dt) {

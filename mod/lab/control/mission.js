@@ -1,3 +1,5 @@
+// TODO should it be a part or overlord/waver???
+
 function inProgress() {
     return (env.gameState === 'started')
 }
