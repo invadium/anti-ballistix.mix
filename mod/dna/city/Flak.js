@@ -28,8 +28,8 @@ class Flak extends Platform {
             new dna.city.pod.Attitude(),
             new dna.city.pod.DoubleGun({
                 y0:  25,
-                x1: -8,
-                x2:  8,
+                x1: -5,
+                x2:  5,
             }),
             new dna.city.pod.TurretPadControl(),
         ])

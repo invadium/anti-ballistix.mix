@@ -10,7 +10,7 @@ function nextWave() {
 
     const defaultWave  = this.waves[0]
     // cycle through the waves
-    const upcomingWave = this.waves[1 + actualWave % (this.waves.length - 1)]
+    const upcomingWave = this.waves[1 + ((actualWave - 1) % (this.waves.length - 1))]
 
     const wave = augment({}, defaultWave, upcomingWave)
 

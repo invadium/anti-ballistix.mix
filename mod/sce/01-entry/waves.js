@@ -8,7 +8,7 @@ const waves = [
 
     // wave 1
     {
-        time:  120,
+        time:  60,
         delay: 5,
 
         fq: {

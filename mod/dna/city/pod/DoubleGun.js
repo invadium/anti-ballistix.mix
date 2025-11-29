@@ -40,14 +40,18 @@ class DoubleGun {
               dy = sin(dir)
 
         // barrel spread
+        const fv = lib.vec2(y0, 0)
+        const rm = lib.mat2()
+        lib.mat2.rotate(rm, rm, dir)
+
         let ddx = 0, ddy = 0
         if (this.barrel === 0) {
-            ddx = .5 * x1 * sin(dir)
-            ddy = .5 * x1 * cos(dir)
+            fv[1] = x1
+            lib.vec2.mulM2(fv, fv, rm)
             this.barrel = 1
         } else {
-            ddx = .5 * x2 * sin(dir)
-            ddy = .5 * x2 * cos(dir)
+            fv[1] = x2
+            lib.vec2.mulM2(fv, fv, rm)
             this.barrel = 0
         }
 
@@ -56,8 +60,8 @@ class DoubleGun {
         lab.port.spawn( dna.city.Projectile, {
             team:   this.__.team + 2,
             source: this.__,
-            x:      x + ddx + dx * y0,
-            y:      y + ddy + dy * y0,
+            x:      x + fv[0],
+            y:      y + fv[1],
             dir:    projectileDir,
             temp:   temp,
         })

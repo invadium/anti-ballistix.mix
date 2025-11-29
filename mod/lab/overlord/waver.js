@@ -57,6 +57,7 @@ function spawnBallistic() {
 
     state.spawn.ballisticMissiles ++
     // log(`new ballistic missile @${m.x}:${m.y}`)
+    log('new ballistics with FQ: ' + profile.fq.ballisticMissiles)
 }
 
 function spawnDrone() {
