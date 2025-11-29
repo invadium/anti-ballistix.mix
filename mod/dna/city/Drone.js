@@ -16,6 +16,8 @@ class Drone extends GuidedWeapon {
             powerTime: 15 + 45 * rnd(),
             force:     50,
 
+            diveAcceleration: 50,
+
             score:     10,
             cost:      50,
         }, st) )
@@ -49,7 +51,7 @@ class Drone extends GuidedWeapon {
 
             new dna.city.pod.Attitude(),
             new dna.city.pod.Thruster({
-                velocity: 200,
+                velocity: 100,
             }),
 
             // TODO inject precision config
@@ -126,6 +128,7 @@ class Drone extends GuidedWeapon {
                 break
 
             case DIVING:
+                this.thruster.velocity += this.diveAcceleration * dt
                 break
         }
 
