@@ -25,18 +25,19 @@ V overheat penalty (can't shoot for some time)
 V barrel recoil 
 V power plant hit shake
 
+> include debug scenarios when debugging
+> define coordinate spaces
+> game stat subsystem
+
 > waves (part of scenario life cycle)
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
 > scenario life cycle
 > scenario success/fail conditions?
-> include debug scenarios when debugging
 
-> define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 > custom man pages with core design and structure
 > proper readme with the project structure, prerequisites, how to play, how to debug etc...
 > end of the wave screen (with stat and infographics) and wave transitions
-> game stat subsystem
 > core sfx
 > configurable idle autostart [45 - 90 - 180 - never]
 
