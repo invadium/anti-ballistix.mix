@@ -35,6 +35,8 @@ function nextWave() {
             cruiseMissiles:    0,
         }
     }
+
+    env.stat.wave()
 }
 
 function spawnBallistic() {
@@ -56,8 +58,7 @@ function spawnBallistic() {
     }
 
     state.spawn.ballisticMissiles ++
-    // log(`new ballistic missile @${m.x}:${m.y}`)
-    log('new ballistics with FQ: ' + profile.fq.ballisticMissiles)
+    env.stat.launch(missile)
 }
 
 function spawnDrone() {
@@ -80,6 +81,7 @@ function spawnDrone() {
     }
 
     state.spawn.drones ++
+    env.stat.launch(drone)
 }
 
 function isCompleted() {

@@ -15,7 +15,10 @@ class CityCamera extends dna.SlideCamera {
         if (isClass(targetDNA) && targetDNA.respawnable) {
             // look for a zoombie with the same dna
             const zombie = this.lookupZombie(targetDNA)
-            if (zombie) return zombie.respawn(st)
+            if (zombie) {
+                zombie.respawn(st)
+                return zombie
+            }
         } 
         return dna.SlideCamera.prototype.spawn.call(this, targetDNA, st)
     }

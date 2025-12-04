@@ -8,11 +8,12 @@ class BallisticMissile extends GuidedWeapon {
         super( extend({
             team:     2,
             name:    'ballisticMissile' + (++id),
+            stat:    'ballisticMissiles',
             r:        15,
             force:    500,
 
             score:    100,
-            cost:     1000,
+            bounty:   1000,
         }, st) )
 
         this.install([
@@ -76,7 +77,7 @@ class BallisticMissile extends GuidedWeapon {
 
     hit(source) {
         if (source instanceof dna.city.Projectile) {
-            kill(this)
+            kill(this, source)
             kill(source)
             this.airExplosion()
         }
@@ -88,7 +89,7 @@ class BallisticMissile extends GuidedWeapon {
         //if (this.y >= cry(this.targetCRY)) {
         if (this.y >= this.targetY) {
             // ground hit
-            kill(this)
+            kill(this, 'ground')
             this.groundExplosion()
         }
     }
@@ -114,7 +115,8 @@ class BallisticMissile extends GuidedWeapon {
         restore()
     }
 
-    onKill() {
-        trap('game/kill', this)
+    onKill(killer) {
+        env.stat.kill(this, killer)
+        trap('mission/kill', this)
     }
 }

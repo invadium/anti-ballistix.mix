@@ -1,8 +1,7 @@
-
-const Platform = require('dna/city/Platform')
+const Target = require('dna/city/Target')
 
 let id = 0
-class PowerStation extends Platform {
+class PowerStation extends Target {
 
     constructor(st) {
 
@@ -81,7 +80,7 @@ class PowerStation extends Platform {
                 lib.vfx.hitDebris(hitter.x, hitter.y, this.Z + 1, hitter.force, env.style.color.powerStation)
                 hitter.groundExplosion()
             })
-            kill(hitter)
+            kill(hitter, this)
 
             this.damage(hitter.force)
             lab.control.kinetix.key( _, {

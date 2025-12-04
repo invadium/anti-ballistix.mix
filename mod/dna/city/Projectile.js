@@ -7,6 +7,8 @@ const df = {
     r:        5,
     force:    20,
     dead:     false,
+    player:   0,
+    source:   null,
 }
 
 class Projectile extends Platform {

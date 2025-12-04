@@ -61,14 +61,16 @@ class DoubleGun {
 
         // calculate barrel overheat spread if needed
         let projectileDir = temp < this.spreadTemp? dir : dir + (math.rnds() * rnd() * temp * this.spreadFactor)
-        lab.port.spawn( dna.city.Projectile, {
+        const projectile = lab.port.spawn( dna.city.Projectile, {
             team:   this.__.team + 2,
             source: this.__,
+            player: this.__.control._controllerId,
             x:      x + fv[0],
             y:      y + fv[1],
             dir:    projectileDir,
             temp:   temp,
         })
+        env.stat.shot(projectile)
     }
 
     trigger() {

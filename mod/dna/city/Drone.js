@@ -11,6 +11,7 @@ class Drone extends GuidedWeapon {
         super( extend({
             team:      2,
             name:     'drone' + (++id),
+            stat:     'drones',
             state:     FLYING,
             r:         15,
             powerTime: 15 + 45 * rnd(),
@@ -19,7 +20,7 @@ class Drone extends GuidedWeapon {
             diveAcceleration: 50,
 
             score:     10,
-            cost:      50,
+            bounty:    50,
         }, st) )
 
         this.install([
@@ -88,7 +89,8 @@ class Drone extends GuidedWeapon {
 
     hit(source) {
         if (source instanceof dna.city.Projectile) {
-            kill(this)
+            // intercepted!!!
+            kill(this, source)
             kill(source)
             this.airExplosion()
         }
@@ -134,7 +136,7 @@ class Drone extends GuidedWeapon {
 
         if (this.y >= this.targetY) {
             // ground hit
-            kill(this)
+            kill(this, 'ground')
             this.groundExplosion()
         }
     }
@@ -161,8 +163,9 @@ class Drone extends GuidedWeapon {
         restore()
     }
 
-    onKill() {
-        trap('game/kill', this)
+    onKill(killer) {
+        env.stat.kill(this, killer)
+        trap('mission/kill', this)
     }
 
 }
