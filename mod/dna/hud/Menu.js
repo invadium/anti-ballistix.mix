@@ -102,6 +102,10 @@ function isOption(item) {
     return ( isComplexItem(item) && isArr(item.options) )
 }
 
+function isSwitchable(item) {
+    return isSwitch(item) || isOption(item)
+}
+
 
 class Menu extends sys.LabFrame {
 
@@ -402,6 +406,7 @@ class Menu extends sys.LabFrame {
     left() {
         if (this.hidden || this.isPressed()) return
 
+        // TODO introduce an option to jump up
         const item = this.currentItem()
         if (isSwitch(item)) {
             if (!item.current) item.current = 0
@@ -425,6 +430,7 @@ class Menu extends sys.LabFrame {
     right(item) {
         if (this.hidden || this.isPressed()) return
 
+        // TODO introduce an option to jump down
         item = item || this.currentItem()
         if (isSwitch(item)) {
             if (!item.current) item.current = 0
@@ -478,6 +484,7 @@ class Menu extends sys.LabFrame {
 
     pressItem(i) {
         if (i < 0) return
+        if (isSwitchable(this.items[i])) return
 
         this._pressedItem = i
     }
@@ -493,16 +500,20 @@ class Menu extends sys.LabFrame {
     }
 
     mousePush() {
-        this.pressItem( this.highlightedItem() )
+        const i = this.highlightedItem()
+        this.pressItem(i)
+        this._mousePushedItem = i
     }
 
     mouseSelect() {
-        const i = this.depressItem()
-        if (i < 0) return
-        
-        const item = this.items[i]
-        if (!item || item.section || item.disabled || item.hidden) return
-        this.select( item )
+        const i = this._mousePushedItem
+
+        if (i >= 0) {
+            const item = this.items[i]
+            if (!item || item.section || item.disabled || item.hidden) return
+            this.select( item )
+        }
+        this._mousePushedItem = -1
     }
 
     back() {
@@ -543,14 +554,11 @@ class Menu extends sys.LabFrame {
         if (this.isActionLocked(action)) return
 
         switch(action.name) {
-            case "UP":    this.prev();   break;
-            case "LEFT":  this.left();   break;
-            case "DOWN":  this.next();   break;
-            case "RIGHT": this.right();  break;
-
-            case "A":
-                this.pressItem( this.current )
-                break
+            case "UP":    this.prev();                    break;
+            case "LEFT":  this.left();                    break;
+            case "DOWN":  this.next();                    break;
+            case "RIGHT": this.right();                   break;
+            case "A":     this.pressItem( this.current ); break;
         }
         this.lockAction(action)
     }
@@ -566,8 +574,8 @@ class Menu extends sys.LabFrame {
                 break
             case "B": case "Y":
                 this.depressItem()
-                this.back();
-                break;
+                this.back()
+                break
         }
     }
 
