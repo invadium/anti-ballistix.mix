@@ -63,9 +63,9 @@ class BallisticMissile extends GuidedWeapon {
         })
     }
 
-    groundExplosion() {
+    groundExplosion(Z) {
         lab.port.spawn(dna.city.Explosion, {
-            Z:          this.Z,
+            Z:          Z ?? this.Z,
             team:       this.team,
             x:          this.x,
             y:          this.y,

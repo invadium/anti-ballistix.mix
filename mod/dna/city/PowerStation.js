@@ -78,7 +78,7 @@ class PowerStation extends Target {
         if (hitter.team !== this.team && hitter instanceof dna.city.GuidedWeapon && abs(hitter.Z - this.Z) < 10) {
             defer(() => {
                 lib.vfx.hitDebris(hitter.x, hitter.y, this.Z + 1, hitter.force, env.style.color.powerStation)
-                hitter.groundExplosion()
+                hitter.groundExplosion(_.Z + 1)
             })
             kill(hitter, this)
 

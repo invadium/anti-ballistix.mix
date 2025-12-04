@@ -76,8 +76,9 @@ class Drone extends GuidedWeapon {
         })
     }
 
-    groundExplosion() {
+    groundExplosion(Z) {
         lab.port.spawn(dna.city.Explosion, {
+            Z:          Z ?? this.Z,
             team:       this.team,
             x:          this.x,
             y:          this.y,

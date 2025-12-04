@@ -24,9 +24,8 @@ V wave indicator
 V overheat penalty (can't shoot for some time)
 V barrel recoil 
 V power plant hit shake
+V include debug scenarios when debugging
 
-> include debug scenarios when debugging
-> define coordinate spaces
 > game stat subsystem
 
 > waves (part of scenario life cycle)
@@ -34,19 +33,22 @@ V power plant hit shake
 > scenario life cycle
 > scenario success/fail conditions?
 
+> end of the wave screen (with stat and infographics) and wave transitions
+
+> define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 > custom man pages with core design and structure
 > proper readme with the project structure, prerequisites, how to play, how to debug etc...
-> end of the wave screen (with stat and infographics) and wave transitions
 > core sfx
-> configurable idle autostart [45 - 90 - 180 - never]
 
 # juice
-> incoming missile hint
+> incoming missile hint (like a comm ((( signal)
 > incoming drone hint
 > ground hit tectonic waves
 > flak hit penalty (like overhead - can't shoot for some time)
 > flak hit camera shake???
+> warp drones beyond the screen
+> configurable idle autostart [45 - 90 - 180 - never]
 
 # advanced
 >>> more projectiles
