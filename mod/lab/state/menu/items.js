@@ -34,7 +34,6 @@ const items = [
         title:  'Resume Game',
         select: function(menu) {
             menu.items.resumeGame()
-            // lab.control.state.transitTo('city')
         },
     },
 ]
@@ -42,7 +41,9 @@ items.state = 'main'
 items.preservePos = true
 
 items.resumeGame = function() {
-    lab.control.state.transitTo('city')
+    if (lab.control.mission.inProgress()) {
+        lab.control.state.transitTo('city')
+    }
 }
 
 items.onBack = function(item) {

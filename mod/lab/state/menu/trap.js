@@ -61,9 +61,7 @@ module.exports = {
 
                 switch(this.__.items.state) {
                     case 'main':
-                        if (lab.control.mission.inProgress()) {
-                            lab.control.state.transitTo('city')
-                        }
+                        this.__.items.resumeGame()
                         break
                     case 'options':
                         this.__.returnBack(true)
