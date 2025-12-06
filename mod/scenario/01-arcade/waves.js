@@ -6,7 +6,7 @@ const waves = [
     },
     {
         time:  60,
-        delay: 5,
+        delay: 10,
 
         fq: {
             drones:            .40,
@@ -14,7 +14,8 @@ const waves = [
         },
     },
     {
-        spawn: {
+        seed:  101, // ???
+        limit: {
             ballisticMissiles: 20,
         },
         fq: {

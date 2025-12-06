@@ -7,6 +7,10 @@ function start() {
             flaks:    isNum(flaks)? flaks : 0,
             fadein:   0,
         })
+    } else if (env.config.menu) {
+        lab.control.state.transitTo('menu', {
+            fadein: 0,
+        })
     } else {
         lab.control.state.transitTo('title', {
             fadein: 0,
