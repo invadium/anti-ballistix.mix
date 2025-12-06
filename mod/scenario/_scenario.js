@@ -79,7 +79,6 @@ const _scenario = {
 
         const profile = define() || _._ls[1]
         const scenario = augment({}, _._dir['00-default']._dir, profile._dir)
-        console.dir(scenario)
 
         return scenario
     },

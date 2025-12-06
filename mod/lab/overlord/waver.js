@@ -28,7 +28,7 @@ function nextWave() {
         started:           env.time,
 
         // spawn stat
-        spawn: {
+        spawned: {
             drones:            0,
             glideBombs:        0,
             ballisticMissiles: 0,
@@ -57,7 +57,7 @@ function spawnBallistic() {
         }) )
     }
 
-    state.spawn.ballisticMissiles ++
+    state.spawned.ballisticMissiles ++
     env.stat.launch(missile)
 }
 
@@ -80,21 +80,21 @@ function spawnDrone() {
         }) )
     }
 
-    state.spawn.drones ++
+    state.spawned.drones ++
     env.stat.launch(drone)
 }
 
 function isCompleted() {
     if (profile.time && (env.time - state.started) > profile.time) return true
 
-    if (profile.spawn) {
-        const limits = Object.keys(profile.spawn)
+    if (profile.limits) {
+        const limits = Object.keys(profile.limits)
 
         let reached = 0
         for (let i = 0; i < limits.length; i++) {
             const name  = limits[i]
-            const limit = profile.spawn[name]
-            if (state.spawn[name] >= limit) reached ++
+            const limit = profile.limit[name]
+            if (state.spawned[name] >= limit) reached ++
         }
 
         if (reached >= limits.length) return true
