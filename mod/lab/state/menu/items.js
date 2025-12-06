@@ -33,19 +33,13 @@ const items = [
         hidden:  true,
         title:  'Resume Game',
         select: function(menu) {
-            menu.items.resumeGame()
+            menu.control.resumeGame()
         },
     },
 ]
 items.state = 'main'
 items.preservePos = true
 
-items.resumeGame = function() {
-    if (lab.control.mission.inProgress()) {
-        lab.control.state.transitTo('city')
-    }
-}
-
 items.onBack = function(item) {
-    this.resumeGame()
+    this.__.control.resumeGame()
 }

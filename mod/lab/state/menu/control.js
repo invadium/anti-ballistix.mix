@@ -49,6 +49,12 @@ function setup() {
     this.compileFlaksSelectionList()
 }
 
+function resumeGame() {
+    if (lab.control.mission.inProgress()) {
+        lab.control.state.transitTo('city')
+    }
+}
+
 function onActivate() {
     this.toggleResumeGameVisibility()
     this.__.touch()

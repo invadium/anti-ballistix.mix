@@ -17,14 +17,12 @@ module.exports = {
         if (this.__.items.state !== 'main') return
         if (lab.control.mission.inProgress()) return
 
-        this.__.control.newGame()
+        // this.__.control.newGame()
 
-        /*
-        // TODO start the game in demo mode
-        signal('game/scenario', {
-            id: 1,
-        })
-        */
+        const idleScenario = $.scenario._menuList[0]
+        idleScenario.flaks = RND(env.tune.flaks.min, env.tune.flaks.max)
+
+        signal('game/scenario', idleScenario)
     },
 
     onHide: function() {
@@ -62,7 +60,7 @@ module.exports = {
 
                 switch(this.__.items.state) {
                     case 'main':
-                        this.__.items.resumeGame()
+                        this.__.control.resumeGame()
                         break
                     case 'options':
                         this.__.returnBack(true)
