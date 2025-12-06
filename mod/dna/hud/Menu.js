@@ -507,13 +507,14 @@ class Menu extends sys.LabFrame {
 
     mouseSelect() {
         const i = this._mousePushedItem
+        this._mousePushedItem = -1
+        this.depressItem()
 
         if (i >= 0) {
             const item = this.items[i]
             if (!item || item.section || item.disabled || item.hidden) return
             this.select( item )
         }
-        this._mousePushedItem = -1
     }
 
     back() {
