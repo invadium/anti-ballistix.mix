@@ -2,10 +2,11 @@
  * The ghost source of drones and missiles
  */
 
-// TODO make configurable by Wave #N data
-
-// const BFQ = .25
-// const DFQ = .07
+const IDLE      = 0,
+      ARMING_UP = 1,
+      ONGOING   = 2,
+      CONCLUDED = 3,
+      OVER      = 4
 
 let state, profile, enemyTargets = 0
 
@@ -24,8 +25,21 @@ function nextWave() {
     profile = env.scenario.nextWave()
     if (!profile) raidOver()
 
+    lab.overlay.messageBar.typeOut({
+        text:  `Wave ${env.wave}`,
+        keep:  1,
+        delay: 1,
+
+        onFinish: function() {
+            log('arming up!')
+            armsUp()
+        }
+    })
+
     state = {
-        started:           env.time,
+        started:  env.time,
+        current:  IDLE,
+        lastMark: env.time,
 
         // spawn stat
         spawned: {
@@ -37,6 +51,11 @@ function nextWave() {
     }
 
     env.stat.wave()
+}
+
+function armsUp() {
+    state.current = ARMING_UP
+    state.lastMark = env.time
 }
 
 function spawnBallistic() {
@@ -111,9 +130,7 @@ function getEnemyTargets() {
     return enemyTargets
 }
 
-function tryToLaunchNextWave() {
-    if (enemyTargets !== 0) return
-
+function completeWave() {
     nextWave()
 }
 
@@ -125,10 +142,57 @@ function evoSpawn(dt) {
 
 function evo(dt) {
     if (!profile) return
-    if (profile.delay && (env.time - state.started) < profile.delay) return
 
-    if ((env.time - state.started) < profile.time) evoSpawn(dt)
 
-    countEnemyTargets()
-    if (isCompleted()) tryToLaunchNextWave()
+    switch(state.current) {
+        case IDLE:
+            break
+        case ARMING_UP:
+            if (!profile.delay || (env.time - state.lastMark) > profile.delay) {
+                state.current  = ONGOING
+                state.lastMark = env.time
+            }
+            break
+        case ONGOING:
+            evoSpawn(dt)
+
+            if (isCompleted()) {
+                state.current = CONCLUDED
+                state.lastMark = env.time
+                log('conclucded!')
+            }
+            break
+        case CONCLUDED:
+            countEnemyTargets()
+            if (enemyTargets === 0) {
+                state.current = OVER
+                log('completed!')
+
+                lab.overlay.messageBar.typeOut({
+                    text:  `Wave ${env.wave} Completed!`,
+                    keep:  1,
+                    delay: 1,
+
+                    onFinish: function() {
+                        log('finished the over message, starting the new wave...')
+                        nextWave()
+                    }
+                })
+
+            }
+            break
+
+        case OVER:
+            break
+
+            if ((env.time - state.started) < profile.time)
+
+            if (isCompleted() && enemyTargets === 0) completeWave()
+
+            break
+    }
+}
+
+function getState() {
+    return state
 }

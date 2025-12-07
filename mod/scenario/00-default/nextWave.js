@@ -20,11 +20,6 @@ function nextWave() {
     if (isFun(this.tune)) this.tune(wave)
 
     env.wave = nextWave
-    lab.overlay.messageBar.typeOut({
-        text:  `Wave ${nextWave}`,
-        keep:  1,
-        delay: 1,
-    })
     log(`##### next wave: ${nextWave}(W${actualWave}/L${loop}) #####`)
     console.dir(wave)
     return wave

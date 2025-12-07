@@ -1,31 +1,32 @@
 # Playable Prototype
-V city in the background
-V stars appearing in the sky
-V vaporwave grid wanishin in the horizon
-V infrastructure layer
-V infrastructure damage
-V powerstation hit/destroy particle effects
-V drones
-V score overlay
-V call them scenarios
-V player jumping between flaks
-V fix the glitch with multi-explosions behind the power stations
-V proper Z-ordering for infrastructure and projectiles
-V flak overheating
-V visual hint about flak barrel overheat (make the barrel redish or whitish?)
-V increase flak bullet spread when overheated (spread threshold, then increase)
-V z-targeting to increase missile/drone precision
-V precision drone attacks with explosions
-V when in the main menu after game over, the Escape shouldn't start a new game
-V scenario selection
-V scenario common setup utils
-V configure the initial number of flaks
-V wave indicator
-V overheat penalty (can't shoot for some time)
-V barrel recoil 
-V power plant hit shake
-V include debug scenarios when debugging
+    V city in the background
+    V stars appearing in the sky
+    V vaporwave grid wanishin in the horizon
+    V infrastructure layer
+    V infrastructure damage
+    V powerstation hit/destroy particle effects
+    V drones
+    V score overlay
+    V call them scenarios
+    V player jumping between flaks
+    V fix the glitch with multi-explosions behind the power stations
+    V proper Z-ordering for infrastructure and projectiles
+    V flak overheating
+    V visual hint about flak barrel overheat (make the barrel redish or whitish?)
+    V increase flak bullet spread when overheated (spread threshold, then increase)
+    V z-targeting to increase missile/drone precision
+    V precision drone attacks with explosions
+    V when in the main menu after game over, the Escape shouldn't start a new game
+    V scenario selection
+    V scenario common setup utils
+    V configure the initial number of flaks
+    V wave indicator
+    V overheat penalty (can't shoot for some time)
+    V barrel recoil 
+    V power plant hit shake
+    V include debug scenarios when debugging
 
+> end of the wave message with basic stat, e.g. "Intercepted 80/100 (80%)"
 > game stat subsystem
 
 > waves (part of scenario life cycle)
@@ -33,7 +34,6 @@ V include debug scenarios when debugging
 > scenario life cycle
 > scenario success/fail conditions?
 
-> end of the wave screen (with stat and infographics) and wave transitions
 
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
