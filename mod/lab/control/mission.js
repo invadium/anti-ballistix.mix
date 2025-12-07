@@ -61,7 +61,8 @@ function newScenario(scenario) {
     lab.background = null
     lab.overlay.messageBar.typeOut({
         text:  scenario.info.title,
-        delay: 2,
+        keep:  3,
+        delay: 1,
     })
 
     on('newScenario')

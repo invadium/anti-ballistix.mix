@@ -5,11 +5,8 @@ const waves = [
         time:  60,
     },
     {
-        delay: 10,
-
         fq: {
             drones:            .40,
-            ballisticMissiles: .05,
         },
         shape: {
             // split the wave timespan on even slices
@@ -51,7 +48,14 @@ const waves = [
         },
     },
     {
+        fq: {
+            drones:            .35,
+            ballisticMissiles: .15,
+        },
+    },
+    {
         seed:  101, // ???
+        time:  30,
         limit: {
             ballisticMissiles: 20,
         },

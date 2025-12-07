@@ -25,9 +25,10 @@
     V barrel recoil 
     V power plant hit shake
     V include debug scenarios when debugging
+    V end of the wave message with basic stat, e.g. "Intercepted 80/100 (80%)"
+    V game stat subsystem
 
-> end of the wave message with basic stat, e.g. "Intercepted 80/100 (80%)"
-> game stat subsystem
+> fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status???)
 
 > waves (part of scenario life cycle)
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
@@ -49,6 +50,9 @@
 > flak hit camera shake???
 > warp drones beyond the screen
 > configurable idle autostart [45 - 90 - 180 - never]
+> lock the flak for a 1-2 seconds after a player jumps in
+> flak jump in feedback (shake it or maybe scale it?)
+> muzzle flashes
 
 # advanced
 >>> more projectiles

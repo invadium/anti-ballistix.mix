@@ -47,6 +47,10 @@ const style = {
             family: 'moon',
             size:   48,
         },
+        subMessageBar: {
+            family: 'moon',
+            size:   38,
+        },
         title: {
             family: 'moon',
             size:   64,

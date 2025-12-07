@@ -5,6 +5,7 @@ const messageBar = {
     ry:  .25,
     align: 'center',
 
-    font: env.style.font.messageBar.head,
-    step: env.style.font.messageBar.size + 4,
+    font:    env.style.font.messageBar.head,
+    subFont: env.style.font.subMessageBar.head,
+    step:    env.style.font.messageBar.size + 4,
 }

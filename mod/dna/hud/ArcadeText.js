@@ -27,6 +27,7 @@
  *     fadeOut:   2,  // specify the message fade out time (default: 1)
  *     withhold:  1,  // how long to withhold this message before discarding it
  *                    // and moving to the next one if any (default: 0)
+ *     subtexted: false, // reduce the font size for non-title lines (define the .subFont to customize)
  *
  *     // event handlers - will be triggered in the listed order when defined
  *     onSchedule: function() {}, // triggered when the message is added to the waiting queue
@@ -96,6 +97,7 @@ class ArcadeText {
 
             color:        '#dede90',
             font:         '24px pixel-operator',
+            subFont:      '20px pixel-operator',
             align:        'center',
             baseline:     'middle',
             step:          28,
@@ -250,6 +252,10 @@ class ArcadeText {
         for (let i = 0; i < msg.lines.length; i++) {
             const line = msg.lines[i]
             let hShift = 0
+
+            if (i > 0 && msg.subtext) {
+                font(this.subFont)
+            }
 
             if (charCount < msg.progression) {
                 let vline = line

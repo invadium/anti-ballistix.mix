@@ -27,11 +27,10 @@ function nextWave() {
 
     lab.overlay.messageBar.typeOut({
         text:  `Wave ${env.wave}`,
-        keep:  1,
-        delay: 1,
+        keep:  1.5,
+        delay: 0,
 
         onFinish: function() {
-            log('arming up!')
             armsUp()
         }
     })
@@ -50,7 +49,7 @@ function nextWave() {
         }
     }
 
-    env.stat.wave()
+    env.stat.nextWave()
 }
 
 function armsUp() {
@@ -159,22 +158,24 @@ function evo(dt) {
             if (isCompleted()) {
                 state.current = CONCLUDED
                 state.lastMark = env.time
-                log('conclucded!')
             }
             break
         case CONCLUDED:
             countEnemyTargets()
             if (enemyTargets === 0) {
                 state.current = OVER
-                log('completed!')
+
+                const intercepted = env.stat.waves[env.iwave].intercepted.total || 0
+                const launched = env.stat.waves[env.iwave].launched.total || 0
+                const rate     = launched? round((intercepted/launched) * 100) : 100
 
                 lab.overlay.messageBar.typeOut({
-                    text:  `Wave ${env.wave} Completed!`,
-                    keep:  1,
-                    delay: 1,
+                    text:   `Wave Completed!\n\nIntercepted: ${intercepted}/${launched} (${rate}%)`,
+                    keep:    5,
+                    delay:   4,
+                    subtext: true,
 
                     onFinish: function() {
-                        log('finished the over message, starting the new wave...')
                         nextWave()
                     }
                 })

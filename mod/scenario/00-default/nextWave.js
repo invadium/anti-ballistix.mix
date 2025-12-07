@@ -20,6 +20,7 @@ function nextWave() {
     if (isFun(this.tune)) this.tune(wave)
 
     env.wave = nextWave
+    env.iwave = env.wave - 1
     log(`##### next wave: ${nextWave}(W${actualWave}/L${loop}) #####`)
     console.dir(wave)
     return wave
