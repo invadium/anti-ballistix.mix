@@ -28,32 +28,55 @@ class Bot {
         this.botActions = [
             {
                 name:    'idle',
-                minTime:   .5,
+                minTime: .5,
                 maxTime:  1.5,
+                weight:   15,
             },
             {
                 flak:  this.__,
                 name: 'move-left',
+                start: function() {
+                    if (env.disableAutoFlak) return
+                    if (lab.overlord.waver.getEnemyTargets() === 0) return
+
+                    this.fire = (rnd() < .25)
+                    if (this.fire) this.flak.primaryWeapon.trigger()
+                },
                 evo: function(dt) {
                     this.flak.attitude.left(dt)
                     if (this.flak.attitude.atMin()) {
                         this.flak.bot.action = this.flak.bot.botActions[MOVE_RIGHT]
                     }
                 },
+                stop: function() {
+                    if (this.fire) this.flak.primaryWeapon.stop()
+                },
                 minTime: .5,
                 maxTime:  2,
+                weight:   10,
             },
             {
                 flak:  this.__,
                 name: 'move-right',
+                start: function() {
+                    if (env.disableAutoFlak) return
+                    if (lab.overlord.waver.getEnemyTargets() === 0) return
+
+                    this.fire = (rnd() < .25)
+                    if (this.fire) this.flak.primaryWeapon.trigger()
+                },
                 evo: function(dt) {
                     this.flak.attitude.right(dt)
                     if (this.flak.attitude.atMax()) {
                         this.flak.bot.action = this.flak.bot.botActions[MOVE_LEFT]
                     }
                 },
+                stop: function() {
+                    if (this.fire) this.flak.primaryWeapon.stop()
+                },
                 minTime: .5,
                 maxTime:  2,
+                weight:   10,
             },
             {
                 flak:  this.__,
@@ -69,6 +92,7 @@ class Bot {
                 },
                 minTime:  1,
                 maxTime:  4,
+                weight:   15,
             }
         ]
     }

@@ -154,6 +154,7 @@ function evo(dt) {
             break
         case ONGOING:
             evoSpawn(dt)
+            countEnemyTargets()
 
             if (isCompleted()) {
                 state.current = CONCLUDED

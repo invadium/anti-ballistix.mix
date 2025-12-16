@@ -15,11 +15,11 @@ class Drone extends GuidedWeapon {
             state:     FLYING,
             r:         15,
             powerTime: 15 + 45 * rnd(),
-            force:     50,
+            force:     100,
 
             diveAcceleration: 50,
 
-            score:     10,
+            score:     5,
             bounty:    50,
         }, st) )
 

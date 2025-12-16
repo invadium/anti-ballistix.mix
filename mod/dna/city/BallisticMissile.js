@@ -12,7 +12,7 @@ class BallisticMissile extends GuidedWeapon {
             r:        15,
             force:    500,
 
-            score:    100,
+            score:    50,
             bounty:   1000,
         }, st) )
 
