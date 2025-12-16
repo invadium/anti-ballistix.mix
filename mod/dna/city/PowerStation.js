@@ -87,7 +87,7 @@ class PowerStation extends Target {
                 map: v => _.dy = v * 20,
                 freq: 4,
                 easing: dna.kinetix.easing.triangle,
-                times: 8,
+                times: hitter.force > 200? 16 : 8,
                 follow: true,
            })
         }
