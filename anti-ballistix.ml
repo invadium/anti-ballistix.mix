@@ -28,10 +28,10 @@
     V end of the wave message with basic stat, e.g. "Intercepted 80/100 (80%)"
     V game stat subsystem
 
-> fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status???)
-
+> fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
 > waves (part of scenario life cycle)
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
+
 > scenario life cycle
 > scenario success/fail conditions?
 

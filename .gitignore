@@ -26,3 +26,6 @@ dist*
 # masterlist
 *.ml.bak
 
+# jeddy
+.jeddy
+.stat
