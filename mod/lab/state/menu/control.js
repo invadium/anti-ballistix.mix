@@ -44,6 +44,7 @@ function newGame() {
 }
 
 function setup() {
+    $.scenario.catalog()
     this.__.items.title = res.txt.label.title 
     this.compileScenarioList()
     this.compileFlaksSelectionList()

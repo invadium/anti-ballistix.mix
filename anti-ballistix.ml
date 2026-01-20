@@ -35,7 +35,7 @@
 > scenario life cycle
 > scenario success/fail conditions?
 
-
+> hide cursor option in the menu
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 > custom man pages with core design and structure
@@ -43,6 +43,7 @@
 > core sfx
 
 # juice
+> upgrade kinetix to be able to reduce shake amplitude with time/iterations
 > incoming missile hint (like a comm ((( signal)
 > incoming drone hint
 > ground hit tectonic waves
@@ -52,7 +53,10 @@
 > configurable idle autostart [45 - 90 - 180 - never]
 > lock the flak for a 1-2 seconds after a player jumps in
 > flak jump in feedback (shake it or maybe scale it?)
+> flak jump in lock/hold, so you can't jump into another one instantly (?)
 > muzzle flashes
+> arc + player number under the controlled flak
+
 
 # advanced
 >>> more projectiles
