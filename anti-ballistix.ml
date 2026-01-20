@@ -43,6 +43,8 @@
 > core sfx
 
 # juice
+> a separate bloom channel and bloom fragment shader for neon highlights
+> crt scanlines and wobbles fragment shader
 > upgrade kinetix to be able to reduce shake amplitude with time/iterations
 > incoming missile hint (like a comm ((( signal)
 > incoming drone hint

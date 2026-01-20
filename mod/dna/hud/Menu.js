@@ -75,6 +75,7 @@ const defaultColorTheme = {
 
     background:  '#404040',
     shadow:      '#00000080',
+    outline:     '#B090D8',
     backline:    '#606060',
     activeBackline: '#808080',
 }
@@ -133,6 +134,8 @@ class Menu extends sys.LabFrame {
 
             showBackground: false,
             showBackline:   false,
+            shadow:         false,
+            outline:        false,
 
             trap:           {},
             lastActionId:   0,
@@ -690,10 +693,17 @@ class Menu extends sys.LabFrame {
                 }
                 else fillColor = this.color.main
 
-                // shadow
                 font(curFont)
-                fill(this.color.shadow)
-                text(title, x + this.shadowShift, y + this.shadowShift)
+                // shadow
+                if (this.shadow) {
+                    fill(this.color.shadow)
+                    text(title, x + this.shadowShift, y + this.shadowShift)
+                }
+                if (this.outline) {
+                    lineWidth(2)
+                    stroke(this.color.outline)
+                    text(title, x, y)
+                }
 
 
                 fill(fillColor)
