@@ -42,12 +42,13 @@ class Flak extends Platform {
     }
 
     draw() {
-        if (this.gun.lock && (env.time - this.gun.lockTimestamp) % 1 < .5) return
+        const gun = this.gun
+        if (this.gun.lock && (env.time - this.gun.lockTimestamp) % 1 < .5) return // overheat timeout flashing
 
         const { x, y, r, r1, r2, r3, dir } = this
         const bot = this.bot.isInControl()
         const occupied = this.turretPadControl.isOccupied()
-        const temp = this.gun.temp
+        const temp = gun.temp
 
         const bx = cos(dir),
               by = sin(dir)
@@ -81,13 +82,18 @@ class Flak extends Platform {
         // barrels
         const g = bot? 0.7 : 1
         const bcolor = rgb(temp, g * (1 - .4*temp), 1 - .8*temp)
-        
-        const dy0 = (1 - min((env.time - this.gun.lastShot0) / this.gun.rechargeTime, 1)) * this.rdy
-        neon.line( -.4*r,     r+dy0,  -.4*r,  -r+dy0,     bcolor)
+        const flashColor = rgb(1, 1 - .75*temp, 0)
 
-        const dy1 = (1 - min((env.time - this.gun.lastShot1) / this.gun.rechargeTime, 1)) * this.rdy
+        const dy0 = (1 - min((env.time - gun.lastShot0) / gun.rechargeTime, 1)) * this.rdy
+        neon.line( -.4*r,     r+dy0,  -.4*r,  -r+dy0,     bcolor)
+        // muzzle flash 0
+        const flash0 = (env.time - gun.lastShot0) / gun.flashTime
+        if (flash0 < 1) neon.circle( -.4*r, -1.5 * r, gun.flashRadius * flash0, flashColor)
+
+        const dy1 = (1 - min((env.time - gun.lastShot1) / gun.rechargeTime, 1)) * this.rdy
         neon.line(  .4*r,     r+dy1,   .4*r,  -r+dy1,     bcolor)
-        //neon.line(0, 0, 0, -r * 1.4, color)
+        const flash1 = (env.time - gun.lastShot1) / gun.flashTime
+        if (flash1 < 1) neon.circle( .4*r, -1.5 * r, gun.flashRadius * flash1, flashColor)
         restore()
 
         super.draw()

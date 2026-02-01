@@ -17,12 +17,14 @@ class DoubleGun {
 
             // spec
             rechargeTime: .2,
-            heatFactor:   0.015,
-            coolFactor:   0.15,
-            blockTemp:    0.9,
-            lockTime:     3,
-            spreadTemp:   0.3,
+            heatFactor:   .015,
+            coolFactor:   .15,
+            blockTemp:    .9,
+            lockTime:      3,
+            spreadTemp:   .3,
             spreadFactor: .15,
+            flashTime:    .2,
+            flashRadius:   5,
         }, st)
     }
 

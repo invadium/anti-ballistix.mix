@@ -27,13 +27,16 @@
     V include debug scenarios when debugging
     V end of the wave message with basic stat, e.g. "Intercepted 80/100 (80%)"
     V game stat subsystem
+    V muzzle flashes
 
-> fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
 > waves (part of scenario life cycle)
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
-
 > scenario life cycle
 > scenario success/fail conditions?
+
+# bugs
+> "intercepted 105% 35/34" - how it is even possible?
+> fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
 
 > hide cursor option in the menu
 > define coordinate spaces
@@ -43,20 +46,19 @@
 > core sfx
 
 # juice
+> warp drones beyond the screen
+> ground hit tectonic waves
+> lock the flak for a 1-2 seconds after a player jumps in
 > a separate bloom channel and bloom fragment shader for neon highlights
 > crt scanlines and wobbles fragment shader
 > upgrade kinetix to be able to reduce shake amplitude with time/iterations
 > incoming missile hint (like a comm ((( signal)
 > incoming drone hint
-> ground hit tectonic waves
 > flak hit penalty (like overhead - can't shoot for some time)
 > flak hit camera shake???
-> warp drones beyond the screen
 > configurable idle autostart [45 - 90 - 180 - never]
-> lock the flak for a 1-2 seconds after a player jumps in
 > flak jump in feedback (shake it or maybe scale it?)
 > flak jump in lock/hold, so you can't jump into another one instantly (?)
-> muzzle flashes
 > arc + player number under the controlled flak
 
 
