@@ -29,24 +29,24 @@ class Drone extends GuidedWeapon {
                 alias: '',
                 name:  'solid1',
                 x:      0,
-                y:     -6,
-                r:      5,
+                y:     -12,
+                r:      7,
             }),
             // engine solid
             new dna.city.pod.SolidCircle({
                 alias: '',
                 name:  'solid2',
                 x: 0,
-                y: 7,
-                r: 7,
+                y: 5,
+                r: 11,
             }),
             // tail solid
             new dna.city.pod.SolidCircle({
                 alias: '',
                 name:  'solid3',
                 x:      0,
-                y:     20,
-                r:      5,
+                y:     22,
+                r:      7,
             }),
             new dna.city.pod.MultiSolid(),
 
@@ -64,8 +64,8 @@ class Drone extends GuidedWeapon {
     }
 
     adjustZ() {
-        this.Z = lab.overlord.battleZone.Z(this.nz)
-        this.targetY = lab.overlord.battleZone.py(this.nz)
+        this.Z = coord.battleZone.Z(this.nz)
+        this.targetY = coord.battleZone.py(this.nz)
     }
 
     airExplosion() {
