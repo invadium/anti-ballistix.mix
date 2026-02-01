@@ -11,6 +11,7 @@ class CityCamera extends dna.SlideCamera {
         }
     }
 
+    // customized spawn function with entity respawn capability
     spawn(targetDNA, st) {
         if (isClass(targetDNA) && targetDNA.respawnable) {
             // look for a zoombie with the same dna
@@ -44,11 +45,32 @@ class CityCamera extends dna.SlideCamera {
               y1 = edge,
               y2 = ctx.height - edge
 
+        // translate arguments to the screen coordinate space
         let sx = this.gx(x)
         let sy = this.gy(y)
         let sr = this.gx(r || 0)
 
         return (sx+r >= x1 && sx-r <= x2 && sy+r >= y1 && sy-r <= y2)
+    }
+
+    // left edge x in local coordinate space
+    leftEdge() {
+        return this.lx(0)
+    }
+
+    // right edge x in local coordinate space
+    rightEdge() {
+        return this.lx(ctx.width)
+    }
+
+    // top edge y in local coordinate space
+    topEdge() {
+        return this.ly(0)
+    }
+
+    // bottom edge y in local coordinate space
+    bottomEdge() {
+        return this.ly(ctx.height)
     }
 
     evo(dt) {

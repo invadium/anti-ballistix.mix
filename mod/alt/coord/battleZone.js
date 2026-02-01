@@ -6,7 +6,7 @@
  * are located.
  */
 
-// project battleZone-local z coordinate to screen y
+// translate battleZone-local z coordinate to screen y
 function sy(lz) {
     const y1 = ry(env.tune.battleZone.start),
           y2 = ry(env.tune.battleZone.end),
@@ -14,12 +14,12 @@ function sy(lz) {
     return y1 + lz * ySpan
 }
 
-// project battleZone-local z coordinate to port y
+// translate battleZone-local z coordinate to port y
 function py(lz) {
     return lab.port.ly(sy(lz))
 }
 
-// project screen y coordinate to the battleZone z
+// translate screen y coordinate to the battleZone z
 function lz(sy) {
     const y1 = ry(env.tune.battleZone.start),
           y2 = ry(env.tune.battleZone.end),
@@ -27,7 +27,11 @@ function lz(sy) {
     return (sy - y1)/ySpan
 }
 
-// get Z-order from battlezone-local z
-function Z(lz) {
-    return 100 + 100 * lz
+function groundRelativeHeight() {
+    return ((env.tune.battleZone.end - env.tune.battleZone.start) * (1 - env.tune.horizonLine))
+}
+
+// translate to Z-order from the battlezone-local relative z
+function Z(lrz) {
+    return 100 + lrz * 100
 }

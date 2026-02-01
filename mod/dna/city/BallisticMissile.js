@@ -50,8 +50,8 @@ class BallisticMissile extends GuidedWeapon {
         if (target) this.nz = target.bz
         else this.nz = rnd() // normalized battlezone depth
 
-        this.Z = lab.overlord.battleZone.Z(this.nz)
-        this.targetY = lab.overlord.battleZone.py(this.nz)
+        this.Z = coord.battleZone.Z(this.nz)
+        this.targetY = coord.battleZone.py(this.nz)
     }
 
     airExplosion() {

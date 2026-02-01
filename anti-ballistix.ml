@@ -29,6 +29,9 @@
     V game stat subsystem
     V muzzle flashes
 
+> define coordinate spaces
+> normalize coordinate naming - relative (0-1), percentage (0-100) etc...
+
 > waves (part of scenario life cycle)
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
 > scenario life cycle
@@ -39,13 +42,12 @@
 > fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
 
 > hide cursor option in the menu
-> define coordinate spaces
-> normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 > custom man pages with core design and structure
 > proper readme with the project structure, prerequisites, how to play, how to debug etc...
 > core sfx
 
 # juice
+> turn muzzle flashes into entities to leave them behind when turning
 > warp drones beyond the screen
 > ground hit tectonic waves
 > lock the flak for a 1-2 seconds after a player jumps in

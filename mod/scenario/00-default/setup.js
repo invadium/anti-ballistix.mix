@@ -6,6 +6,7 @@ function setup() {
     this.src.setSeed(this.info.seed)
 
     this.genCity(this.info)
+    this.genGrid(this.info)
     this.genPowerStations(this.info)
     this.genFlak(this.flaks)
 }

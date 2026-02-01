@@ -9,7 +9,7 @@ function init() {
 
 function draw() {
     const w = ctx.width,
-          h = env.tune.horizonLine * ctx.height
+          h = coord.screen.skyHeight()
 
     // === sky ===
     const skyGradient = ctx.createLinearGradient(0, 0, 0, h)

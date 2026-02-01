@@ -10,7 +10,7 @@ function draw() {
     const W  = ctx.width,
           HW = .5 * W,
           H  = ctx.height,
-          horizonY = env.tune.horizonLine * H
+          horizonY = coord.screen.horizonLineY()
 
     stroke(env.style.color.grid)
 

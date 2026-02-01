@@ -8,7 +8,7 @@ function genPowerStations(st) {
     // create power stations
     let totalPower = 0
     for (let i = 0; i < N; i++) {
-        const z = src.rnd()
+        const z = src.rndf()
         const powerStation = lab.port.spawn( dna.city.PowerStation, {
             Z:     11,
             team:  1,

@@ -23,8 +23,8 @@ class TitleBar {
 
         text(`Wave:    ${wave}`, rx(.15), Y)
         text(`Power:   ${power}%`, rx(.35), Y)
-        text(`Score:   ${env.score}`, rx(.65), Y)
-        text(`Bounty:  $${env.bounty}k`, rx(.85), Y)
+        text(`Bounty:  $${env.bounty}k`, rx(.65), Y)
+        text(`Score:   ${env.score}`, rx(.85), Y)
 
         if (lab.port.paused) {
             let by = ry(.25)
