@@ -27,13 +27,13 @@ function _line_ (x1, y1, x2, y2, color) {
     return this
 }
 
-function _circle_(x, y, r, color) {
+function _circle_(x, y, r, color, alphaFactor = 1) {
     let glow  = .05
     let width = 12
     let steps = 5
 
     for (let i = 0; i < steps; i++) {
-        alpha(glow);
+        alpha(glow * alphaFactor);
         lineWidth(width);
         stroke(color);
         circle(x, y, r)
@@ -44,9 +44,10 @@ function _circle_(x, y, r, color) {
 
     lineWidth(3)
     stroke(color)
-    alpha(1)
+    alpha(alphaFactor)
     stroke(color)
     circle(x, y, r)
+    alpha(1)
 
     return this
 }

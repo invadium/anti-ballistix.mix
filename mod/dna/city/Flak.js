@@ -88,12 +88,18 @@ class Flak extends Platform {
         neon.line( -.4*r,     r+dy0,  -.4*r,  -r+dy0,     bcolor)
         // muzzle flash 0
         const flash0 = (env.time - gun.lastShot0) / gun.flashTime
-        if (flash0 < 1) neon.circle( -.4*r, -1.5 * r, gun.flashRadius * flash0, flashColor)
+        if (flash0 < 1) {
+            const av = min(2 - 2 * flash0, 1)
+            neon.circle( -.4*r, -1.5 * r, gun.flashRadius * flash0, flashColor, av)
+        }
 
         const dy1 = (1 - min((env.time - gun.lastShot1) / gun.rechargeTime, 1)) * this.rdy
         neon.line(  .4*r,     r+dy1,   .4*r,  -r+dy1,     bcolor)
         const flash1 = (env.time - gun.lastShot1) / gun.flashTime
-        if (flash1 < 1) neon.circle( .4*r, -1.5 * r, gun.flashRadius * flash1, flashColor)
+        if (flash1 < 1) {
+            const av = min(2 - 2 * flash1, 1)
+            neon.circle( .4*r, -1.5 * r, gun.flashRadius * flash1, flashColor, av)
+        }
         restore()
 
         super.draw()

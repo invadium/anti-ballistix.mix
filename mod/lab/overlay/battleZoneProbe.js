@@ -6,7 +6,7 @@ function draw() {
           W  = ctx.width
 
     lineWidth(2)
-    stroke('#ffff00')
+    stroke('#ff0000')
 
     line(0, sy, W, sy)
     line(0, ey, W, ey)

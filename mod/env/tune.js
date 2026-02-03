@@ -1,9 +1,10 @@
 const tune = {
-    horizonLine:      .6,
-    citySkyLine:       0,
+    horizonLine:      .6,     // represents relative size of the sky against the ground
+    citySkyLine:       0,     // relative to the horizon line in screen (port?) coordinates
     cityBaseHeight:   .14,
     // powerStationLine: .1,  // TODO deprecate, it should be defined within the battleZone
 
+    // TODO redefine in normalized ground coordinates?
     battleZone: {
         start:        .68,
         end:          .95,
@@ -12,7 +13,7 @@ const tune = {
         start:        .2,    // within battleZone
         end:          .6,
     },
-
+z
     building: {
         baseHeight:   .07,
         varHeight:    .15,

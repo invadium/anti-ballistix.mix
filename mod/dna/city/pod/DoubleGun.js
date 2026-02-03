@@ -23,8 +23,8 @@ class DoubleGun {
             lockTime:      3,
             spreadTemp:   .3,
             spreadFactor: .15,
-            flashTime:    .2,
-            flashRadius:   5,
+            flashTime:    .25,
+            flashRadius:   7,
         }, st)
     }
 
