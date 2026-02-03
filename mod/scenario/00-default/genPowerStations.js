@@ -18,7 +18,7 @@ function genPowerStations(st) {
         })
 
         if (env.showCoordinates) {
-            powerStation.install(new dna.city.probe.CoordinatesProbe({
+            powerStation.install(new dna.probe.CoordinatesProbe({
                 x: -40,
                 y:  40,
             }))

@@ -13,7 +13,7 @@ const tune = {
         start:        .2,    // within battleZone
         end:          .6,
     },
-z
+
     building: {
         baseHeight:   .07,
         varHeight:    .15,

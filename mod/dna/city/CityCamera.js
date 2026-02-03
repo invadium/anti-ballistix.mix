@@ -79,7 +79,11 @@ class CityCamera extends dna.SlideCamera {
 
     draw() {
         this.pin()
+        // TODO flip the coordinate system to make the bottom 0 and grow up?
+        // save()
+        // scale(1, -1)
         super.draw()
+        // restore()
     }
 
 }

@@ -68,7 +68,7 @@ function spawnBallistic() {
     })
 
     if (env.showCoordinates) {
-        missile.install( new dna.city.probe.CoordinatesProbe({
+        missile.install( new dna.probe.CoordinatesProbe({
             x:   -20,
             y:    20,
             dir: -HALF_PI,
@@ -91,7 +91,7 @@ function spawnDrone() {
     })
 
     if (env.showCoordinates) {
-        drone.install( new dna.city.probe.CoordinatesProbe({
+        drone.install( new dna.probe.CoordinatesProbe({
             x:   -40,
             y:    20,
             dir: -HALF_PI,

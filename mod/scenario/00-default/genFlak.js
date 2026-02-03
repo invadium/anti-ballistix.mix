@@ -18,6 +18,14 @@ function genFlak(flaks) {
         })
         flak.activatePod(flak.bot)
 
+        if (env.showCoordinates) {
+            flak.install(new dna.probe.CoordinatesProbe({
+                x:   -40,
+                y:    40,
+                dir: -HALF_PI,
+            }))
+        }
+
         bx += step
     }
 }

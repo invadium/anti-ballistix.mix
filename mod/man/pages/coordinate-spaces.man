@@ -7,7 +7,8 @@ tags: alert, anti-ballistix
 
 This coordinate space is defined by the actual browser viewport.
 
-Absolute screen/canvas coordinates are used here.
+Absolute screen/canvas coordinates are used here,
+originating from the top-left of the screen.
 
 
 == Backdrop/CityScape Coordinate Space
@@ -16,12 +17,15 @@ This space is used to define the sun, the stars, the skyline, the grid
 and all other background elemenets.
 
 
-== Arcade Coordinate Space
+== Port Coordinate Space
 
 It is defined by the city port camera that centers the x origin
 at the middle of the screen and always pans width
 to match _env.playfield.width_ (2000 by default)
 with height dynamically adjusted according to the current aspect ratio.
+That makes the camera viewport to pan from -1000 to 1000 horizontaly,
+
+
 
 To simplify addressing in the arcade space, you can use:
 
