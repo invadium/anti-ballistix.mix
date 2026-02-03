@@ -32,3 +32,32 @@ To simplify addressing in the arcade space, you can use:
 * [crx(xP)](#./alt/crx) - translates percentage value into the x-coordinate, where 0 is the left edge and 100 is the right one
 * [cry(yP)](#./alt/cry) - translates percentage value into the y-coordinate, where 0 is the bottom and 100 is the top
 
+
+
+== Sky Coordinate Space
+
+* [lab/port/sky](#./lab/port/sky) - Sky Coordinate Ghost
+
+The sky ```y = 0``` is considered to be on the horizon with values growing down (just like in screen & port space).
+
+=== Normalized Sky Coordinate Space
+
+
+
+== Ground Coordinate Space
+
+* [lab/port/ground](#./lab/port/ground) - Ground Coordinate Ghost
+
+The ground y = 0 is at the bottom of the camera view.
+
+=== Normalized Ground Coordinate Space
+
+== Battlezone Coordinate Space
+The battlezone is defines as the active aread of the ground where drones and missiles can hit.
+
+Part of the ground area is too close to the camera or too for away to be used as a target for drones and missiles.
+These sections are excluded from the battlezone to simplify the addressing with normalized battlezone coordinates.
+
+=== Normalized Battlezone Coordinate Space
+
+

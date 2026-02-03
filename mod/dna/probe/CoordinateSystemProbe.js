@@ -6,17 +6,30 @@ class CoordinateSystemProbe {
         augment(this, {
             Z:     1,
             name: 'coordinateSystemProbe' + (++id),
+
+            r:     50,
+
+            style: {
+                color:     '#ffffff',
+                lineWidth:  5,
+            },
         }, st)
     }
 
     draw() {
-        const R = 100
-        lineWidth(5)
-        stroke('#00ffff')
-        line(-R,  0, R, 0)
-        line( 0, -R, R, 0)
+        const r = this.r
 
-        line(-100, -100, 100, -100)
+        save()
+        const ux = this.__.ux(0),
+              uy = this.__.uy(0)
+        translate(ux, uy)
+
+        stroke(this.style.color)
+        lineWidth(this.style.lineWidth)
+        line(-r,  0, r, 0)
+        line( 0, -r, 0, r)
+
+        restore()
     }
 
 }
