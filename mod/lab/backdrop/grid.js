@@ -10,11 +10,12 @@ function draw() {
     const W  = ctx.width,
           HW = .5 * W,
           H  = ctx.height,
-          horizonY = coord.screen.horizonLineY()
+          // horizonSY = coord.screen.horizonLineY()
+          horizonSY = lab.port.sky.horizonLineSY()
 
     stroke(env.style.color.grid)
 
-    let y = horizonY + 1,
+    let y = horizonSY + 1,
         yStep = VGAP * H,
         width = 1
     while (y < H) {
@@ -29,12 +30,12 @@ function draw() {
         shift = 0,
         xStep = VGAP * H * HRGAP
 
-    line(x, horizonY, x, H)
+    line(x, horizonSY, x, H)
     while(shift < HW) {
         lineWidth(2)
         const pshift = shift * PERSPECTIVE
-        line(HW-shift, horizonY, HW-pshift, H)
-        line(HW+shift, horizonY, HW+pshift, H)
+        line(HW-shift, horizonSY, HW-pshift, H)
+        line(HW+shift, horizonSY, HW+pshift, H)
 
         x -= xStep
         shift += xStep

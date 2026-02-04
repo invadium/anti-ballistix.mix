@@ -8,8 +8,10 @@ function init() {
 }
 
 function draw() {
-    const w = ctx.width,
-          h = coord.screen.skyHeight()
+    const w = lab.port.sky.screenWidth(),
+          h = lab.port.sky.screenHeight()
+          // w = ctx.width,
+          // h = coord.screen.skyHeight()
 
     // === sky ===
     const skyGradient = ctx.createLinearGradient(0, 0, 0, h)

@@ -1,11 +1,14 @@
+
+function horizonLineSY() {
+    return env.tune.horizonLine * ctx.height
+}
+
 const _sky = {
     Z:          9001,
     name:      'sky',
     transient:  true,
 
-    horizonLineSY: function() {
-        return env.tune.horizonLine * ctx.height
-    },
+    horizonLineSY,
 
     horizonLinePY: function() {
         return this.__.ly(env.tune.horizonLine * ctx.height)
@@ -49,4 +52,10 @@ const _sky = {
     height: function() {
         return abs(this.bottomEdge() - this.topEdge())
     },
+
+    screenWidth: function() {
+        return ctx.width
+    },
+
+    screenHeight: horizonLineSY,
 }
