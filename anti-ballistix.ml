@@ -62,6 +62,8 @@
 > flak jump in feedback (shake it or maybe scale it?)
 > flak jump in lock/hold, so you can't jump into another one instantly (?)
 > arc + player number under the controlled flak
+> various speeds and altitude changes for drones
+> inversion trail for missiles
 
 
 # advanced
@@ -84,6 +86,7 @@
 >>> gamepad remapping
 
 # meta
+> upgrades are descending as banners/surprise-boxes on parashutes and you shoot to choose
 > actual air raid alert checker and indicator
 > SimCity-like newspaper with recent news and attack stats & infographics (launched/intercepted)
 > Tycoon elements - buy ammunition, upgrades, new flaks and anti-aircraft systems etc...

@@ -10,6 +10,7 @@ class EdgeProbe {
             style: {
                 color:     '#ffffff',
                 lineWidth:  5,
+                dash:      [ 20, 20 ],
             },
         }, st)
     }
@@ -17,10 +18,14 @@ class EdgeProbe {
     draw() {
         const __ = this.__
 
+        save()
+
         stroke(this.style.color)
         lineWidth(this.style.lineWidth)
-        ctx.setLineDash([20, 20])
+        ctx.setLineDash(this.style.dash)
         rect(__.leftEdge(), __.topEdge(), __.width(), __.height())
+
+        restore()
     }
 
 }

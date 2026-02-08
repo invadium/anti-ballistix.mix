@@ -1,4 +1,3 @@
-
 function horizonLineSY() {
     return env.tune.horizonLine * ctx.height
 }
@@ -19,7 +18,8 @@ const _sky = {
     },
 
     ly: function(uy) {
-        return uy - this.horizonLinePY()
+        return uy
+        // return uy - this.horizonLinePY()
     },
 
     ux: function(lx) {
@@ -27,7 +27,8 @@ const _sky = {
     },
 
     uy: function(ly) {
-        return ly + this.horizonLinePY()
+        // return ly + this.horizonLinePY()
+        return ly
     },
 
     leftEdge: function() { return this.__.leftEdge()

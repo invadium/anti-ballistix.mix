@@ -17,7 +17,7 @@ class GridRow {
         lineWidth(4)
         stroke('#ffff00')
 
-        line(lab.port.leftEdge(), y, lab.port.rightEdge(), y)
+        // line(lab.port.leftEdge(), y, lab.port.rightEdge(), y)
     }
 
 }

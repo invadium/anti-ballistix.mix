@@ -1,6 +1,6 @@
-const _ground = {
-    Z:          9002,
-    name:      'ground',
+const _battleground = {
+    Z:          9003,
+    name:      'battleground',
     transient:  true,
 
     lx: function(ux) {
@@ -8,26 +8,31 @@ const _ground = {
     },
 
     ly: function(uy) {
-        return uy - this.__.topEdge()
+        return uy - this.topEdge()
     },
 
     nx: function(lx) {
+        return lx / this.width()
     },
 
     ny: function(ly) {
+        return ly / this.height()
     },
 
+    /*
     nz: function(Z) {
     },
+    */
 
     ux: function(lx) {
         return lx
     },
 
     uy: function(ly) {
-        return ly + this.__.topEdge()
+        return ly + this.topEdge()
     },
 
+    /*
     uZ: function(nz) {
     },
 
@@ -43,6 +48,7 @@ const _ground = {
         const brz = groundToBattlezoneRZ(grz)
         return 100 + brz * 100
     },
+    */
 
     leftEdge: function() {
         return this.__.leftEdge()
@@ -53,11 +59,11 @@ const _ground = {
     },
 
     topEdge: function() {
-        return this.__.sky.horizonLinePY()
+        return this.__.ground.topEdge() + this.__.ground.height() * env.tune.battleground.start
     },
 
     bottomEdge: function() {
-        return this.__.ly(ctx.height)
+        return this.topEdge() + this.__.ground.height() * env.tune.battleground.height
     },
 
     width: function() {

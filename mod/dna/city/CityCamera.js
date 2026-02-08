@@ -73,6 +73,14 @@ class CityCamera extends dna.SlideCamera {
         return this.ly(ctx.height)
     }
 
+    width() {
+        return abs(this.rightEdge() - this.leftEdge())
+    }
+
+    height() {
+        return abs(this.bottomEdge() - this.topEdge())
+    }
+
     evo(dt) {
         super.evo(dt)
     }
