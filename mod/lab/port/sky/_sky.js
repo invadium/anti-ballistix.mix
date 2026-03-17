@@ -1,7 +1,9 @@
+// horizon line in the screen space
 function horizonLineSY() {
     return env.tune.horizonLine * ctx.height
 }
 
+// defines the coordinate space above the horizon line
 const _sky = {
     Z:          9001,
     name:      'sky',
@@ -9,6 +11,7 @@ const _sky = {
 
     horizonLineSY,
 
+    // horizon level in the port space
     horizonLinePY: function() {
         return this.__.ly(env.tune.horizonLine * ctx.height)
     },

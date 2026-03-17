@@ -1,3 +1,4 @@
+// define the ground space - everything from the botton to the horizon line
 const _ground = {
     Z:          9002,
     name:      'ground',
@@ -8,13 +9,15 @@ const _ground = {
     },
 
     ly: function(uy) {
-        return uy - this.__.topEdge()
+        return uy - this.__.sky.horizonLinePY()
     },
 
     nx: function(lx) {
+        return lx / (.5 * this.width())
     },
 
     ny: function(ly) {
+        return ly / this.height()
     },
 
     nz: function(Z) {
@@ -25,7 +28,7 @@ const _ground = {
     },
 
     uy: function(ly) {
-        return ly + this.__.topEdge()
+        return ly + this.__.sky.horizonLinePY()
     },
 
     uZ: function(nz) {
@@ -57,11 +60,13 @@ const _ground = {
     },
 
     bottomEdge: function() {
-        return this.__.ly(ctx.height)
+        return this.__.bottomEdge()
+        //return this.__.ly(ctx.height)
     },
 
     width: function() {
-        return abs(this.rightEdge() - this.leftEdge())
+        return this.__.width()
+        // return abs(this.rightEdge() - this.leftEdge())
     },
 
     height: function() {

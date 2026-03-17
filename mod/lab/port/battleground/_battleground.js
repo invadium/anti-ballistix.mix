@@ -1,3 +1,4 @@
+// define the coordinate space of impact area
 const _battleground = {
     Z:          9003,
     name:      'battleground',

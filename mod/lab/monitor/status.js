@@ -1,7 +1,7 @@
 const STATUS_REFRESH_TIME = 1
 
 function setup() {
-    if (!env.debug) kill(this)
+    if (!env.config.debug) kill(this)
 
     env.statusInfo = {}
 }
