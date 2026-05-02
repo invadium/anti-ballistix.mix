@@ -5,7 +5,10 @@ function probes() {
             style: {
                 color: '#00aabb',
                 dash:  [ 30, 35 ],
-                lineWidth: 4,
+                lineWidth: 8,
+
+                dx: 200,
+                dy: 200,
             },
         })
         lab.port.sky.spawn( dna.probe.CoordinateSystemProbe, {
@@ -22,6 +25,7 @@ function probes() {
             },
         })
         lab.port.ground.spawn( dna.probe.CoordinateSystemProbe, {
+            axisRY:     .25,
             style: {
                 color: '#ff8050',
             },
@@ -35,6 +39,8 @@ function probes() {
             },
         })
         lab.port.battleground.spawn( dna.probe.CoordinateSystemProbe, {
+            axisRY:     .5,
+            axisRX:     .5,
             style: {
                 color: '#00ff40',
             },

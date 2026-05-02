@@ -4,7 +4,9 @@
 const _ground = {
     Z:          9002,
     name:      'ground',
+    cartesian:  true,
     transient:  true,
+
 
     init: function() {
         at.g = this
@@ -15,7 +17,8 @@ const _ground = {
     },
 
     ly: function(uy) {
-        return uy - this.__.sky.horizonLinePY()
+        return -(uy - this.bottomEdge())
+        // return uy - this.__.sky.horizonLineWY()
     },
 
     nx: function(lx) {
@@ -34,7 +37,8 @@ const _ground = {
     },
 
     uy: function(ly) {
-        return ly + this.__.sky.horizonLinePY()
+        return -ly + this.bottomEdge()
+        //return ly + this.__.sky.horizonLineWY()
     },
 
     uZ: function(nz) {
@@ -62,7 +66,7 @@ const _ground = {
     },
 
     topEdge: function() {
-        return this.__.sky.horizonLinePY()
+        return this.__.sky.horizonLineWY()
     },
 
     bottomEdge: function() {

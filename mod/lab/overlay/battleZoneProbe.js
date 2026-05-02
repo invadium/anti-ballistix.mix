@@ -1,3 +1,5 @@
+// @deprecated?
+// TODO remove maybe?
 function draw() {
     if (!env.showBattleZone) return
 

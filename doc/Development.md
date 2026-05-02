@@ -30,6 +30,11 @@ jam -d --menu
 ```
 
 
+### Dump an Entity
+
+Use ```Ctrl+click```
+
+
 
 ### Coding During Air Raid Alerts
 

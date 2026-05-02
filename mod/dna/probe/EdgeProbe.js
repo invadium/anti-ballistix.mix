@@ -5,7 +5,7 @@ class EdgeProbe {
     constructor(st) {
         augment(this, {
             Z:     1,
-            name: 'edgeProbeedgeProbeedgeProbe' + (++id),
+            name: 'edgeProbe' + (++id),
 
             style: {
                 color:     '#ffffff',
@@ -24,6 +24,12 @@ class EdgeProbe {
         lineWidth(this.style.lineWidth)
         ctx.setLineDash(this.style.dash)
         rect(__.leftEdge(), __.topEdge(), __.width(), __.height())
+
+        const le = __.leftEdge()
+        const te = __.topEdge()
+        const W = __.width()
+        const H = __.height()
+        rect(0, 0, 100, 100)
 
         restore()
     }

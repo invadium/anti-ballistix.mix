@@ -4,6 +4,7 @@
 const _battleground = {
     Z:          9003,
     name:      'battleground',
+    cartesian:  true,
     transient:  true,
 
     init: function() {
@@ -15,7 +16,8 @@ const _battleground = {
     },
 
     ly: function(uy) {
-        return uy - this.topEdge()
+        return -(uy - this.bottomEdge())
+        // return uy - this.topEdge()
     },
 
     nx: function(lx) {
@@ -36,7 +38,8 @@ const _battleground = {
     },
 
     uy: function(ly) {
-        return ly + this.topEdge()
+        return -ly + this.bottomEdge()
+        //return ly + this.topEdge()
     },
 
     /*

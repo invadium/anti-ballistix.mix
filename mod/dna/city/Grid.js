@@ -2,6 +2,7 @@ class Grid {
 
     constructor(st) {
         augment(this, {
+            Z:     9,
             name: 'grid',
             ROWS:  11,
             rows:  [],
@@ -16,8 +17,9 @@ class Grid {
         let lastRow
         for (let i = 0; i < ROWS; i++) {
             const row = lab.port.spawn( dna.city.GridRow, {
-                Z:  10,
+                Z:    0,
                 groundZ,
+                name: 'gridRow' + (i+1),
                 prev: lastRow,
             })
             this.rows.push(row)

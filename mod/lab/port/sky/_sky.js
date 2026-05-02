@@ -9,16 +9,18 @@ function horizonLineSY() {
 const _sky = {
     Z:          9001,
     name:      'sky',
+    cartesian:  true,
     transient:  true,
 
     init: function() {
         at.sky = this
     },
 
+    // horizon line in the screen space
     horizonLineSY,
 
-    // horizon level in the port space
-    horizonLinePY: function() {
+    // horizon level in the world space
+    horizonLineWY: function() {
         return this.__.ly(env.tune.horizonLine * ctx.height)
     },
 
@@ -27,8 +29,10 @@ const _sky = {
     },
 
     ly: function(uy) {
-        return -(uy - this.__.sky.horizonLinePY())
-        // return uy - this.horizonLinePY()
+        // return uy - this.topEdge()
+        return -(uy - this.horizonLineWY())
+        // return -(uy - this.__.sky.horizonLineWY())
+        // return uy - this.horizonLineWY()
     },
 
     ux: function(lx) {
@@ -36,22 +40,28 @@ const _sky = {
     },
 
     uy: function(ly) {
-        return -(ly + this.__.sky.horizonLinePY())
+        return -ly + this.horizonLineWY()
+        //return -(ly + this.__.sky.horizonLineWY())
     },
 
-    leftEdge: function() { return this.__.leftEdge()
+    // world coordinates left edge
+    leftEdge: function() {
+        return this.__.leftEdge()
     },
 
+    // world coordinates right edge
     rightEdge: function() {
         return this.__.rightEdge()
     },
 
+    // world coordinates top edge
     topEdge: function() {
         return this.__.topEdge()
     },
 
+    // world coordinates bottom edge
     bottomEdge: function() {
-        return this.horizonLinePY()
+        return this.horizonLineWY()
     },
 
     width: function() {
@@ -63,8 +73,10 @@ const _sky = {
     },
 
     screenWidth: function() {
+        // TODO could be different for non-fullscreen viewports!
         return ctx.width
     },
 
+    // TODO could be different for non-fullscreen viewports!
     screenHeight: horizonLineSY,
 }
