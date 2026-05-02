@@ -28,10 +28,12 @@ class CoordinateSystemProbe {
               uy = this.__.uy(0)
         translate(ux, uy)
 
+        const al = .35 * r,
+              aw = .50 * al
         stroke(this.style.color)
         lineWidth(this.style.lineWidth)
-        line(-r,  0, r, 0)
-        line( 0, -r, 0, r)
+        graph.arrowLine(-r,  0, r, 0, al, aw)
+        graph.arrowLine( 0, -r, 0, r, al, aw)
 
         baseTop()
         alignLeft()

@@ -1,8 +1,14 @@
 // define the ground space - everything from the botton to the horizon line
+//
+// Note: need it to be a LabFrame to attach coord probes
 const _ground = {
     Z:          9002,
     name:      'ground',
     transient:  true,
+
+    init: function() {
+        at.g = this
+    },
 
     lx: function(ux) {
         return ux

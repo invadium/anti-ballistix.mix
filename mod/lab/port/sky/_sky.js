@@ -4,10 +4,16 @@ function horizonLineSY() {
 }
 
 // defines the coordinate space above the horizon line
+//
+// Note: need it to be a LabFrame to attach coord probes
 const _sky = {
     Z:          9001,
     name:      'sky',
     transient:  true,
+
+    init: function() {
+        at.sky = this
+    },
 
     horizonLineSY,
 

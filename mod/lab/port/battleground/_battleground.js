@@ -1,8 +1,14 @@
 // define the coordinate space of impact area
+//
+// Note: need it to be a LabFrame to attach coord probes
 const _battleground = {
     Z:          9003,
     name:      'battleground',
     transient:  true,
+
+    init: function() {
+        at.bg = this
+    },
 
     lx: function(ux) {
         return ux

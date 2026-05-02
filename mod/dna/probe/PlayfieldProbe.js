@@ -1,4 +1,5 @@
 // highlight the playfield area
+// TODO is it a real thing? what is playfield and why it doesn't change with direction?
 class PlayfieldProbe {
 
     constructor(st) {
