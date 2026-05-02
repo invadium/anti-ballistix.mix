@@ -110,7 +110,7 @@ class PowerStation extends Target {
               hh = .5 * h,
               H  = ctx.height,
               x  = this.x,
-              y  = coord.battleZone.py(this.bz) - hh,
+              y  = coord.battleZone.wy(this.bz) - hh,
               dx = this.dx,
               dy = this.dy
 

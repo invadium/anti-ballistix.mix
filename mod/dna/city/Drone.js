@@ -65,7 +65,7 @@ class Drone extends GuidedWeapon {
 
     adjustZ() {
         this.Z = coord.battleZone.Z(this.nz)
-        this.targetY = coord.battleZone.py(this.nz)
+        this.targetY = coord.battleZone.wy(this.nz)
     }
 
     airExplosion() {

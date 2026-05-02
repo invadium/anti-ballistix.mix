@@ -55,7 +55,18 @@ function evo(dt) {
           my = round(mouse.y),
           wx = round(lab.port.lx(mouse.x)),
           wy = round(lab.port.ly(mouse.y)),
+          sx = round(lab.port.sky.lx(wx)),
+          sy = round(lab.port.sky.ly(wy)),
+          gx = round(lab.port.ground.lx(wx)),
+          gy = round(lab.port.ground.ly(wy)),
+          zx = round(lab.port.battleground.lx(wx)),
+          zy = round(lab.port.battleground.ly(wy)),
           bz = round(coord.battleZone.lz(my) * 100),
           bs = (bz < 0 || bz > 100)? `--[${bz}%]--` : `==[${bz}%]==`
-    env.status = `${prefix}Scr[${mx}:${my}] >> Cam[${wx}:${wy}] >> BZz: ${bs}`
+    env.status = `${prefix}Scr[${mx}:${my}]`
+            + ` >> Port[${wx}:${wy}]`
+            + ` >> Sky[${sx}:${sy}]`
+            + ` >> G[${gx}:${gy}]`
+            + ` >> BG[${zx}:${zy}]`
+            + ` >> BZz: ${bs}`
 }

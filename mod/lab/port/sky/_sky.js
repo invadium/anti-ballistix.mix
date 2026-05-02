@@ -21,7 +21,7 @@ const _sky = {
     },
 
     ly: function(uy) {
-        return uy
+        return -(uy - this.__.sky.horizonLinePY())
         // return uy - this.horizonLinePY()
     },
 
@@ -30,8 +30,7 @@ const _sky = {
     },
 
     uy: function(ly) {
-        // return ly + this.horizonLinePY()
-        return ly
+        return -(ly + this.__.sky.horizonLinePY())
     },
 
     leftEdge: function() { return this.__.leftEdge()

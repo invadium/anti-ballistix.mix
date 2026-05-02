@@ -65,7 +65,7 @@ function newScenario(scenario) {
         delay: 1,
     })
 
-    on('newScenario')
+    emit('newScenario')
 
     env.gameState = 'started'
 }

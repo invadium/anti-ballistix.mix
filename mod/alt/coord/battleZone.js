@@ -15,7 +15,7 @@ function sy(lz) {
 }
 
 // translate battleZone-local z coordinate to port y
-function py(lz) {
+function wy(lz) {
     return lab.port.ly(sy(lz))
 }
 
