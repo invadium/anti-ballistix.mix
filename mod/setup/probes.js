@@ -16,6 +16,13 @@ function probes() {
                 color: '#00ffff',
             },
         })
+        lab.port.sky.spawn( dna.probe.CoordinateMarker, {
+            x: 250,
+            y: 400,
+            style: {
+                color: '#00ffff',
+            },
+        })
 
         lab.port.ground.spawn( dna.probe.EdgeProbe, {
             style: {

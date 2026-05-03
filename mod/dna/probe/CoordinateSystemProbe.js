@@ -53,22 +53,6 @@ class CoordinateSystemProbe {
         
         ltext('0x0 ' + this.__.name + '-space', 5, 5)
 
-        // TODO MUST be separate cross-marker probes!!! Move them out!
-        function cross(cx, cy, u) {
-            save()
-            translate(cx, cy)
-                stroke(style.color)
-                line(-u,  0, u, 0)
-                line( 0, -u, 0, u)
-
-                fill(style.color)
-                ltext(`${cx}x${cy}`, 5, 5)
-            restore()
-        }
-        const u = .5 * r
-        cross(dx, dy, u)
-        cross(-dx, -dy, u)
-
         restore()
     }
 
