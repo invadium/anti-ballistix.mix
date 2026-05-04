@@ -96,6 +96,8 @@ class ArcadeText {
             queue:        [],
 
             color:        '#dede90',
+            outline:      null,
+            shadowColor:  null,
             font:         '24px pixel-operator',
             subFont:      '20px pixel-operator',
             align:        'center',
@@ -276,7 +278,8 @@ class ArcadeText {
                     fill(this.shadowColor)
                     text(vline, tx+this.shadowDx+hShift, ty+this.shadowDy)
                 }
-                fill(this.color)
+                if (this.outline) fill(this.color, this.outline)
+                else fill(this.color)
                 text(vline, tx+hShift, ty)
             }
 

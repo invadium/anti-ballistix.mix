@@ -2,7 +2,8 @@ const style = {
 
     color: {
         main:  '#6b1fb1',
-        title: '#6b1fb1',
+        // title: '#6b1fb1',
+        title: '#ff9717',
 
         sky: '#1f123a',
         grid: '#9e0abf',
@@ -14,12 +15,20 @@ const style = {
         },
         credits: {
             title: '#6b1fb1',
-            front: '#62aadd',
+            front: '#ff9717',
             back:  '#3a1e7e',
         },
 
+        titleBar: {
+            front:   '#ff9717',
+            outline: '#000000',
+        },
+        messageBar: {
+            front:   '#ff9717',
+            outline: '#000000',
+        },
         status: {
-            front:  hsl(.14, .4, .5),
+            front: '#ebff12',
             back:  '#000000C0',
         },
 
@@ -39,40 +48,42 @@ const style = {
             family: 'moon',
             size:   24,
         },
+
+        title: {
+            family: 'retro-stereo-wide',
+            size:   64,
+        },
+
         titleBar: {
-            family: 'moon',
+            family: 'future-earth',
             size:   32,
         },
         messageBar: {
-            family: 'moon',
+            family: 'future-earth',
             size:   48,
         },
         subMessageBar: {
-            family: 'moon',
+            family: 'future-earth',
             size:   38,
         },
-        title: {
-            family: 'moon',
-            size:   64,
-        },
         menu: {
-            family: 'moon',
+            family: 'future-earth',
             size:   32,
         },
         menuHigh: {
-            family: 'moon',
+            family: 'future-earth',
             size:   35,
         },
         menuSuperHigh: {
-            family: 'moon',
+            family: 'future-earth',
             size:   38,
         },
         menuPressed: {
-            family: 'moon',
+            family: 'future-earth',
             size:   30,
         },
         credits: {
-            family: 'moon',
+            family: 'future-earth',
             size:   32,
         },
 

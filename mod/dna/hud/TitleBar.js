@@ -11,7 +11,9 @@ class TitleBar {
 
         const power = round(lab.overlord.power.getNormalPower() * 100)
 
-        const f = env.style.font.titleBar
+        const f       = env.style.font.titleBar
+        const color   = env.style.color.titleBar.front
+        const outline = env.style.color.titleBar.outline
         const Y = .5 * f.size
 
         const wave = env.wave || 1
@@ -19,12 +21,14 @@ class TitleBar {
         font(f.head)
         baseTop()
         alignCenter()
-        fill( hsl(.6, .8, .7) )
+        // fill( hsl(.6, .8, .7) )
+        lineWidth(2)
+        fill(color, outline)
 
-        text(`Wave:    ${wave}`, rx(.15), Y)
-        text(`Power:   ${power}%`, rx(.35), Y)
-        text(`Bounty:  $${env.bounty}k`, rx(.65), Y)
-        text(`Score:   ${env.score}`, rx(.85), Y)
+        text(`Wave:  ${wave}`,         rx(.15), Y)
+        text(`Power: ${power}`,       rx(.35), Y)
+        text(`Bounty: $${env.bounty}k`, rx(.60), Y)
+        text(`Score: ${env.score}`,    rx(.85), Y)
 
         if (lab.port.paused) {
             let by = ry(.25)
