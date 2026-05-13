@@ -51,8 +51,10 @@
 > warp drones beyond the screen
 > ground hit tectonic waves
 > lock the flak for a 1-2 seconds after a player jumps in
-> a separate bloom channel and bloom fragment shader for neon highlights
+> a separate bloom channel with bloom fragment shader for neon highlights
 > crt scanlines and wobbles fragment shader
+> thermal distortion wave shader to show wobbles from air explosions
+> area and full-screen glitch shader to dramatize hits and EW effects
 > upgrade kinetix to be able to reduce shake amplitude with time/iterations
 > incoming missile hint (like a comm ((( signal)
 > incoming drone hint
@@ -64,6 +66,10 @@
 > arc + player number under the controlled flak
 > various speeds and altitude changes for drones
 > inversion trail for missiles
+> ticking counters in the title for the score and bounty
+> shake Score and Bounty when refilling
+> sparkles flying down from Score and Bounty when refilling
+> items transition animation and locks in the main menu
 
 
 # advanced
@@ -82,6 +88,8 @@
     > destructable power towers and power lines connecting power stations
     > destructable radars (buy as upgrades, can be destroyed by the drones/missiles)
 > local high score table
+
+>>> level editor - draw histogram-like shapes for wave packets within each wave
 
 >>> gamepad remapping
 

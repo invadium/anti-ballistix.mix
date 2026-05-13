@@ -5,7 +5,7 @@ const STARS = 512
 const catalog = []
 
 function setup() {
-    const src = this.__.sky.src
+    const src = __$.lab.backdrop.sky.src
     
     for (let i = 0; i < STARS; i++) {
         catalog.push({

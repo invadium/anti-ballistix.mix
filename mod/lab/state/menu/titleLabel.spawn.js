@@ -1,12 +1,11 @@
 const titleLabel = {
-    Z:    1,
     DNA: 'hud/Label',
     rx:  .5,
-    ry:  .15,
+    ry:  .2,
     font:  env.style.font.title.head,
-    color: env.style.color.menu.title,
-    text: function() {
-        return (this.__.items.title || 'Menu')
-    },
+    color: env.style.color.title,
+    text:  () => {
+        return res.txt.label.title
+    }
 }
 

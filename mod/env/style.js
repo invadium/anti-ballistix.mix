@@ -3,7 +3,8 @@ const style = {
     color: {
         main:  '#6b1fb1',
         // title: '#6b1fb1',
-        title: '#ff9717',
+        title:    '#80dbff',
+        subTitle: '#ff99ff',
 
         sky: '#1f123a',
         grid: '#9e0abf',
@@ -14,9 +15,9 @@ const style = {
             title: '#6b1fb1',
         },
         credits: {
-            title: '#6b1fb1',
-            front: '#ff9717',
-            back:  '#3a1e7e',
+            front: '#80dbff',
+            // back:  '#3a1e7e',
+            back:  '#F10000',
         },
 
         titleBar: {
@@ -50,8 +51,12 @@ const style = {
         },
 
         title: {
-            family: 'retro-stereo-wide',
-            size:   64,
+            family: 'suggested-regular',
+            size:   72,
+        },
+        subTitle: {
+            family: 'kabur-regular',
+            size:   78,
         },
 
         titleBar: {
@@ -83,8 +88,9 @@ const style = {
             size:   30,
         },
         credits: {
-            family: 'future-earth',
-            size:   32,
+            // family: 'future-earth',
+            family: 'kabur-regular',
+            size:   42,
         },
 
         debug: {

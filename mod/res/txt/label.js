@@ -1,4 +1,7 @@
 const label = {
-    title: 'Z-Alert: Anti-Ballistix',
+    fullTitle:  'Z-Alert: Anti-Ballistix',
     shortTitle: 'Anti-Ballistix',
+    title:      'Anti-Ballistix',
+    subTitle:   'Z-Alert',
+    credits:    'Credits',
 }

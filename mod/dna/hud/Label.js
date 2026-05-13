@@ -7,8 +7,7 @@ const df = {
     baseline:     'middle',
     x:             0,
     y:             0,
-    rx:           .5,
-    ry:           .5,
+    rot:           0,
     shadowDx:      5,
     shadowDy:      5,
 }
@@ -20,23 +19,26 @@ class Label {
     }
 
     draw() {
-        save()
-
-        ctx.textAlign = this.align
-        ctx.textBaseline = this.baseline
-        font(this.font)
+        if (this.adjust) this.adjust()
 
         const tx = isNumber(this.rx)? rx(this.rx) : this.x
         const ty = isNumber(this.ry)? ry(this.ry) : this.y
-
         const txt = isFun(this.text)? this.text() : this.text
+
+        save()
+        translate(tx, ty)
+        if (this.rot) rotate(this.rot)
+
+        font(this.font)
+        ctx.textAlign = this.align
+        ctx.textBaseline = this.baseline
 
         if (this.shadowColor) {
             fill(this.shadowColor)
-            text(txt, tx+this.shadowDx, ty+this.shadowDy)
+            text(txt, this.shadowDx, this.shadowDy)
         }
         fill(this.color)
-        text(txt, tx, ty)
+        text(txt, 0, 0)
 
         restore()
     }
