@@ -59,7 +59,7 @@ function armsUp() {
 
 function spawnBallistic() {
     // TODO check the ballistics limit
-    const viewport = lab.port.viewport()
+    const viewport = lab.port.getViewportRect()
 
     const missile = lab.port.spawn(dna.city.BallisticMissile, {
         x: crx(10 + RND(80)),
@@ -81,7 +81,7 @@ function spawnBallistic() {
 
 function spawnDrone() {
     // TODO check the drones limit
-    const viewport = lab.port.viewport()
+    const viewport = lab.port.getViewportRect()
 
     const drone = lab.port.spawn(dna.city.Drone, {
         x: -crx(100),

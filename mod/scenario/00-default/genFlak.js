@@ -10,7 +10,9 @@ function genFlak(flaks) {
             Z:    101,
             team: 1,
             x:    crx(bx),
-            y:    cry(10),
+            y:    0,
+            BGY:  10,
+            
             pods:  [
                 new dna.city.pod.Bot(),
                 new dna.city.pod.FireControlRadar(),

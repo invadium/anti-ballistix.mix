@@ -19,7 +19,12 @@ const _sky = {
     // horizon line in the screen space
     horizonLineSY,
 
-    // horizon level in the world space
+    // horizon line in the camera viewport space
+    horizonLineCY: function() {
+        return (env.tune.horizonLine - .5) * ctx.height
+    },
+
+    // horizon level in the world space - MUST be 0!
     horizonLineWY: function() {
         return this.__.ly(env.tune.horizonLine * ctx.height)
     },

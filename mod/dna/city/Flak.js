@@ -36,12 +36,17 @@ class Flak extends Platform {
         ])
     }
 
+    adjust() {
+        this.y = lab.port.ly((1 - .01*this.BGY) * lab.h)
+    }
+
     capture(controllerId) {
         this.activatePod('turretPadControl')
         lab.monitor.controller.bind(controllerId, this.turretPadControl)
     }
 
     draw() {
+        this.adjust()
         const gun = this.gun
         if (this.gun.lock && (env.time - this.gun.lockTimestamp) % 1 < .5) return // overheat timeout flashing
 

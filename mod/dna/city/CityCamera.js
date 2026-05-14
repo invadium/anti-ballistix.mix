@@ -1,7 +1,34 @@
-class CityCamera extends dna.SlideCamera {
+class CityConstraint {
+
+    constructor(st) {
+        augment(this, {
+            name:      'cityConstraint',
+
+            transient:  true,
+        }, st)
+    }
+
+    evo(dt) {
+        const cam = this.__
+        const sky = cam.sky
+        const pf  = env.playfield
+        const targetZoom = lab.w / pf.width
+        // this.scale = targetZoom
+        cam.zoom = targetZoom
+
+
+        // this.y = -.5 * lhight
+        // cam.pos.y = .5 * lhight
+        const dy = sky.horizonLineCY() / cam.zoom
+        cam.pos.y = -dy
+    }
+}
+
+class CityCamera extends dna.SlideCameraNG {
 
     constructor(st) {
         super(st)
+        this.attach( new CityConstraint() )
     }
 
     lookupZombie(targetDNA) {
@@ -24,14 +51,17 @@ class CityCamera extends dna.SlideCamera {
         return dna.SlideCamera.prototype.spawn.call(this, targetDNA, st)
     }
 
+    /*
     pin() {
         const pf = env.playfield
         const targetZoom = ctx.width / pf.width
-        this.scale = targetZoom
+        // this.scale = targetZoom
+        this.zoom = targetZoom
 
         const lhight = ctx.height / this.scale
         this.y = -.5 * lhight
     }
+    */
 
     // check if local coordinates are in the viewport
     // @param {number} x - local x
@@ -46,9 +76,9 @@ class CityCamera extends dna.SlideCamera {
               y2 = ctx.height - edge
 
         // translate arguments to the screen coordinate space
-        let sx = this.gx(x)
-        let sy = this.gy(y)
-        let sr = this.gx(r || 0)
+        let sx = this.ux(x)
+        let sy = this.uy(y)
+        let sr = this.ux(r || 0)
 
         return (sx+r >= x1 && sx-r <= x2 && sy+r >= y1 && sy-r <= y2)
     }
@@ -86,7 +116,7 @@ class CityCamera extends dna.SlideCamera {
     }
 
     draw() {
-        this.pin()
+        // this.pin()
         // TODO flip the coordinate system to make the bottom 0 and grow up?
         // save()
         // scale(1, -1)
