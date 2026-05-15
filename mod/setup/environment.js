@@ -10,5 +10,7 @@ function environment() {
     }
 
     lib.storage.loadOpt()
+
+    signal('resize')
 }
 environment.Z = 1

@@ -34,26 +34,26 @@ class RulerProbe {
             save()
             translate(bx, y)
 
-            if (this.flipY) scale(1, -1) // flip Y coordinate for text rendering
+            // if (this.flipY) scale(1, -1) // flip Y coordinate for text rendering
 
             if (this.verticalAlignment === 'bottom') {
                 stroke(color)
                 line(0, 0, 0, -markSize)
 
                 fill(color)
-                baseTop()
+                baseMiddle()
                 alignCenter()
                 font(env.style.font.debug.head)
-                text(`${bx}`, 0, markSize)
+                text(`${bx}`, 0, 2*markSize)
             } else {
                 stroke(color)
                 line(0, 0, 0, markSize)
 
                 fill(color)
-                baseBottom()
+                baseMiddle()
                 alignCenter()
                 font(env.style.font.debug.head)
-                text(`${bx}`, 0, -markSize)
+                text(`${bx}`, 0, -2*markSize)
             }
 
             restore()

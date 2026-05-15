@@ -5,15 +5,16 @@ function probes() {
         lab.port.spawn( 'RulerProbe', {
             x:      -600,
             y:       0,
+            step:    100,
             width:   1200,
 
-            flipY:   true,
+            flipY:   false,
             verticalAlignment: 'top',
 
             transient: true,
 
             evo: function(dt) {
-                this.y = this.__.topEdge() + 100
+                this.y = this.__.topEdge() - 100
             },
         })
 
@@ -22,7 +23,7 @@ function probes() {
             y:      -1000,
             height:  2000,
 
-            flipY:   true,
+            flipY:   false,
             horizontalAlignment: 'left',
 
             transient: true,
@@ -36,7 +37,7 @@ function probes() {
             y:      -1000,
             height:  2000,
 
-            flipY:   true,
+            flipY:   false,
             horizontalAlignment: 'right',
 
             transient: true,

@@ -15,7 +15,7 @@ class CityConstraint {
         const targetZoom = lab.w / pf.width
         // this.scale = targetZoom
         cam.zoom = targetZoom
-
+        pf.adjust()
 
         // this.y = -.5 * lhight
         // cam.pos.y = .5 * lhight
