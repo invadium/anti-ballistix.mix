@@ -83,7 +83,7 @@ class Drone extends GuidedWeapon {
             x:          this.x,
             y:          this.y,
             force:      8,
-            baseAngle:  1.1 * PI,
+            baseAngle:  .1 * PI,
             spread:    .9 * PI,
         })
     }
@@ -106,8 +106,8 @@ class Drone extends GuidedWeapon {
         this.state = DIVING
 
         // nose down
-        if (this.dir === 0) this.dir = .25 * PI
-        else this.dir = .75 * PI
+        if (this.dir === 0) this.dir = -.25 * PI
+        else this.dir = -.75 * PI
 
         const target = this.targeting.lockOnTarget()
         if (target) {
@@ -135,7 +135,7 @@ class Drone extends GuidedWeapon {
                 break
         }
 
-        if (this.y >= this.targetY) {
+        if (this.y <= this.targetY) {
             // ground hit
             kill(this, 'ground')
             this.groundExplosion()

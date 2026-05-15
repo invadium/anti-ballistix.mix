@@ -7,6 +7,7 @@ function probes() {
             y:       0,
             width:   1200,
 
+            flipY:   true,
             verticalAlignment: 'top',
 
             transient: true,
@@ -21,6 +22,7 @@ function probes() {
             y:      -1000,
             height:  2000,
 
+            flipY:   true,
             horizontalAlignment: 'left',
 
             transient: true,
@@ -34,6 +36,7 @@ function probes() {
             y:      -1000,
             height:  2000,
 
+            flipY:   true,
             horizontalAlignment: 'right',
 
             transient: true,

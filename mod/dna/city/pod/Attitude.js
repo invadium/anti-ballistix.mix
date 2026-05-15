@@ -11,18 +11,18 @@ class Attitude {
             subtype: 'propulsion',
             name:    'attitude',
 
-            neutral:         -HALF_PI,
+            neutral:         HALF_PI,
             sector:          .9 * PI,
             turnVelocity:    .4 * PI,
         }, st)
     }
 
     min() {
-        return this.neutral - .5 * this.sector
+        return this.neutral + .5 * this.sector
     }
 
     max() {
-        return this.neutral + .5 * this.sector
+        return this.neutral - .5 * this.sector
     }
 
     atMin() {
@@ -34,10 +34,10 @@ class Attitude {
     }
 
     left(dt) {
-        this.__.dir = max(this.__.dir - this.turnVelocity * dt, this.neutral - .5 * this.sector)
+        this.__.dir = min(this.__.dir + this.turnVelocity * dt, this.neutral + .5 * this.sector)
     }
 
     right(dt) {
-        this.__.dir = min(this.__.dir + this.turnVelocity * dt, this.neutral + .5 * this.sector)
+        this.__.dir = max(this.__.dir - this.turnVelocity * dt, this.neutral - .5 * this.sector)
     }
 }

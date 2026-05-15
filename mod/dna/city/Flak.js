@@ -15,7 +15,7 @@ class Flak extends Platform {
 
             hull:    100,
             //dir:     math.rnda(),
-            dir:     -HALF_PI,
+            dir:     HALF_PI,
             scanned: true,
 
             // specs

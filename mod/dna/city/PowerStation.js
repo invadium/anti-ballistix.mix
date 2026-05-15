@@ -116,7 +116,7 @@ class PowerStation extends Target {
 
         save()
         translate(x + dx, y + dy)
-        //rotate(HALF_PI + this.dir)
+        rotate(PI)
 
         // adjust y
         this.y = y

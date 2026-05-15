@@ -63,6 +63,7 @@ class BallisticMissile extends GuidedWeapon {
         })
     }
 
+    // TODO unify with Drones and others!
     groundExplosion(Z) {
         lab.port.spawn(dna.city.Explosion, {
             Z:          Z ?? this.Z,
@@ -70,7 +71,7 @@ class BallisticMissile extends GuidedWeapon {
             x:          this.x,
             y:          this.y,
             force:      8,
-            baseAngle:  1.1 * PI,
+            baseAngle:  .1 * PI,
             spread:    .9 * PI,
         })
     }
@@ -87,7 +88,7 @@ class BallisticMissile extends GuidedWeapon {
         super.evo(dt)
 
         //if (this.y >= cry(this.targetCRY)) {
-        if (this.y >= this.targetY) {
+        if (this.y <= this.targetY) {
             // ground hit
             kill(this, 'ground')
             this.groundExplosion()

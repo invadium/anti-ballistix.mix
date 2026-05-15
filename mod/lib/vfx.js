@@ -11,7 +11,7 @@ function hitDebris(x, y, Z, force, color) {
         //edge: 100*s,
         size: 1*s, vsize: 2*s,
         speed: 5*s, vspeed: 20*s,
-        angle: PI, spread: PI,
+        angle: 0, spread: PI,
         minLifespan: 0.5, vLifespan: 2,
 
         drawParticle: function() {
@@ -20,11 +20,10 @@ function hitDebris(x, y, Z, force, color) {
         },
 
         moveParticle: function(dt) {
-            this.dy += s * 12 * dt // gravity effect
+            this.dy -= s * 12 * dt // gravity effect
             this.x += this.dx * dt
             this.y += this.dy * dt
         },
     })
     return emitter
 }
-

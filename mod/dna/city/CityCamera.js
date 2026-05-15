@@ -20,7 +20,8 @@ class CityConstraint {
         // this.y = -.5 * lhight
         // cam.pos.y = .5 * lhight
         const dy = sky.horizonLineCY() / cam.zoom
-        cam.pos.y = -dy
+        // cam.pos.y = -dy
+        cam.pos.y = dy
     }
 }
 
