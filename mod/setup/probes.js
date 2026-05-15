@@ -1,6 +1,48 @@
 function probes() {
 
     if (env.showCoordinates) {
+
+        lab.port.spawn( 'RulerProbe', {
+            x:      -600,
+            y:       0,
+            width:   1200,
+
+            verticalAlignment: 'top',
+
+            transient: true,
+
+            evo: function(dt) {
+                this.y = this.__.topEdge() + 100
+            },
+        })
+
+        lab.port.spawn( 'RulerProbe', {
+            x:       0,
+            y:      -1000,
+            height:  2000,
+
+            horizontalAlignment: 'left',
+
+            transient: true,
+
+            evo: function(dt) {
+                this.x = this.__.leftEdge() + 100
+            },
+        })
+        lab.port.spawn( 'RulerProbe', {
+            x:       0,
+            y:      -1000,
+            height:  2000,
+
+            horizontalAlignment: 'right',
+
+            transient: true,
+
+            evo: function(dt) {
+                this.x = this.__.rightEdge() - 100
+            },
+        })
+
         lab.port.sky.spawn( dna.probe.EdgeProbe, {
             style: {
                 color: '#00aabb',

@@ -43,7 +43,7 @@ const style = {
             white:   '#ffffff',
         },
     },
-    
+
     font: {
         main: {
             family: 'moon',
