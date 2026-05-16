@@ -48,6 +48,8 @@
 > fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
 
 # juice
+> flashy highlights when bullets leave the screen
+> cloud layer on top?
 > turn muzzle flashes into entities to leave them behind when turning
 > warp drones beyond the screen
 > ground hit tectonic waves

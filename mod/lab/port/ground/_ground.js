@@ -47,7 +47,9 @@ const _ground = {
         //const py0 = lab.port.ly( this.__.screen.horizonLineY() ),
         //      py1 = lab.port.ly( ctx.height )
         // return (py0 + gnz * (py1 - py0))
-        return this.topEdge() - gnz * this.height()
+        // if (gnz === 0) return this.bottomEdge()
+        const y = this.topEdge() - gnz * this.height()
+        return y
     },
 
     // translate to Z-order from the ground-local normalize z

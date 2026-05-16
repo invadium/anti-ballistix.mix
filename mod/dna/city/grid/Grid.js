@@ -16,7 +16,7 @@ class Grid {
         let groundZ = 0
         let lastRow
         for (let i = 0; i < ROWS; i++) {
-            const row = lab.port.spawn( dna.city.GridRow, {
+            const row = lab.port.spawn( dna.city.grid.GridRow, {
                 Z:    0,
                 groundZ,
                 name: 'gridRow' + (i+1),
@@ -28,6 +28,8 @@ class Grid {
             lastRow = row
             groundZ += gzStep
         }
+
+        this.rows.forEach(row => row.connectDepth())
     }
 
 }

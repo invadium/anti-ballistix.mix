@@ -1,3 +1,3 @@
 function genGrid() {
-    lab.port.spawn( dna.city.Grid )
+    lab.port.spawn(dna.city.grid.Grid)
 }
