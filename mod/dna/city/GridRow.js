@@ -6,7 +6,7 @@ class GridRow {
             id: ++id,
         }, st)
         // why don't we ask battlezone about that level?
-        this.Z  = coord.battleZone.Z(this.groundZ)
+        this.Z  = lab.port.ground.Z(this.groundZ)
     }
 
     draw() {

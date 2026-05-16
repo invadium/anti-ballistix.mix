@@ -33,18 +33,19 @@
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 
 > waves (part of scenario life cycle)
-> wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
 > scenario life cycle
+> wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
 > scenario success/fail conditions?
-
-# bugs
-> "intercepted 105% 35/34" - how it is even possible?
-> fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
 
 > hide cursor option in the menu
 > custom man pages with core design and structure
 > proper readme with the project structure, prerequisites, how to play, how to debug etc...
+
 > core sfx
+
+# bugs
+> "intercepted 105% 35/34" - how it is even possible?
+> fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
 
 # juice
 > turn muzzle flashes into entities to leave them behind when turning
@@ -87,13 +88,12 @@
 >>> more destructable objects
     > destructable power towers and power lines connecting power stations
     > destructable radars (buy as upgrades, can be destroyed by the drones/missiles)
-> local high score table
-
+>>> local high score table
 >>> level editor - draw histogram-like shapes for wave packets within each wave
 
 >>> gamepad remapping
 
-# meta
+# meta/progression
 > upgrades are descending as banners/surprise-boxes on parashutes and you shoot to choose
 > actual air raid alert checker and indicator
 > SimCity-like newspaper with recent news and attack stats & infographics (launched/intercepted)

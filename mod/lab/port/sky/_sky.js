@@ -9,7 +9,7 @@ function horizonLineSY() {
 const _sky = {
     Z:          9001,
     name:      'sky',
-    cartesian:  true,
+    cartesian:  false,
     transient:  true,
 
     init: function() {
@@ -19,7 +19,7 @@ const _sky = {
     // horizon line in the screen space
     horizonLineSY,
 
-    // horizon line in the camera viewport space
+    // horizon line in the camera viewport space (centered)
     horizonLineCY: function() {
         return (env.tune.horizonLine - .5) * ctx.height
     },
@@ -34,8 +34,9 @@ const _sky = {
     },
 
     ly: function(uy) {
+        return uy
         // return uy - this.topEdge()
-        return -(uy - this.horizonLineWY())
+        // return -(uy - this.horizonLineWY())
         // return -(uy - this.__.sky.horizonLineWY())
         // return uy - this.horizonLineWY()
     },
@@ -45,7 +46,8 @@ const _sky = {
     },
 
     uy: function(ly) {
-        return -ly + this.horizonLineWY()
+        return ly
+        //return -ly + this.horizonLineWY()
         //return -(ly + this.__.sky.horizonLineWY())
     },
 

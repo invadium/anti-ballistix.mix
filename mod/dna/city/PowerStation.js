@@ -15,9 +15,9 @@ class PowerStation extends Target {
             dy:       0,
         }, st) )
         this.hp = this.maxHP
-        // calculate battlezone z and determine Z-order
-        this.bz = env.tune.powerZone.start + this.z * (env.tune.powerZone.end - env.tune.powerZone.start)
-        this.Z  = coord.battleZone.Z(this.bz)
+        // calculate ground-local normal z and determine the Z-order
+        this.gnz = env.tune.powerZone.start + this.z * (env.tune.powerZone.end - env.tune.powerZone.start)
+        this.Z  = lab.port.ground.Z(this.gnz)
 
         this.install([
             new dna.city.pod.SolidCircle({
@@ -110,7 +110,8 @@ class PowerStation extends Target {
               hh = .5 * h,
               H  = ctx.height,
               x  = this.x,
-              y  = coord.battleZone.wy(this.bz) - hh,
+              // y  = coord.battleZone.wy(this.gnz) - hh,
+              y  = lab.port.ground.py(this.gnz),
               dx = this.dx,
               dy = this.dy
 

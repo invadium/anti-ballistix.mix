@@ -4,7 +4,7 @@
 const _battleground = {
     Z:          9003,
     name:      'battleground',
-    cartesian:  true,
+    cartesian:  false,
     transient:  true,
 
     init: function() {
@@ -16,7 +16,7 @@ const _battleground = {
     },
 
     ly: function(uy) {
-        return -(uy - this.bottomEdge())
+        return uy - this.bottomEdge()
         // return uy - this.topEdge()
     },
 
@@ -28,37 +28,16 @@ const _battleground = {
         return ly / this.height()
     },
 
-    /*
     nz: function(Z) {
     },
-    */
 
     ux: function(lx) {
         return lx
     },
 
     uy: function(ly) {
-        return -ly + this.bottomEdge()
-        //return ly + this.topEdge()
+        return ly + this.bottomEdge()
     },
-
-    /*
-    uZ: function(nz) {
-    },
-
-    // translate ground local-relative z
-    py: function py(grz) {
-        const py0 = lab.port.ly( this.__.screen.horizonLineY() ),
-              py1 = lab.port.ly( ctx.height )
-        return (py0 + grz * (py1 - py0))
-    },
-
-    // translate to Z-order from the ground-local relative z
-    Z: function Z(grz) {
-        const brz = groundToBattlezoneRZ(grz)
-        return 100 + brz * 100
-    },
-    */
 
     leftEdge: function() {
         return this.__.leftEdge()
@@ -69,11 +48,11 @@ const _battleground = {
     },
 
     topEdge: function() {
-        return this.__.ground.topEdge() + this.__.ground.height() * env.tune.battleground.start
+        return this.__.ground.topEdge() - this.__.ground.height() * env.tune.battleground.start
     },
 
     bottomEdge: function() {
-        return this.topEdge() + this.__.ground.height() * env.tune.battleground.height
+        return this.topEdge() - this.__.ground.height() * env.tune.battleground.height
     },
 
     width: function() {

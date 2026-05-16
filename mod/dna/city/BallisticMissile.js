@@ -47,11 +47,13 @@ class BallisticMissile extends GuidedWeapon {
         // try to lock on target
         const target = this.targeting.lockOnTarget()
 
-        if (target) this.nz = target.bz
-        else this.nz = rnd() // normalized battlezone depth
+        if (target) this.gnz = target.gnz
+        else this.gnz = rnd() // normalized ground-local normal depth
 
-        this.Z = coord.battleZone.Z(this.nz)
-        this.targetY = coord.battleZone.wy(this.nz)
+        //this.Z = coord.battleZone.Z(this.nz)
+        //this.targetY = coord.battleZone.wy(this.nz)
+        this.Z = lab.port.ground.Z(this.gnz)
+        this.targetY = lab.port.ground.py(this.gnz)
     }
 
     airExplosion() {

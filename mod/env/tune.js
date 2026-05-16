@@ -10,7 +10,7 @@ const tune = {
         end:          .95,
     },
     battleground: {
-        start:        .1,    // in ground-normal y coordinates
+        start:        .1,    // in ground-space coordinates
         height:       .8,
     },
     powerZone: {

@@ -59,13 +59,15 @@ class Drone extends GuidedWeapon {
             new dna.city.pod.TargetingPod(),
         ])
 
-        this.nz = rnd() // normalized battlezone depth
+        this.gnz = rnd() // normalized ground z-depth
         this.adjustZ()
     }
 
     adjustZ() {
-        this.Z = coord.battleZone.Z(this.nz)
-        this.targetY = coord.battleZone.wy(this.nz)
+        // this.Z = coord.battleZone.Z(this.gnz)
+        // this.targetY = coord.battleZone.wy(this.gnz)
+        this.Z = lab.port.ground.Z(this.gnz)
+        this.targetY = lab.port.ground.py(this.gnz)
     }
 
     airExplosion() {
@@ -111,7 +113,7 @@ class Drone extends GuidedWeapon {
 
         const target = this.targeting.lockOnTarget()
         if (target) {
-            this.nz = target.bz
+            this.gnz = target.gnz
             this.adjustZ()
         }
     }
