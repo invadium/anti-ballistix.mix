@@ -66,7 +66,8 @@ function evo(dt) {
           bz = round(lab.port.ground.nz(lab.port.ly(my)) * 100),
           bs = (bz < 0 || bz > 100)? `--[${bz}%]--` : `==[${bz}%]==`,
           vy = lab.port.grid.wyToVPY(wy),
-          dp = lab.port.grid.backTrace(wx, vy)
+          dp = lab.port.grid.backTrace(wx, vy),
+          gnz = lab.port.grid.zToNZ(dp[2])
     env.status = `${prefix}Scr[${mx}x${my}]`
             + ` >> Port[${wx}x${wy}]`
             // + ` >> Sky[${sx}x${sy}]`
@@ -74,5 +75,6 @@ function evo(dt) {
             // + ` >> BG[${zx}x${zy}]`
             + ` >> GnZ: ${bs}`
             + ` >> VpY: ${round(vy)}`
-            + ` >> Grd: ${round(dp[0]*10)/10}x${round(dp[1]*10)/10}x${round(dp[2]*10)/10}`
+            + ` >> Grid: ${round(dp[0]*10)/10}x${round(dp[1]*10)/10}x${round(dp[2]*10)/10}`
+            + ` >> GridNZ: ${round(gnz * 100)/100}`
 }

@@ -8,13 +8,14 @@ class Grid {
 
     constructor(st) {
         augment(this, {
-            Z:     9,
-            name: 'grid',
-            ROWS:  15,
-            STEP:  250,
-            rows:  [],
+            Z:             9,
+            name:         'grid',
+            ROWS:          15,
+            STEP:          250,
+            DEPTH_SHIFT:   72, 
+            rows:          [],
+            focusDistance: 100,
 
-            focusDistance:  100,
             // quasi-normalized viewport
             viewport: {
                 width:  env.playfield.width,
@@ -123,6 +124,10 @@ class Grid {
     }
 
     nzToZ(nz) {
-        return (nz*nz) * env.playfield.depth + 72
+        return (nz*nz) * env.playfield.depth + this.DEPTH_SHIFT
+    }
+
+    zToNZ(z) {
+        return sqrt((z - this.DEPTH_SHIFT) / env.playfield.depth)
     }
 }
