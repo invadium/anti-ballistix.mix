@@ -53,10 +53,15 @@ class Grid {
             lastRow = row
             gridNZ += gnzStep
         }
-
-        this.rows.forEach(row => row.connectDepth())
         this.lastRow = lastRow
         lastRow.locked = true
+
+        this.rows.forEach(row => row.connectDepth())
+
+        defer(() => {
+            this.rows.forEach(row => row.adjustZ())
+            lab.port.orderZ()
+        }, .1)
     }
 
     project(pos) {

@@ -117,6 +117,8 @@ class PowerStation extends Target {
 
         save()
         translate(x + dx, y + dy)
+
+        save()
         rotate(PI)
 
         // adjust y to match ground-normal z
@@ -170,6 +172,7 @@ class PowerStation extends Target {
             }
         }
 
+        restore()
         super.draw()
 
         restore()

@@ -71,7 +71,7 @@ function evo(dt) {
     env.status = `${prefix}Scr[${mx}x${my}]`
             + ` >> Port[${wx}x${wy}]`
             // + ` >> Sky[${sx}x${sy}]`
-            // + ` >> G[${gx}x${gy}]`
+            + ` >> G[${gx}x${gy}]`
             // + ` >> BG[${zx}x${zy}]`
             + ` >> GnZ: ${bs}`
             + ` >> VpY: ${round(vy)}`

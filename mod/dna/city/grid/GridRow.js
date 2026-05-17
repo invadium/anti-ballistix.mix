@@ -60,8 +60,17 @@ class VaporDot {
             stroke(env.style.color.grid)
             line(screenPos[0], screenPos[1], nsPos[0], nsPos[1])
         }
+        /*
         if (this.top) {
             const tsPos = grid.project(this.top.pos)
+            grid.vpToWorld(tsPos)
+            lineWidth(descale)
+            stroke(env.style.color.grid)
+            line(screenPos[0], screenPos[1], tsPos[0], tsPos[1])
+        }
+        */
+        if (this.bottom) {
+            const tsPos = grid.project(this.bottom.pos)
             grid.vpToWorld(tsPos)
             lineWidth(descale)
             stroke(env.style.color.grid)
@@ -91,9 +100,7 @@ class GridRow {
         // calculate the grid row z-depth
         const z = this.z = grid.nzToZ(this.gridNZ)
         // project grid-space z at the grid base to the quasi-normal viewport y
-        const vpy = grid.projectGZtoVPY(z)
-        // const gpos = grid.backTrace(0, vpy)
-        // const z = gpos[2]
+        const vpy = this.vpy = grid.projectGZtoVPY(z)
 
         const leftEdge  = grid.backTrace(grid.viewport.x1, vpy)
         const rightEdge = grid.backTrace(grid.viewport.x2, vpy)
@@ -116,6 +123,14 @@ class GridRow {
         }
     }
 
+    adjustZ() {
+        const vpy = this.vpy = this.grid.projectGZtoVPY(this.z)
+        const wpos = [0, vpy]
+        this.grid.vpToWorld(wpos)
+        const groundNZ = this.groundNZ = lab.port.ground.nz(wpos[1])
+        this.Z = lab.port.ground.Z(groundNZ)
+    }
+
     locateDotAtX(x) {
         const dots = this.dots
         for (let i = dots.length - 1; i >= 0; i--) {
@@ -126,12 +141,20 @@ class GridRow {
 
     connectDepth() {
         const next = this.next
-        if (!next) return
+        if (next) {
+            this.dots.forEach(dot => {
+                const tp = next.locateDotAtX(dot.pos[0])
+                dot.top = tp
+            })
+        }
 
-        this.dots.forEach(dot => {
-            const tp = next.locateDotAtX(dot.pos[0])
-            dot.top = tp
-        })
+        const prev = this.prev
+        if (prev) {
+            this.dots.forEach(dot => {
+                const bt = prev.locateDotAtX(dot.pos[0])
+                dot.bottom = bt
+            })
+        }
     }
 
     evo(dt) {
