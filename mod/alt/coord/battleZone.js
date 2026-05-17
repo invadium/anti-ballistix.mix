@@ -9,6 +9,7 @@
  */
 
 
+/*
 // translate battleZone-local z coordinate to screen y
 function sy(lz) {
     throw new Error('deprecated!')
@@ -43,3 +44,4 @@ function Z(lrz) {
     throw new Error('deprecated!')
     return 100 + lrz * 100
 }
+*/

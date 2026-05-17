@@ -42,19 +42,19 @@ const _ground = {
     uZ: function(nz) {
     },
 
-    // translate the ground-local normal z to the world space Y
-    py: function py(gnz) {
+    // translate the ground-local normal z (0-1 to the horizon) to the world space Y
+    nzToWY: function (gnz) {
         //const py0 = lab.port.ly( this.__.screen.horizonLineY() ),
         //      py1 = lab.port.ly( ctx.height )
         // return (py0 + gnz * (py1 - py0))
         // if (gnz === 0) return this.bottomEdge()
-        const y = this.topEdge() - gnz * this.height()
+        const y = this.topEdge() - (1-gnz) * this.height()
         return y
     },
 
     // translate to Z-order from the ground-local normalize z
     Z: function Z(gnz) {
-        return 100 + gnz * 100
+        return 100 + (1-gnz) * 100
     },
 
     // left edge in the world space

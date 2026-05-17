@@ -1,3 +1,4 @@
+/*
 function horizonLineY() {
     throw new Error('deprecated!')
     return env.tune.horizonLine * ctx.height
@@ -15,3 +16,4 @@ const screen = {
     },
 
 }
+*/

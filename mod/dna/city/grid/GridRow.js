@@ -79,21 +79,28 @@ class GridRow {
             id: ++id,
             dots: [],
         }, st)
+        const grid = this.grid
         // why don't we ask battlezone about that level?
         this.Z = lab.port.ground.Z(this.groundZ)
 
-        const grid = this.grid
-        // TODO backgrace normal-z => screen-projected-Z => real z
-        const z = (this.groundZ * this.groundZ + .1) * 1000
-        const py = this.py = grid.projectY(z)
-        const leftEdge  = grid.backTrace(grid.viewport.x1, py)
-        const rightEdge = grid.backTrace(grid.viewport.x2, py)
+        
+        // TODO groundZ is not actually groundZ -> needs to be projected property to be one!
+        //      it must be grid-space normal Z and there could be a way to translate one to another!
+        // calculate the grid row z-depth
+        const z = this.z = grid.nzToZ(this.groundZ)
+        // project grid-space z at the grid base to the quasi-normal viewport y
+        const vpy = grid.projectGZtoVPY(z)
+        // const gpos = grid.backTrace(0, vpy)
+        // const z = gpos[2]
+
+        const leftEdge  = grid.backTrace(grid.viewport.x1, vpy)
+        const rightEdge = grid.backTrace(grid.viewport.x2, vpy)
 
         const startX = leftEdge[0] - (leftEdge[0] % grid.STEP)
         const endX = rightEdge[0] - rightEdge[0] % grid.STEP + grid.STEP
         
         let prev
-        for (let x = startX; x < endX; x += 500) {
+        for (let x = startX; x < endX; x += grid.STEP) {
             const dot = new VaporDot({
                 x:  x,
                 y:  0,
@@ -133,7 +140,7 @@ class GridRow {
     }
 
     draw() {
-        // const y  = lab.port.ground.py(this.groundZ)
+        // const y  = lab.port.ground.nzToWY(this.groundZ)
         // lineWidth(1)
         // stroke('#eeee80')
         // line(lab.port.leftEdge(), y, lab.port.rightEdge(), y)

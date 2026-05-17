@@ -10,8 +10,8 @@ class Grid {
         augment(this, {
             Z:     9,
             name: 'grid',
-            ROWS:  11,
-            STEP:  500,
+            ROWS:  13,
+            STEP:  250,
             rows:  [],
 
             focusDistance:  100,
@@ -30,10 +30,11 @@ class Grid {
     }
 
     init() {
-        const ROWS = this.ROWS,
-              gzStep = 1/(ROWS - 1)
+        const ROWS = this.ROWS
+        let groundZ = this.startZ = .1
+        const gzStep = (1-groundZ)/(ROWS)
 
-        let groundZ = 0
+        this.lastZ = this.startZ + gzStep * (ROWS - 1)
         let lastRow
         for (let i = 0; i < ROWS; i++) {
             const row = lab.port.spawn( dna.city.grid.GridRow, {
@@ -61,17 +62,38 @@ class Grid {
         ]
     }
 
-    projectY(z) {
-        return ((-this.cameraHeight) * this.focusDistance) / z
+    // project the grid-space z-value at the base to the quasi-normal viewport y
+    projectGZtoVPY(gz) {
+        return ((-this.cameraHeight) * this.focusDistance) / gz
     }
 
-    // translate a quasi-normal viewport point to the world space
+    // translate a quasi-normal viewport vector to the world space
     vpToWorld(v) {
         const GH = lab.port.ground.height()
-        const DY = this.lastRow.py
-        const VPH = .5 * this.viewport.height + DY
-        v[1] = (v[1] - DY) * (GH/VPH)
-        return v
+        const topVPY = this.projectGZtoVPY(this.lastRow.z)
+        const VPH = .5 * this.viewport.height - topVPY
+        // adjust viewport-space Y to start at the horizon line
+        // and scale to the actual world-space ground size
+        v[1] = (v[1] - topVPY) * (GH/VPH)
+        return this
+    }
+
+    // translate a world space vector to the quasi-normal viewport vector
+    worldToViewport(v) {
+        const GH = lab.port.ground.height()
+        const topVPY = this.projectGZtoVPY(this.lastRow.z)
+        const VPH = .5 * this.viewport.height - topVPY
+        // adjust viewport-space Y to start at the horizon line
+        // and scale to the actual world-space ground size
+        v[1] = v[1] * (VPH/GH) + topVPY
+        return this
+    }
+
+    wyToVPY(wy) {
+        const GH = lab.port.ground.height()
+        const topVPY = this.projectGZtoVPY(this.lastRow.z)
+        const VPH = .5 * this.viewport.height - topVPY
+        return wy * (VPH/GH) + topVPY
     }
 
     // backgracke a quasi-normal viewport point back to a ground-point in the grid space
@@ -83,4 +105,22 @@ class Grid {
         return [ x, y, z ]
     }
 
+    backTraceV(v) {
+        const y = -this.cameraHeight
+        const z = (y - this.cameraHeight) * this.focusDistance / v[1]
+        const x = (v[1] * z) / this.focusDistance
+
+        return [ x, y, z ]
+    }
+
+    worldToGridBase(wx, wy) {
+        const v = [ wx, wy ]
+        this.worldToViewport(v)
+        return this.backTraceV(v)
+    }
+
+    nzToZ(nz) {
+        return (nz * nz + .01) * env.playfield.depth
+        //return (nz + .01) * env.playfield.depth
+    }
 }

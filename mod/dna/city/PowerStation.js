@@ -111,7 +111,7 @@ class PowerStation extends Target {
               H  = ctx.height,
               x  = this.x,
               // y  = coord.battleZone.wy(this.gnz) - hh,
-              y  = lab.port.ground.py(this.gnz),
+              y  = lab.port.ground.nzToWY(this.gnz),
               dx = this.dx,
               dy = this.dy
 
@@ -119,7 +119,7 @@ class PowerStation extends Target {
         translate(x + dx, y + dy)
         rotate(PI)
 
-        // adjust y
+        // adjust y to match ground-normal z
         this.y = y
 
         //fill(.7, .2, .1)

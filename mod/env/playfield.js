@@ -2,7 +2,7 @@
 const playfield = {
     width:  2000,
     height: 1000,
-    depth:  2000,
+    depth:  1000,
 
     adjust: function() {
         this.height = lab.port.getViewportHeight()
