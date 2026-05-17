@@ -1,5 +1,7 @@
 const Z = 11
 
+const hidden = true
+
 const VGAP        = .02,
       VGAP_RATE   = 1.1,
       WIDTH_RATE  = 1.1,
