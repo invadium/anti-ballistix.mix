@@ -14,8 +14,8 @@ const tune = {
         height:       .8,
     },
     powerZone: {
-        start:        .2,    // battleground-normal y coordinates
-        end:          .6,
+        start:        .5,    // battleground-normal y coordinates
+        end:          .8,
     },
 
     building: {

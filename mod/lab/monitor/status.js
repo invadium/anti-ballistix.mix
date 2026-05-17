@@ -63,18 +63,20 @@ function evo(dt) {
           zx = round(lab.port.battleground.lx(wx)),
           zy = round(lab.port.battleground.ly(wy)),
           // bz = round(coord.battleZone.lz(my) * 100),
-          bz = round(lab.port.ground.nz(lab.port.ly(my)) * 100),
+          gnz = lab.port.ground.nz(wy),
+          bz = round(gnz * 100),
+          Z  = round(lab.port.ground.Z(gnz)),
           bs = (bz < 0 || bz > 100)? `--[${bz}%]--` : `==[${bz}%]==`,
-          vy = lab.port.grid.wyToVPY(wy),
+          vy = lab.port.grid.wyToVPY(wy), // quasi-normalized viewport Y
           dp = lab.port.grid.backTrace(wx, vy),
-          gnz = lab.port.grid.zToNZ(dp[2])
+          dnz = lab.port.grid.zToNZ(dp[2])
     env.status = `${prefix}Scr[${mx}x${my}]`
             + ` >> Port[${wx}x${wy}]`
             // + ` >> Sky[${sx}x${sy}]`
             + ` >> G[${gx}x${gy}]`
             // + ` >> BG[${zx}x${zy}]`
-            + ` >> GnZ: ${bs}`
-            + ` >> VpY: ${round(vy)}`
+            + ` >> GnZ: ${bs}/${Z}`
+            // + ` >> VpY: ${round(vy)}`
             + ` >> Grid: ${round(dp[0]*10)/10}x${round(dp[1]*10)/10}x${round(dp[2]*10)/10}`
-            + ` >> GridNZ: ${round(gnz * 100)/100}`
+            + ` >> GridNZ: ${round(dnz * 100)/100}`
 }

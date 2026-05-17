@@ -17,7 +17,7 @@ class PowerStation extends Target {
         this.hp = this.maxHP
         // calculate ground-local normal z and determine the Z-order
         this.gnz = env.tune.powerZone.start + this.z * (env.tune.powerZone.end - env.tune.powerZone.start)
-        this.Z  = lab.port.ground.Z(this.gnz)
+        this.Z  = lab.port.ground.Z(this.gnz) + 8 // dirty-trick to adjust to the proper Z-order to consider the bottom part
 
         this.install([
             new dna.city.pod.SolidCircle({

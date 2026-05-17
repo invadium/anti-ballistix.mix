@@ -34,10 +34,13 @@ class Flak extends Platform {
             }),
             new dna.city.pod.TurretPadControl(),
         ])
+
     }
 
     adjust() {
         this.y = lab.port.ly((1 - .01*this.BGY) * lab.h)
+        this.gnz = lab.port.ground.nz(this.y)
+        this.Z = lab.port.ground.Z(this.gnz) + 2
     }
 
     capture(controllerId) {
