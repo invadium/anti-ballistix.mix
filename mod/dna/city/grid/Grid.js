@@ -10,7 +10,7 @@ class Grid {
         augment(this, {
             Z:     9,
             name: 'grid',
-            ROWS:  13,
+            ROWS:  15,
             STEP:  250,
             rows:  [],
 
@@ -30,16 +30,17 @@ class Grid {
     }
 
     init() {
-        const ROWS = this.ROWS
-        let groundZ = this.startZ = .1
-        const gzStep = (1-groundZ)/(ROWS)
+        // start normalized z from .1, so the ultra-small values
+        // won't get squashed by the quadratic transformation to the grid z
+        let gridNZ = this.startZ = .1
+        // step normalized z from .1 to 1
+        const gnzStep = (1 - this.startZ)/(this.ROWS - 1)
 
-        this.lastZ = this.startZ + gzStep * (ROWS - 1)
         let lastRow
-        for (let i = 0; i < ROWS; i++) {
+        for (let i = 0; i < this.ROWS; i++) {
             const row = lab.port.spawn( dna.city.grid.GridRow, {
                 Z:    0,
-                groundZ,
+                gridNZ,
                 name: 'gridRow' + (i+1),
                 grid: this,
                 prev: lastRow,
@@ -48,7 +49,7 @@ class Grid {
             if (lastRow) lastRow.next = row
 
             lastRow = row
-            groundZ += gzStep
+            gridNZ += gnzStep
         }
 
         this.rows.forEach(row => row.connectDepth())
@@ -120,7 +121,6 @@ class Grid {
     }
 
     nzToZ(nz) {
-        return (nz * nz + .01) * env.playfield.depth
-        //return (nz + .01) * env.playfield.depth
+        return (nz*nz) * env.playfield.depth + 100
     }
 }

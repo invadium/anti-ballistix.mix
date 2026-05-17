@@ -80,14 +80,16 @@ class GridRow {
             dots: [],
         }, st)
         const grid = this.grid
-        // why don't we ask battlezone about that level?
-        this.Z = lab.port.ground.Z(this.groundZ)
+
+        // TODO get ground y first and then derive Z from there?
+        //      or just use the grid Z calculator?
+        this.Z = lab.port.ground.Z(this.gridNZ)
 
         
         // TODO groundZ is not actually groundZ -> needs to be projected property to be one!
         //      it must be grid-space normal Z and there could be a way to translate one to another!
         // calculate the grid row z-depth
-        const z = this.z = grid.nzToZ(this.groundZ)
+        const z = this.z = grid.nzToZ(this.gridNZ)
         // project grid-space z at the grid base to the quasi-normal viewport y
         const vpy = grid.projectGZtoVPY(z)
         // const gpos = grid.backTrace(0, vpy)
