@@ -98,11 +98,11 @@ class GridRow {
         const leftEdge  = grid.backTrace(grid.viewport.x1, vpy)
         const rightEdge = grid.backTrace(grid.viewport.x2, vpy)
 
-        const startX = leftEdge[0] - (leftEdge[0] % grid.STEP)
-        const endX = rightEdge[0] - rightEdge[0] % grid.STEP + grid.STEP
+        const startX = this.x1 = leftEdge[0] - (leftEdge[0] % grid.STEP) - grid.STEP
+        const endX = this.x2 = rightEdge[0] - rightEdge[0] % grid.STEP + grid.STEP
         
         let prev
-        for (let x = startX; x < endX; x += grid.STEP) {
+        for (let x = startX; x <= endX; x += grid.STEP) {
             const dot = new VaporDot({
                 x:  x,
                 y:  0,
@@ -135,6 +135,7 @@ class GridRow {
     }
 
     evo(dt) {
+        if (this.locked) return
         const dots = this.dots
         for (let i = dots.length - 1; i >= 0; i--) {
             dots[i].evo(dt)

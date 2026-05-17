@@ -47,6 +47,7 @@ class Grid {
             })
             this.rows.push(row)
             if (lastRow) lastRow.next = row
+            else row.locked = true
 
             lastRow = row
             gridNZ += gnzStep
@@ -54,6 +55,7 @@ class Grid {
 
         this.rows.forEach(row => row.connectDepth())
         this.lastRow = lastRow
+        lastRow.locked = true
     }
 
     project(pos) {
@@ -100,7 +102,7 @@ class Grid {
     // backgracke a quasi-normal viewport point back to a ground-point in the grid space
     backTrace(vpx, vpy) {
         const y = -this.cameraHeight
-        const z = (y - this.cameraHeight) * this.focusDistance / vpy
+        const z = y * this.focusDistance / vpy
         const x = (vpx * z) / this.focusDistance
 
         return [ x, y, z ]
@@ -121,6 +123,6 @@ class Grid {
     }
 
     nzToZ(nz) {
-        return (nz*nz) * env.playfield.depth + 100
+        return (nz*nz) * env.playfield.depth + 72
     }
 }

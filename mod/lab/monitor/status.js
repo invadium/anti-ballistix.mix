@@ -27,6 +27,7 @@ function evoStatusInfo(dt) {
 
 function evo(dt) {
     if (!env.debug) return
+    if (!lab.port.grid) return
 
     if (env.time - lastStatus > STATUS_REFRESH_TIME) {
         evoStatusInfo(dt)
@@ -63,11 +64,15 @@ function evo(dt) {
           zy = round(lab.port.battleground.ly(wy)),
           // bz = round(coord.battleZone.lz(my) * 100),
           bz = round(lab.port.ground.nz(lab.port.ly(my)) * 100),
-          bs = (bz < 0 || bz > 100)? `--[${bz}%]--` : `==[${bz}%]==`
-    env.status = `${prefix}Scr[${mx}:${my}]`
-            + ` >> Port[${wx}:${wy}]`
-            + ` >> Sky[${sx}:${sy}]`
-            + ` >> G[${gx}:${gy}]`
-            + ` >> BG[${zx}:${zy}]`
+          bs = (bz < 0 || bz > 100)? `--[${bz}%]--` : `==[${bz}%]==`,
+          vy = lab.port.grid.wyToVPY(wy),
+          dp = lab.port.grid.backTrace(wx, vy)
+    env.status = `${prefix}Scr[${mx}x${my}]`
+            + ` >> Port[${wx}x${wy}]`
+            // + ` >> Sky[${sx}x${sy}]`
+            // + ` >> G[${gx}x${gy}]`
+            // + ` >> BG[${zx}x${zy}]`
             + ` >> GnZ: ${bs}`
+            + ` >> VpY: ${round(vy)}`
+            + ` >> Grd: ${round(dp[0]*10)/10}x${round(dp[1]*10)/10}x${round(dp[2]*10)/10}`
 }
