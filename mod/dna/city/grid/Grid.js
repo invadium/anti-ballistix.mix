@@ -14,6 +14,7 @@ class Grid {
             STEP:          250,
             DEPTH_SHIFT:   72, 
             rows:          [],
+            dots:          [],
             focusDistance: 100,
 
             // quasi-normalized viewport
@@ -64,11 +65,16 @@ class Grid {
         }, .1)
     }
 
-    project(pos) {
+    iproject(pos) {
         return [
             (pos[0] * this.focusDistance) / pos[2],
             ((pos[1] - this.cameraHeight) * this.focusDistance) / pos[2]
         ]
+    }
+
+    project(vPos, pos) {
+        vPos[0] = (pos[0] * this.focusDistance) / pos[2],
+        vPos[1] = ((pos[1] - this.cameraHeight) * this.focusDistance) / pos[2]
     }
 
     // project the grid-space z-value at the base to the quasi-normal viewport y
@@ -77,14 +83,14 @@ class Grid {
     }
 
     // translate a quasi-normal viewport vector to the world space
-    vpToWorld(v) {
+    vpToWorld(rv, iv) {
         const GH = lab.port.ground.height()
         const topVPY = this.projectGZtoVPY(this.lastRow.z)
         const VPH = .5 * this.viewport.height - topVPY
         // adjust viewport-space Y to start at the horizon line
         // and scale to the actual world-space ground size
-        v[1] = (v[1] - topVPY) * (GH/VPH)
-        return this
+        rv[0] = iv[0]
+        rv[1] = (iv[1] - topVPY) * (GH/VPH)
     }
 
     // translate a world space vector to the quasi-normal viewport vector
@@ -134,5 +140,21 @@ class Grid {
 
     zToNZ(z) {
         return sqrt((z - this.DEPTH_SHIFT) / env.playfield.depth)
+    }
+
+    registerDot(dot) {
+        this.dots.push(dot)
+    }
+
+    draw() {
+        this.descale = 1/lab.port.zoom
+
+        // nothing to draw - just project existing vapor dots to the viewport and the world
+        const dots = this.dots
+        for (let i = dots.length - 1; i >= 0; i--) {
+            const d = dots[i]
+            this.project(d.vPos, d.pos)
+            this.vpToWorld(d.wPos, d.vPos)
+        }
     }
 }

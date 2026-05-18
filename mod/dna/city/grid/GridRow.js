@@ -3,6 +3,8 @@ class VaporDot {
     constructor(st) {
         extend(this, {
             pos: [0, 0, 0],
+            vPos: [0, 0],
+            wPos: [0, 0],
         })
         this.grid = st.grid
         if (st && isNum(st.x)) {
@@ -42,39 +44,38 @@ class VaporDot {
         const pos = this.pos
         if (pos[3] < 1) return
 
-        const screenPos = grid.project(pos)
-        grid.vpToWorld(screenPos)
-
-        const descale = 1/lab.port.zoom
+        // const screenPos = grid.project(pos)
+        // grid.vpToWorld(screenPos)
 
         /*
-        const R = 3 * descale
+        const R = 3 * grid.descale
         fill('#ffff00')
         rect(screenPos[0] - .5*R, screenPos[1] - .5*R, R, R)
         */
 
         if (this.next) {
-            const nsPos = grid.project(this.next.pos)
-            grid.vpToWorld(nsPos)
-            lineWidth(descale)
+            // const nsPos = grid.project(this.next.pos)
+            // grid.vpToWorld(nsPos)
+            lineWidth(grid.descale)
             stroke(env.style.color.grid)
-            line(screenPos[0], screenPos[1], nsPos[0], nsPos[1])
+            line(this.wPos[0], this.wPos[1], this.next.wPos[0], this.next.wPos[1])
         }
         /*
         if (this.top) {
-            const tsPos = grid.project(this.top.pos)
-            grid.vpToWorld(tsPos)
-            lineWidth(descale)
+            // const tsPos = grid.project(this.top.pos)
+            // grid.vpToWorld(tsPos)
+            lineWidth(grid.descale)
             stroke(env.style.color.grid)
             line(screenPos[0], screenPos[1], tsPos[0], tsPos[1])
+            line(this.wPos[0], this.wPos[1], this.top.wPos[0], this.top.wPos[1])
         }
         */
         if (this.bottom) {
-            const tsPos = grid.project(this.bottom.pos)
-            grid.vpToWorld(tsPos)
-            lineWidth(descale)
+            // const tsPos = grid.project(this.bottom.pos)
+            // grid.vpToWorld(tsPos)
+            lineWidth(grid.descale)
             stroke(env.style.color.grid)
-            line(screenPos[0], screenPos[1], tsPos[0], tsPos[1])
+            line(this.wPos[0], this.wPos[1], this.bottom.wPos[0], this.bottom.wPos[1])
         }
     }
 }
@@ -118,6 +119,7 @@ class GridRow {
                 prev: prev,
             })
             this.dots.push(dot)
+            grid.registerDot(dot)
             if (prev) prev.next = dot
             prev = dot
         }
@@ -126,7 +128,7 @@ class GridRow {
     adjustZ() {
         const vpy = this.vpy = this.grid.projectGZtoVPY(this.z)
         const wpos = [0, vpy]
-        this.grid.vpToWorld(wpos)
+        this.grid.vpToWorld(wpos, wpos)
         const groundNZ = this.groundNZ = lab.port.ground.nz(wpos[1])
         this.Z = lab.port.ground.Z(groundNZ)
     }
