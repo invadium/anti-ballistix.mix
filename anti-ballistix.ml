@@ -37,6 +37,11 @@
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
 > scenario success/fail conditions?
 
+> pin powerStation to x2 dots and place in the middle, the dost Y MUST be in sync all the time
+> spread power stations along grid depth (3-7 lines?)
+> scale power stations according to their depth
+> square-to-circle collisions
+
 > hide cursor option in the menu
 > custom man pages with core design and structure
 > proper readme with the project structure, prerequisites, how to play, how to debug etc...

@@ -16,8 +16,8 @@ class PowerStation extends Target {
         }, st) )
         this.hp = this.maxHP
         // calculate ground-local normal z and determine the Z-order
-        this.gnz = env.tune.powerZone.start + this.z * (env.tune.powerZone.end - env.tune.powerZone.start)
-        this.Z  = lab.port.ground.Z(this.gnz) + 8 // dirty-trick to adjust to the proper Z-order to consider the bottom part
+        // this.gnz = env.tune.powerZone.start + this.z * (env.tune.powerZone.end - env.tune.powerZone.start)
+        // this.Z  = lab.port.ground.Z(this.gnz) + 8 // dirty-trick to adjust to the proper Z-order to consider the bottom part
 
         this.install([
             new dna.city.pod.SolidCircle({
@@ -68,6 +68,14 @@ class PowerStation extends Target {
         ])
     }
 
+    adjust() {
+        const dot = this.dot
+        this.x = dot.wPos[0]
+        this.y = dot.wPos[1] + 30
+        this.Z = dot.row.Z + 1
+        this.gnz = dot.row.groundNZ
+    }
+
     damage(force) {
         this.hp -= force
         //if (this.hp <= 0) kill(this)
@@ -101,6 +109,8 @@ class PowerStation extends Target {
     }
 
     draw() {
+        this.adjust()
+
         const c  = env.team.color(this),
               g  = env.team.glow(this),
               r  = this.r,
@@ -110,8 +120,9 @@ class PowerStation extends Target {
               hh = .5 * h,
               H  = ctx.height,
               x  = this.x,
+              y  = this.y,
               // y  = coord.battleZone.wy(this.gnz) - hh,
-              y  = lab.port.ground.nzToWY(this.gnz),
+              // y  = lab.port.ground.nzToWY(this.gnz),
               dx = this.dx,
               dy = this.dy
 
@@ -122,7 +133,7 @@ class PowerStation extends Target {
         rotate(PI)
 
         // adjust y to match ground-normal z
-        this.y = y
+        // this.y = y
 
         //fill(.7, .2, .1)
         fill(env.style.color.powerStation)

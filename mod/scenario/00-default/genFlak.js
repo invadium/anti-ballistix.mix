@@ -13,20 +13,19 @@ function genFlak(flaks) {
         } 
 
         const flak = lab.port.spawn( dna.city.Flak, {
-            Z:    101,
             team: 1,
-            x:    0,
-            y:    0,
+            dot:  freeDot,
+            // Z:    101,
+            // x:    0,
+            // y:    0,
             // BGY:  10,
-
-            dot: freeDot,
             
             pods:  [
                 new dna.city.pod.Bot(),
                 new dna.city.pod.FireControlRadar(),
             ],
         })
-        freeDot.pin = flak
+        freeDot.attach(flak)
         flak.activatePod(flak.bot)
 
         if (env.showCoordinates) {

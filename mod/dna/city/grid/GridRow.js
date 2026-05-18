@@ -18,6 +18,10 @@ class VaporDot {
         this.at = [...this.pos]
     }
 
+    attach(node) {
+        this.pin = node
+    }
+
     evo(dt) {
         const FQ = .05
         const JUMP = 200

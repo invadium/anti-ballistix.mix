@@ -42,6 +42,7 @@ class Flak extends Platform {
         this.x = dot.wPos[0]
         this.y = dot.wPos[1]
         this.Z = dot.row.Z + 1
+        this.gnz = dot.row.groundNZ
         // this.y = lab.port.ly((1 - .01*this.BGY) * lab.h)
         // this.gnz = lab.port.ground.nz(this.y)
         // this.Z = lab.port.ground.Z(this.gnz) + 2
