@@ -38,9 +38,13 @@ class Flak extends Platform {
     }
 
     adjust() {
-        this.y = lab.port.ly((1 - .01*this.BGY) * lab.h)
-        this.gnz = lab.port.ground.nz(this.y)
-        this.Z = lab.port.ground.Z(this.gnz) + 2
+        const dot = this.dot
+        this.x = dot.wPos[0]
+        this.y = dot.wPos[1]
+        this.Z = dot.row.Z + 1
+        // this.y = lab.port.ly((1 - .01*this.BGY) * lab.h)
+        // this.gnz = lab.port.ground.nz(this.y)
+        // this.Z = lab.port.ground.Z(this.gnz) + 2
     }
 
     capture(controllerId) {

@@ -5,8 +5,11 @@ class VaporDot {
             pos: [0, 0, 0],
             vPos: [0, 0],
             wPos: [0, 0],
+
+            pin: null,
         })
         this.grid = st.grid
+        this.row  = st.row
         if (st && isNum(st.x)) {
             this.pos[0] = st.x
             this.pos[1] = st.y
@@ -44,26 +47,19 @@ class VaporDot {
         const pos = this.pos
         if (pos[3] < 1) return
 
-        // const screenPos = grid.project(pos)
-        // grid.vpToWorld(screenPos)
-
-        /*
-        const R = 3 * grid.descale
-        fill('#ffff00')
-        rect(screenPos[0] - .5*R, screenPos[1] - .5*R, R, R)
-        */
+        if (this.pin) {
+            const R = 4 * grid.descale
+            fill('#CE40EE')
+            block(this.wPos[0], this.wPos[1], R, R)
+        }
 
         if (this.next) {
-            // const nsPos = grid.project(this.next.pos)
-            // grid.vpToWorld(nsPos)
             lineWidth(grid.descale)
             stroke(env.style.color.grid)
             line(this.wPos[0], this.wPos[1], this.next.wPos[0], this.next.wPos[1])
         }
         /*
         if (this.top) {
-            // const tsPos = grid.project(this.top.pos)
-            // grid.vpToWorld(tsPos)
             lineWidth(grid.descale)
             stroke(env.style.color.grid)
             line(screenPos[0], screenPos[1], tsPos[0], tsPos[1])
@@ -71,8 +67,6 @@ class VaporDot {
         }
         */
         if (this.bottom) {
-            // const tsPos = grid.project(this.bottom.pos)
-            // grid.vpToWorld(tsPos)
             lineWidth(grid.descale)
             stroke(env.style.color.grid)
             line(this.wPos[0], this.wPos[1], this.bottom.wPos[0], this.bottom.wPos[1])
@@ -116,6 +110,7 @@ class GridRow {
                 y:  0,
                 z:  z,
                 grid: grid,
+                row:  this,
                 prev: prev,
             })
             this.dots.push(dot)
@@ -157,6 +152,35 @@ class GridRow {
                 dot.bottom = bt
             })
         }
+    }
+
+    splitSearch(predicate) {
+        const dots = this.dots
+
+        function split(imid, istart, iend, depth) {
+            const dot = dots[imid]
+            if (dot && predicate(dot)) {
+                dot._depth = depth
+                return dot
+            }
+
+            let left, right
+            if (imid !== istart) {
+                left = split(istart + floor(.5 * (imid - istart)), istart, imid - 1, depth + 1)
+            }
+            if (imid !== iend) {
+                right = split(imid + ceil(.5 * (iend - imid)), imid + 1, iend, depth + 1)
+            }
+            if (left && right) {
+                if (left._depth < right._depth) return left
+                else return right
+            }
+            if (left)  return left
+            if (right) return right
+        }
+
+        const imid = floor(.5 * (dots.length - 1))
+        return split(imid, 0, dots.length - 1, 1)
     }
 
     evo(dt) {
