@@ -9,7 +9,9 @@ function genPowerStations(st) {
     let totalPower = 0
     for (let i = 0; i < N; i++) {
 
-        const freeDot = lab.port.grid.rows[4].splitSearch( d => !d.pin ) 
+        // const freeDot = lab.port.grid.rows[2].locateRandom( d => !d.pin && d.next && !d.next.pin, src )
+        // const freeDot = lab.port.grid.locateRandomDot( 1, 6, d => !d.pin && d.next && !d.next.pin, src )
+        const freeDot = lab.port.grid.rows[3].splitSearch( d => !d.pin && d.next && !d.next.pin, src )
         if (!freeDot) {
             log.warn(`Failed to locate a free vapor dot for the power station #${i + 1}`)
             return
@@ -18,13 +20,12 @@ function genPowerStations(st) {
         const z = src.rndf()
         const powerStation = lab.port.spawn( dna.city.PowerStation, {
             team:  1,
-            dot:   freeDot,
             // Z:     0,
             // x:     crx(bx),
             // z:     z,
             //ry:    env.tune.powerStationLine + .1 * z,
         })
-        freeDot.attach(powerStation)
+        powerStation.pinToGrid(freeDot)
 
         if (env.showCoordinates) {
             powerStation.install(new dna.probe.CoordinatesProbe({
@@ -35,5 +36,10 @@ function genPowerStations(st) {
         totalPower += powerStation.getCurrentPower()
         // bx += step
     }
+
+    lab.port.selectInstancesOf( dna.city.PowerStation ).forEach( ps => {
+        ps.pushOut( src.rndi(3) )
+    })
+
     env.powerDemand = totalPower
 }

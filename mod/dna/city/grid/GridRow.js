@@ -22,7 +22,26 @@ class VaporDot {
         this.pin = node
     }
 
+    detach() {
+        this.pin = null
+    }
+
+    syncWith(dot) {
+        this.follower = dot
+        dot.lead = this
+    }
+
+    pushOut(node, n) {
+        if (!n || !this.top) {
+            this.attach(node)
+            return this
+        } else {
+            return this.top.pushOut(node, n - 1)
+        }
+    }
+
     evo(dt) {
+        if (this.lead) return
         const FQ = .05
         const JUMP = 200
         const JUMP_DY = 200
@@ -44,6 +63,10 @@ class VaporDot {
         if (rnd() < FQ * dt) {
             this.push = JUMP
         }
+
+        if (this.follower) {
+            this.follower.pos[1] = this.pos[1]
+        }
     }
 
     draw() {
@@ -51,11 +74,13 @@ class VaporDot {
         const pos = this.pos
         if (pos[3] < 1) return
 
+        /*
         if (this.pin) {
             const R = 4 * grid.descale
             fill('#CE40EE')
             block(this.wPos[0], this.wPos[1], R, R)
         }
+        */
 
         if (this.next) {
             lineWidth(grid.descale)
@@ -108,8 +133,10 @@ class GridRow {
         const endX = this.x2 = rightEdge[0] - rightEdge[0] % grid.STEP + grid.STEP
         
         let prev
+        let dotId = 0
         for (let x = startX; x <= endX; x += grid.STEP) {
             const dot = new VaporDot({
+                id: ++dotId,
                 x:  x,
                 y:  0,
                 z:  z,
@@ -158,7 +185,7 @@ class GridRow {
         }
     }
 
-    splitSearch(predicate) {
+    splitSearch(predicate, src) {
         const dots = this.dots
 
         function split(imid, istart, iend, depth) {
@@ -176,8 +203,13 @@ class GridRow {
                 right = split(imid + ceil(.5 * (iend - imid)), imid + 1, iend, depth + 1)
             }
             if (left && right) {
-                if (left._depth < right._depth) return left
-                else return right
+                if (src) {
+                    if (src.rndf() < .5) return left
+                    else return right
+                } else {
+                    if (left._depth < right._depth) return left
+                    else return right
+                }
             }
             if (left)  return left
             if (right) return right
@@ -185,6 +217,20 @@ class GridRow {
 
         const imid = floor(.5 * (dots.length - 1))
         return split(imid, 0, dots.length - 1, 1)
+    }
+
+    locateRandomDot(predicate, src) {
+        const dots = this.dots
+
+        function tryNext(n) {
+            const i = src.rndi( dots.length )
+            const dot = dots[i]
+            if (dot && predicate(dot)) return dot
+
+            if (n > 0) return tryNext(n - 1)
+        }
+
+        return tryNext(dots.length)
     }
 
     evo(dt) {

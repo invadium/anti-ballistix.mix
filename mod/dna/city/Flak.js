@@ -48,6 +48,11 @@ class Flak extends Platform {
         // this.Z = lab.port.ground.Z(this.gnz) + 2
     }
 
+    pinToGrid(dot) {
+        this.dot = dot
+        dot.attach(this)
+    }
+
     capture(controllerId) {
         this.activatePod('turretPadControl')
         lab.monitor.controller.bind(controllerId, this.turretPadControl)
@@ -117,6 +122,10 @@ class Flak extends Platform {
 
         super.draw()
         restore()
+    }
+
+    clearDot() {
+        this.dot = null
     }
 
     onKill() {

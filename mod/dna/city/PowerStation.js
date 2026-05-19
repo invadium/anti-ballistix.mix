@@ -69,11 +69,34 @@ class PowerStation extends Target {
     }
 
     adjust() {
-        const dot = this.dot
-        this.x = dot.wPos[0]
+        const dot  = this.dot,
+              next = dot.next
+
+        this.x = .5 *(dot.wPos[0] + next.wPos[0])
         this.y = dot.wPos[1] + 30
         this.Z = dot.row.Z + 1
         this.gnz = dot.row.groundNZ
+    }
+
+    pinToGrid(dot) {
+        this.dot = dot
+        dot.attach(this)
+        dot.next.attach(this)
+        dot.syncWith(dot.next)
+    }
+
+    unpinFromGrid() {
+        this.dot.next.detach()
+        this.dot.detach()
+        this.dot = null
+    }
+
+    pushOut(N) {
+        const lastDot = this.dot
+        this.unpinFromGrid()
+        const dot = lastDot.pushOut(this, N)
+        if (!dot) throw new Exception(`Can't pin [${this.name}] to the grid`)
+        this.pinToGrid(dot)
     }
 
     damage(force) {
@@ -196,5 +219,9 @@ class PowerStation extends Target {
 
     getCurrentPower() {
         return this.maxPower * this.getNormalHealth()
+    }
+
+    clearDot() {
+        this.dot = null
     }
 }

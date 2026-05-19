@@ -6,7 +6,7 @@ function genFlak(flaks) {
 
     for (let i = 0; i < flaks; i++) {
 
-        const freeDot = lab.port.grid.rows[1].splitSearch( d => !d.pin ) 
+        const freeDot = lab.port.grid.rows[1].splitSearch( d => !d.pin )
         if (!freeDot) {
             log.warn(`Failed to locate a free vapor dot for the flak #${i + 1}`)
             return
@@ -14,7 +14,6 @@ function genFlak(flaks) {
 
         const flak = lab.port.spawn( dna.city.Flak, {
             team: 1,
-            dot:  freeDot,
             // Z:    101,
             // x:    0,
             // y:    0,
@@ -25,7 +24,7 @@ function genFlak(flaks) {
                 new dna.city.pod.FireControlRadar(),
             ],
         })
-        freeDot.attach(flak)
+        flak.pinToGrid(freeDot)
         flak.activatePod(flak.bot)
 
         if (env.showCoordinates) {

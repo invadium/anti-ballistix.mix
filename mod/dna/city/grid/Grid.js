@@ -146,6 +146,22 @@ class Grid {
         this.dots.push(dot)
     }
 
+    locateRandomDot(fromRow, toRow, predicate, src) {
+        const irow = src.rndi(fromRow, toRow)
+        const row = this.rows[irow]
+        const dots = row.dots
+
+        function tryNext(n) {
+            const i = src.rndi( dots.length )
+            const dot = dots[i]
+            if (dot && predicate(dot, row)) return dot
+
+            if (n > 0) return tryNext(n - 1)
+        }
+
+        return tryNext(dots.length)
+    }
+
     draw() {
         this.descale = 1/lab.port.zoom
 
