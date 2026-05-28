@@ -10,35 +10,44 @@ This coordinate space is defined by the actual browser viewport.
 Absolute screen/canvas coordinates are used here,
 originating from the top-left of the screen.
 
+All mouse events originate in this coordinate system
+and must be translated to the world, or grid, or other spaces
+to be compatible with various entities.
+
 
 == Backdrop/CityScape Coordinate Space
 
-This space is used to define the sun, the stars, the skyline, the grid
-and all other background elemenets.
+This space is used to define the sun, the stars, the skyline, and all other background elements.
+It matches the screen coordinate space and uses the horizon line tuning property to properly split the sky and the ground.
 
 
-== Port Coordinate Space
+== Arcade World (Port/Camera) Coordinate Space
 
-It is defined by the city port camera that centers the x origin
-at the middle of the screen and always pans width
-to match _env.playfield.width_ (2000 by default)
+The arcade world coordinate space is where all the action is going. All active entities, collisions and explosions are happening in this space.
+
+This coordinate space is defined by the city port camera that centers the x-origin at the middle of the screen, y-origin is at the horizon line and y-coordinates are flipped to make them Cartesian.
+
+It always pans width to match _env.playfield.width_ (2000 by default)
 with height dynamically adjusted according to the current aspect ratio.
-That makes the camera viewport to pan from -1000 to 1000 horizontaly,
+That makes the camera viewport to pan from -1000 to 1000 horizontally.
 
+The horizon line is always going to be dynamically adjusted to match the new screen height to the normalized value set in tune.
 
+To help yourself to orient around the port/camera/world space, imagine the origin 0x0 to lie on the horizon line in the middle of the screen.
+The positive X goes to the right up to +1000, the negative X goes to the left to -1000.
+The positive Y goes up to whatever current screen aspect rate allows (relative to the fixed -1000 to 1000 x-axis base). And the negative Y goes down into the ground.
 
 To simplify addressing in the arcade space, you can use:
 
-* [crx(xP)](#./alt/crx) - translates percentage value into the x-coordinate, where 0 is the left edge and 100 is the right one
-* [cry(yP)](#./alt/cry) - translates percentage value into the y-coordinate, where 0 is the bottom and 100 is the top
-
+* [crx(xP)](#./alt/crx) - translates a percentage value into the x-coordinate, where 0 is the left edge and 100 is the right edge
+* [cry(yP)](#./alt/cry) - translates a percentage value into the y-coordinate, where 0 is the bottom and 100 is the top
 
 
 == Sky Coordinate Space
 
 * [lab/port/sky](#./lab/port/sky) - Sky Coordinate Ghost
 
-The sky ```y = 0``` is considered to be on the horizon with values growing down (just like in screen & port space).
+The sky ```y = 0``` is considered to be on the horizon with Y values growing up and negatives going into the ground (exactly matching the world/port space). The X matches the world X.
 
 === Normalized Sky Coordinate Space
 
@@ -48,16 +57,27 @@ The sky ```y = 0``` is considered to be on the horizon with values growing down 
 
 * [lab/port/ground](#./lab/port/ground) - Ground Coordinate Ghost
 
-The ground y = 0 is at the bottom of the camera view.
+The ground y-origin is at the bottom of the camera view and the coordinate grows up. The X matches the world X.
 
 === Normalized Ground Coordinate Space
 
-== Battlezone Coordinate Space
-The battlezone is defines as the active aread of the ground where drones and missiles can hit.
 
-Part of the ground area is too close to the camera or too for away to be used as a target for drones and missiles.
-These sections are excluded from the battlezone to simplify the addressing with normalized battlezone coordinates.
+
+== Battleground Coordinate Space
+
+The battlezone is defined by the active area of the ground where drones and missiles can hit, and it is a little bit narrower than the ground because of the exclusion zone at the bottom of the screen and far near the horizon.
+
 
 === Normalized Battlezone Coordinate Space
 
 
+
+== Grid Coordinate Space
+
+Grid is a quasi-3D entity constructed from Z-ordered rows of dots, all connected into a lattice.
+
+=== Quasi-normalized viewport coordinates
+
+=== 3D Grid
+
+Each dot has actual 3D coordinates in the grid space projected into the 2D world view with Z-order properly adjusted. Since a horizontal row of dots will always have the same Z-depth relative to a fixed camera, we precalculate Z-order at the row level and render row-by-row.
