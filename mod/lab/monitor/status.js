@@ -68,7 +68,7 @@ function evo(dt) {
           Z  = round(lab.port.ground.Z(gnz)),
           bs = (bz < 0 || bz > 100)? `--[${bz}%]--` : `==[${bz}%]==`,
           vy = lab.port.grid.wyToVPY(wy), // quasi-normalized viewport Y
-          dp = lab.port.grid.backTrace(wx, vy),
+          dp = lab.port.grid.backTrace(wx, vy), // quasi-normalized viewport coordinates are expected
           dnz = lab.port.grid.zToNZ(dp[2])
     env.status = `${prefix}Scr[${mx}x${my}]`
             + ` >> Port[${wx}x${wy}]`

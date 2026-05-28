@@ -104,6 +104,7 @@ class Grid {
         return this
     }
 
+    // translate a world space Y point to the quasi-normal viewport Y
     wyToVPY(wy) {
         const GH = lab.port.ground.height()
         const topVPY = this.projectGZtoVPY(this.lastRow.z)
@@ -123,7 +124,7 @@ class Grid {
     backTraceV(v) {
         const y = -this.cameraHeight
         const z = (y - this.cameraHeight) * this.focusDistance / v[1]
-        const x = (v[1] * z) / this.focusDistance
+        const x = (v[0] * z) / this.focusDistance
 
         return [ x, y, z ]
     }
@@ -131,7 +132,32 @@ class Grid {
     worldToGridBase(wx, wy) {
         const v = [ wx, wy ]
         this.worldToViewport(v)
+        // vy = lab.port.grid.wyToVPY(wy), // quasi-normalized viewport Y
         return this.backTraceV(v)
+    }
+
+    screenToGridBase(sx, sy) {
+        const wx = lab.port.lx(sx)
+        const wy = lab.port.ly(sy)
+        return this.worldToGridBase(wx, wy)
+    }
+
+    closestDot(pos) {
+        const dots = this.dots,
+              x    = pos[0],
+              z    = pos[2]
+
+        let closest, dist = 9999999
+        for (let i = dots.length - 1; i >= 0; i--) {
+            const dot = dots[i]
+            const cd = distance(dot.pos[0], dot.pos[2], x, z)
+            if (cd < dist) {
+                closest = dot
+                dist    = cd
+            }
+        }
+
+        return closest
     }
 
     nzToZ(nz) {

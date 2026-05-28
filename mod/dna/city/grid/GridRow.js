@@ -1,12 +1,18 @@
+const FQ = .05
+const JUMP = 200
+const JUMP_DY = 200
+const DY = 100
+
 class VaporDot {
 
     constructor(st) {
         extend(this, {
-            pos: [0, 0, 0],
+            pos:  [0, 0, 0],
             vPos: [0, 0],
             wPos: [0, 0],
 
-            pin: null,
+            push: 0,
+            pin:  null,
         })
         this.grid = st.grid
         this.row  = st.row
@@ -31,6 +37,12 @@ class VaporDot {
         dot.lead = this
     }
 
+    releaseFollower() {
+        if (!this.follower) return
+        this.follower.lead = null
+        this.follower = null
+    }
+
     pushOut(node, n) {
         if (!n || !this.top) {
             this.attach(node)
@@ -40,12 +52,12 @@ class VaporDot {
         }
     }
 
+    elevate(force) {
+        this.push += force ?? JUMP
+    }
+
     evo(dt) {
         if (this.lead) return
-        const FQ = .05
-        const JUMP = 200
-        const JUMP_DY = 200
-        const DY = 100
 
         if (this.push) {
             this.pos[1] += JUMP_DY * dt
@@ -60,12 +72,12 @@ class VaporDot {
             }
         }
 
-        /*
-        // random push up
-        if (rnd() < FQ * dt) {
-            this.push = JUMP
+        if (env.debugShakes) {
+            // random push up
+            if (rnd() < FQ * dt) {
+                this.elevate(JUMP)
+            }
         }
-        */
 
         if (this.follower) {
             this.follower.pos[1] = this.pos[1]

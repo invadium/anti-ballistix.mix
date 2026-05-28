@@ -79,6 +79,7 @@ Use ```--disableAutoFlak``` command line option or just set ```env.disableAutoFl
 
 * --showSolids
 * --showCoordinates
-* --showDimensions
+* --showDimensions - hint entities visual dimensions (used for mouse picks and culling)
 * --disableAutoFlak
+* --debugShakes - randomly elevate vapor grid
 

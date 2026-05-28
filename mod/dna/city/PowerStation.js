@@ -94,6 +94,7 @@ class PowerStation extends Target {
     }
 
     unpinFromGrid() {
+        this.dot.releaseFollower()
         this.dot.next.detach()
         this.dot.detach()
         this.dot = null
