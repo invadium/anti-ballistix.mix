@@ -1,4 +1,4 @@
-# Playable Prototype
+### Prototype I
     V city in the background
     V stars appearing in the sky
     V vaporwave grid wanishin in the horizon
@@ -28,8 +28,13 @@
     V end of the wave message with basic stat, e.g. "Intercepted 80/100 (80%)"
     V game stat subsystem
     V muzzle flashes
+    V pin powerStation to x2 dots and place in the middle, the dost Y MUST be in sync all the time
+    V spread power stations along grid depth (3-7 lines?)
 
+> ground hit tectonic waves
 > define coordinate spaces
+> scale power stations according to their depth
+
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 
 > waves (part of scenario life cycle)
@@ -37,30 +42,37 @@
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
 > scenario success/fail conditions?
 
-> pin powerStation to x2 dots and place in the middle, the dost Y MUST be in sync all the time
-> spread power stations along grid depth (3-7 lines?)
-> scale power stations according to their depth
-> square-to-circle collisions
-
-> hide cursor option in the menu
 > custom man pages with core design and structure
 > proper readme with the project structure, prerequisites, how to play, how to debug etc...
-
 > core sfx
 
 # bugs
 > "intercepted 105% 35/34" - how it is even possible?
+> fix the jumping order - always target the flak to the right
 > fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
+> fix powerStation <-> grid z order at start
+
+
+
+### System II
+
+> out-of-the-box post-processing effects support #collider.jam
+> a separate bloom channel with bloom fragment shader for neon highlights
+> crt scanlines and wobbles fragment shader
+> gamepad remapping submenu
+> square-to-circle collisions
+> hide cursor option in the menu
+> vapor grid music vibes on the edges
+
+
+### Prototype II
 
 # juice
 > flashy highlights when bullets leave the screen
 > cloud layer on top?
 > turn muzzle flashes into entities to leave them behind when turning
 > warp drones beyond the screen
-> ground hit tectonic waves
 > lock the flak for a 1-2 seconds after a player jumps in
-> a separate bloom channel with bloom fragment shader for neon highlights
-> crt scanlines and wobbles fragment shader
 > thermal distortion wave shader to show wobbles from air explosions
 > area and full-screen glitch shader to dramatize hits and EW effects
 > upgrade kinetix to be able to reduce shake amplitude with time/iterations
@@ -78,7 +90,10 @@
 > shake Score and Bounty when refilling
 > sparkles flying down from Score and Bounty when refilling
 > items transition animation and locks in the main menu
+> animated score counter
 
+
+### Prototype III
 
 # advanced
 >>> more projectiles
@@ -98,7 +113,6 @@
 >>> local high score table
 >>> level editor - draw histogram-like shapes for wave packets within each wave
 
->>> gamepad remapping
 
 # meta/progression
 > upgrades are descending as banners/surprise-boxes on parashutes and you shoot to choose

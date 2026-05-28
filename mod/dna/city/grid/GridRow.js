@@ -60,9 +60,12 @@ class VaporDot {
             }
         }
 
+        /*
+        // random push up
         if (rnd() < FQ * dt) {
             this.push = JUMP
         }
+        */
 
         if (this.follower) {
             this.follower.pos[1] = this.pos[1]

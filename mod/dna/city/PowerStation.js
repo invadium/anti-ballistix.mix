@@ -10,6 +10,14 @@ class PowerStation extends Target {
             r:        200,
             maxHP:    1500,
             maxPower: 100,
+            visual: {
+                x: -100,
+                y: -30,
+                w:  200,
+                h:  180,
+                _centered:    false,
+                _rectangular: true,
+            },
 
             dx:       0,
             dy:       0,
@@ -73,8 +81,8 @@ class PowerStation extends Target {
               next = dot.next
 
         this.x = .5 *(dot.wPos[0] + next.wPos[0])
-        this.y = dot.wPos[1] + 30
-        this.Z = dot.row.Z + 1
+        this.y = dot.wPos[1] + 32
+        this.Z = dot.row.Z - .1
         this.gnz = dot.row.groundNZ
     }
 
@@ -223,5 +231,19 @@ class PowerStation extends Target {
 
     clearDot() {
         this.dot = null
+    }
+
+    pick(x, y, ls, predicate) {
+        const _   = this,
+              vis = this.visual
+        const lx = x - _.x - vis.x
+        const ly = y - _.y - vis.y
+
+        if (lx >= 0 && lx < vis.w && ly >= 0 && ly < vis.h) {
+            if (!predicate || predicate(this)) {
+                ls.push(this)
+                return this
+            }
+        }
     }
 }

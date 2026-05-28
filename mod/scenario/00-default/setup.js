@@ -8,6 +8,8 @@ function setup() {
     this.genSky(this.info)
     this.genCity(this.info)
     this.genGrid(this.info)
+    lab.port.orderZ()
+
     this.genPowerStations(this.info)
     this.genFlak(this.flaks)
 }

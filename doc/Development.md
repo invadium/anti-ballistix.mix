@@ -79,5 +79,6 @@ Use ```--disableAutoFlak``` command line option or just set ```env.disableAutoFl
 
 * --showSolids
 * --showCoordinates
+* --showDimensions
 * --disableAutoFlak
 

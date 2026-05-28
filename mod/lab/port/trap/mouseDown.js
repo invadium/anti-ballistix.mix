@@ -19,9 +19,9 @@ function mouseDown(e) {
         if (ls.length === 0) {
             log.raw('=== none ===')
         } else if (ls.length === 1) {
-            log.dump(ls[0])
+            log.dir(ls[0])
         } else {
-            ls.forEach(n => log.dump(n))
+            ls.forEach(n => log.dir(n))
         }
     }
 }

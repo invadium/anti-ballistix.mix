@@ -1,5 +1,5 @@
 function mouseUp(e) {
-
+    // dispatch events to the active state lead node
     const state = lab.control.state.leadNode()
     if (state) {
         if (isFun(state.mouseUp)) state.mouseUp(e)
