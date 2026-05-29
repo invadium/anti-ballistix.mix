@@ -7,4 +7,8 @@ const _port = {
     name: 'port',
 
     flipY: true,
+
+    setup: function() {
+        pin.link(this, 'cam')
+    },
 }

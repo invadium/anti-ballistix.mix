@@ -65,8 +65,21 @@ class BallisticMissile extends GuidedWeapon {
         })
     }
 
+    gridWave() {
+        // get the grid coordinate of the hit
+        const wx   = this.x,
+              wy   = this.y,
+              vy   = pin.cam.grid.wyToVPY(wy),      // quasi-normalized viewport Y
+              gpos = pin.cam.grid.backTrace(wx, vy)
+        // touch the gird
+        const dot = pin.cam.grid.closestDot( gpos )
+        if (dot) dot.elevate()
+    }
+
     // TODO unify with Drones and others!
     groundExplosion(Z) {
+        this.gridWave()
+
         lab.port.spawn(dna.city.Explosion, {
             Z:          Z ?? this.Z,
             team:       this.team,
