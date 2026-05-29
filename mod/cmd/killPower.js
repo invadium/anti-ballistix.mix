@@ -1,4 +1,4 @@
-function killPower(args, line, con) {
+function killPower(args) {
     lab.port.apply(powerStation => {
         powerStation.autoKill()
     }, e => e instanceof dna.city.PowerStation)

@@ -57,13 +57,14 @@ function armsUp() {
     state.lastMark = env.time
 }
 
-function spawnBallistic() {
+function spawnBallistic(px) {
     // TODO check the ballistics limit
     const viewport = lab.port.getViewportRect()
+    const x = isNum(px)? crx(px) : crx(10 + RND(80)) 
 
     const missile = lab.port.spawn(dna.city.BallisticMissile, {
-        x: crx(10 + RND(80)),
-        y: viewport.y + 100,
+        x:   x,
+        y:   viewport.y + 100,
         dir: 1.4 * PI + .2 * PI * rnd(),
     })
 

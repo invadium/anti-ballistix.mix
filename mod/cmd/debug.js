@@ -1,5 +1,5 @@
-function debug(args, line, con) {
+function debug(args) {
     env.debug = !env.debug
-    con.print('debug: ' + (env.debug? 'on' : 'off'))
+    this.print('debug: ' + (env.debug? 'on' : 'off'))
 }
 debug.info = 'switch debug on/off'

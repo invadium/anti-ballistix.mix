@@ -1,4 +1,4 @@
-function flag(args, line, con) {
+function flag(args) {
 
     if (args.length >= 2) {
         const key = args[1]
@@ -11,7 +11,7 @@ function flag(args, line, con) {
     Object.keys(env).forEach(key => {
         const val = env[key]
         if (isBoolean(val)) {
-            con.print(key + ': ' + (val? 'on' : 'off'))
+            this.print(key + ': ' + (val? 'on' : 'off'))
         }
     })
 }
