@@ -31,8 +31,8 @@
     V pin powerStation to x2 dots and place in the middle, the dost Y MUST be in sync all the time
     V spread power stations along grid depth (3-7 lines?)
 
-> elevate the factory points on hit while shaking???
 > ground hit tectonic waves in shockwave circles from the middle of the strike (not the closest - it doesn't feel right)
+> elevate the factory points on hit while shaking???
 > define coordinate spaces
 > scale power stations according to their depth
 

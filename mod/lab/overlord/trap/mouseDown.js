@@ -1,5 +1,12 @@
 function mouseDown(e) {
-    if (env.debug && e.ctrlKey) {
+    if (!env.debug) return
+
+    if (e.ctrlKey && e.shiftKey) {
+        // request a ballistic strike
+        const px = round((e.x / lab.w) * 100)
+        log(`spawning a ballistic missile at [%${px}]`)
+        lab.overlord.waver.spawnBallistic(px)
+    } else if (e.ctrlKey) {
         // dump coordinates
         const cam  = lab.port,
               wx   = floor(cam.lx(e.x)),
