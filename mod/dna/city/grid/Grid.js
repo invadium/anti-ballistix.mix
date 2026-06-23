@@ -169,6 +169,7 @@ class Grid {
     }
 
     registerDot(dot) {
+        dot.id = this.dots.length
         this.dots.push(dot)
     }
 

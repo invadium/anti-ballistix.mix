@@ -1,6 +1,6 @@
 const FQ = .05
 const JUMP = 200
-const JUMP_DY = 200
+const JUMP_DY = 100
 const DY = 100
 
 class VaporDot {

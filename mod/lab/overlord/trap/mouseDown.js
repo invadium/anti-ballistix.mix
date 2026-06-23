@@ -24,8 +24,19 @@ function mouseDown(e) {
         log(`battleground: ${at.bg.lx(wx) | 0}:${at.bg.ly(wy) | 0} -- [${at.bg.width() | 0}:${at.bg.height() | 0}]`)
         log(`gridBase: ${round(gpos[0])}:${round(gpos[1])}:${round(gpos[2])}`)
 
+        /*
         const dot = cam.grid.closestDot( gpos )
-        if (dot) dot.elevate()
+        if (dot) {
+            dir(dot)
+            if (dot.lead) dot.lead.elevate()
+            else dot.elevate()
+        }
+        */
+        const shockwave = cam.spawn('Shockwave', {
+            x:    gpos[0],
+            y:    gpos[1],
+            z:    gpos[2],
+        })
 
         // pick entities
         const ls = []

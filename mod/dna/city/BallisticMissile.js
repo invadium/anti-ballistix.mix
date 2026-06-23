@@ -72,8 +72,13 @@ class BallisticMissile extends GuidedWeapon {
               vy   = pin.cam.grid.wyToVPY(wy),      // quasi-normalized viewport Y
               gpos = pin.cam.grid.backTrace(wx, vy)
         // touch the gird
-        const dot = pin.cam.grid.closestDot( gpos )
-        if (dot) dot.elevate()
+        // const dot = pin.cam.grid.closestDot( gpos )
+        // if (dot) dot.elevate()
+        const shockwave = lab.port.spawn('Shockwave', {
+            x:    gpos[0],
+            y:    gpos[1],
+            z:    gpos[2],
+        })
     }
 
     // TODO unify with Drones and others!
