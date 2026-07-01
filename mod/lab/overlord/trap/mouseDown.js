@@ -40,7 +40,7 @@ function mouseDown(e) {
 
         // pick entities
         const ls = []
-        this.__.pick(e.x, e.y, ls)
+        lab.port.pick(e.x, e.y, ls)
 
         if (ls.length === 0) {
             log.raw('=== none ===')

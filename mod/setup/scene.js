@@ -1,4 +1,4 @@
 function scene() {
-    job.control.spawn(dna.kinetix.Kinetix)
+    job.spawn(dna.kinetix.KinetixNG)
 }
 scene.Z = 15

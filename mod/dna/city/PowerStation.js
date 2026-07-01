@@ -119,18 +119,15 @@ class PowerStation extends Target {
         if (hitter.team !== this.team && hitter instanceof dna.city.GuidedWeapon && abs(hitter.Z - this.Z) < 10) {
             defer(() => {
                 lib.vfx.hitDebris(hitter.x, hitter.y, this.Z + 1, hitter.force, env.style.color.powerStation)
-                hitter.groundExplosion(_.Z + 1)
+                hitter.groundExplosion(_.Z + 1, _)
             })
             kill(hitter, this)
 
             this.damage(hitter.force)
-            job.control.kinetix.key( _, {
-                map: v => _.dy = v * 20,
-                freq: 4,
-                easing: dna.kinetix.easing.triangle,
-                times: hitter.force > 200? 16 : 8,
-                follow: true,
-           })
+            job.kinetix.tween( (v, t) => {
+                    _.dy = -v * 25 * ((5 - t)/5)
+                }, (t, time) => sin(time * TAU))
+                .steps(5)
         }
     }
 
