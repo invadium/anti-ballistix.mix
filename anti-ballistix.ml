@@ -33,8 +33,11 @@
     V ground hit tectonic waves in shockwave circles from the middle of the strike (not the closest - it doesn't feel right)
 
 > elevate the factory points on hit while shaking???
+> proper wave source point when hit power station
+> smaller seismic waves from drones
 > define coordinate spaces
 > scale power stations according to their depth
+> keep the score, remove bounty
 
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 

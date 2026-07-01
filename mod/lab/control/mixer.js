@@ -24,7 +24,8 @@ function selectNextTrack( trackName ) {
         log.warn(`[mixer] missing track name!`)
         return false
     }
-    nextTrack = res.track[ trackName ]
+    const container = res.track[ trackName ]
+    nextTrack = container.audio
 
     if (nextTrack) {
         return true

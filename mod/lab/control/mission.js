@@ -38,7 +38,6 @@ function cleanUp() {
 function resetEnv() {
     env.wave    = 0
     env.score   = 0
-    env.bounty  = 0
 
     env.stat.reset()
     console.dir(env.stat)

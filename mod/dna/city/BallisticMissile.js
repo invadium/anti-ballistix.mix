@@ -13,7 +13,7 @@ class BallisticMissile extends GuidedWeapon {
             force:    500,
 
             score:    50,
-            bounty:   1000,
+            cost:     1000,
         }, st) )
 
         this.install([

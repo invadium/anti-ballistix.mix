@@ -57,7 +57,6 @@ function __kill__(e, killer) {
         if (killer instanceof dna.city.Projectile) {
             // intercepted!
             if (e.score)  env.score  += e.score
-            if (e.bounty) env.bounty += e.bounty
 
             wave.intercepted[e.stat] = wave.intercepted[e.stat]? wave.intercepted[e.stat] + 1 : 1
             wave.intercepted[TOTAL]  = wave.intercepted[TOTAL]?  wave.intercepted[TOTAL]  + 1 : 1

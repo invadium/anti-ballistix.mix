@@ -14,13 +14,15 @@ function compileFlaksSelectionList() {
 
     flaks.options = []
 
-    for (let i = env.tune.flaks.min; i <= env.tune.flaks.max; i++) {
+    let defaultFlak = 0
+    for (let i = 0, flakId = env.tune.flaks.min; flakId <= env.tune.flaks.max; i++, flakId++) {
         flaks.options.push({
-            title: `${i}`,
-            val:   i,
+            title: `${flakId}`,
+            val:   flakId,
         })
+        if (flakId === env.tune.flaks.default) defaultFlak = i
     }
-    flaks.current = env.tune.flaks.default
+    flaks.current = defaultFlak
 }
 
 function toggleResumeGameVisibility() {

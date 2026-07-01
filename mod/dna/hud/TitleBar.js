@@ -25,10 +25,9 @@ class TitleBar {
         lineWidth(2)
         fill(color, outline)
 
-        text(`Wave:  ${wave}`,         rx(.15), Y)
-        text(`Power: ${power}`,       rx(.35), Y)
-        text(`Bounty: $${env.bounty}k`, rx(.60), Y)
-        text(`Score: ${env.score}`,    rx(.85), Y)
+        text(`Wave:  ${wave}`,         rx(.20), Y)
+        text(`Power: ${power}`,        rx(.50), Y)
+        text(`Score: ${env.score}`,    rx(.80), Y)
 
         if (lab.port.paused) {
             let by = ry(.25)

@@ -20,7 +20,7 @@ class Drone extends GuidedWeapon {
             diveAcceleration: 50,
 
             score:     5,
-            bounty:    50,
+            cost:      50,
         }, st) )
 
         this.install([
