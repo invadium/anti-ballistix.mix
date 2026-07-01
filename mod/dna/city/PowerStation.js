@@ -124,7 +124,7 @@ class PowerStation extends Target {
             kill(hitter, this)
 
             this.damage(hitter.force)
-            lab.control.kinetix.key( _, {
+            job.control.kinetix.key( _, {
                 map: v => _.dy = v * 20,
                 freq: 4,
                 easing: dna.kinetix.easing.triangle,

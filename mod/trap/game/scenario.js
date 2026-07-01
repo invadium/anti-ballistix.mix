@@ -2,11 +2,11 @@ function scenario(st) {
     const scenarioProfile = $.scenario.locate(st.id)
     scenarioProfile.flaks = st.flaks || env.tune.flaks.default
 
-    lab.monitor.controller.dropAllTargetMaps()
+    job.monitor.controller.dropAllTargetMaps()
 
-    lab.control.state.transitTo('city', extend({
+    job.control.state.transitTo('city', extend({
         next: function() {
-            lab.control.mission.newScenario(scenarioProfile)
+            job.control.mission.newScenario(scenarioProfile)
         }
     }, st))
 }

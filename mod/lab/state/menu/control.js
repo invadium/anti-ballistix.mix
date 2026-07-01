@@ -28,7 +28,7 @@ function compileFlaksSelectionList() {
 function toggleResumeGameVisibility() {
     const resumeItem = this.__.items.filter(e => e.id === 'resume')[0]
 
-    resumeItem.hidden = !lab.control.mission.inProgress()
+    resumeItem.hidden = !job.control.mission.inProgress()
 }
 
 function newGame() {
@@ -53,8 +53,8 @@ function setup() {
 }
 
 function resumeGame() {
-    if (lab.control.mission.inProgress()) {
-        lab.control.state.transitTo('city')
+    if (job.control.mission.inProgress()) {
+        job.control.state.transitTo('city')
     }
 }
 

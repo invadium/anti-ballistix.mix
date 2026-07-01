@@ -25,24 +25,24 @@ Each implementing corresponding functionality.
 
 Also you can declare the camera and the overlay layer to be a "game" state:
 ```
-lab.control.state.group('game', [lab.camera, lab.overlay])
+job.control.state.group('game', [lab.camera, lab.overlay])
 ```
 
 Now just run transitions between declared states
 and they will be automatically activated/shown and deactivated/hidden:
 
 ```
-lab.control.transitTo('menu')
+job.control.transitTo('menu')
 ...
-lab.control.transitTo('game')
+job.control.transitTo('game')
 ...
-lab.control.transitTo('gameOver')
+job.control.transitTo('gameOver')
 ```
 
-The current state can be requested by calling [lab.control.currentState()](#./lab/control/state/currentState)
+The current state can be requested by calling [job.control.currentState()](#./job/control/state/currentState)
 or by checking the _env.state_ environment variable.
 
-The current transition can be requested by calling [lab.control.currentTransition()](#./lab/control/state/currentTransition)
+The current transition can be requested by calling [job.control.currentTransition()](#./job/control/state/currentTransition)
 or by checking out the _env.transition_ environment variable.
 It provides a detailed transition description or an empty string if there is no active transition in progress.
 
@@ -321,7 +321,7 @@ function transitTo(fuzzyTarget, st, force) {
 
 // force a transit to the specified state target
 //
-// The same as running [transitTo(fuzzyTarget, st, true)](#./lab/control/state/transitTo)
+// The same as running [transitTo(fuzzyTarget, st, true)](#./job/control/state/transitTo)
 //
 // @param { string|object|array } fuzzyTarget - specifies a state or states to transit to
 // @param {object} st - defines the transit properties, like fadein, keep and fadeout

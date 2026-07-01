@@ -2,10 +2,10 @@
  * Keyboard actions monitor listens to keyboard events and emits mapped actions to actions controller
  *
  * @expect keyboard actions to be mapped in the ```env.bind.keyboardControllersMapping```.
- * @expect controller monitor to be available at ```lab/monitor/controller```.
+ * @expect controller monitor to be available at ```job/monitor/controller```.
  */
 
-const controller = require('lab/monitor/controller')
+const controller = require('job/monitor/controller')
 
 // initialize keyboard actions
 function init() {

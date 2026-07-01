@@ -28,16 +28,16 @@ function keyDown(e) {
     switch(e.code) {
         case env.bind.fixed.mainMenu:
             if (!env.transition) {
-                lab.control.state.transitTo('menu')
+                job.control.state.transitTo('menu')
             }
             return
 
         case env.bind.fixed.pause:
-            lab.control.mission.pause()
+            job.control.mission.pause()
             return
     }
 
     if (lab.port.paused) {
-        lab.control.mission.resume()
+        job.control.mission.resume()
     }
 }

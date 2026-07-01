@@ -25,7 +25,7 @@ const items = [
     {
         title: 'Credits',
         select: function() {
-            lab.control.state.transitTo('credits')
+            job.control.state.transitTo('credits')
         }
     },
     {

@@ -8,19 +8,19 @@ function onActivate() {
         this.__.gameOverLabel.text = 'Air Raid is Over!'
     }
 
-    lab.monitor.controller.saveTargetMap()
-    lab.monitor.controller.bindAll(this)
+    job.monitor.controller.saveTargetMap()
+    job.monitor.controller.bindAll(this)
 }
 
 function onDeactivate() {
-    lab.monitor.controller.restoreTargetMap()
+    job.monitor.controller.restoreTargetMap()
 }
 
 function next() {
     if (!this.startedAt) return
 
     this.startedAt = 0
-    lab.control.state.transitTo('menu')
+    job.control.state.transitTo('menu')
 }
 
 function evo(dt) {

@@ -15,7 +15,7 @@ class TurretPadControl {
 
     capture(controllerId) {
         if (this._controllerId !== controllerId) {
-            lab.monitor.controller.bind(controllerId, this)
+            job.monitor.controller.bind(controllerId, this)
             log(`[${this.__.name}] captured by controller #${controllerId}`)
         } else {
             log(`[${this.__.name}] human #${controllerId} takes over!`)
@@ -78,7 +78,7 @@ class TurretPadControl {
         this.touched = env.time
 
         if (env.state === 'city' && lab.port.paused) {
-           lab.control.mission.resume()
+           job.control.mission.resume()
         }
 
         if (this.deactivated) {

@@ -1,3 +1,3 @@
 function over() {
-    lab.control.mission.gameOver()
+    job.control.mission.gameOver()
 }

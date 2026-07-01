@@ -12,7 +12,7 @@
 
 function draw() {
     if (env.debugControls || env.config.debugControls) {
-        const ctrl = lab.monitor.controller.ctrl
+        const ctrl = job.monitor.controller.ctrl
 
         font('12px pixel-operator-mono8')
         alignLeft()

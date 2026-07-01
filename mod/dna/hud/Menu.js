@@ -169,9 +169,9 @@ class Menu extends sys.LabFrame {
         this.hidden = false
         this.touchIt()
 
-        lab.monitor.controller.saveTargetMap()
+        job.monitor.controller.saveTargetMap()
         this._capture = true
-        lab.monitor.controller.bindAll(this)
+        job.monitor.controller.bindAll(this)
         this.releaseAnyAction()
         if (this.items.preservePos) {
             this.touch()
@@ -186,7 +186,7 @@ class Menu extends sys.LabFrame {
     hide() {
         this.hidden = true
         if (this._capture) {
-            lab.monitor.controller.restoreTargetMap()
+            job.monitor.controller.restoreTargetMap()
             this._capture = false
         }
         this.notifyOnHide()

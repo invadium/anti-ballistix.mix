@@ -1,5 +1,5 @@
 function states() {
-    lab.control.state.group('city', [ lab.overlord, lab.backdrop, lab.port, lab.overlay ])
-    //lab.control.state.switchTo('space')
+    job.control.state.group('city', [ lab.overlord, lab.backdrop, lab.port, lab.overlay ])
+    //job.control.state.switchTo('space')
 }
 states.Z = 11

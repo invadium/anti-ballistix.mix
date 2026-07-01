@@ -15,7 +15,7 @@ module.exports = {
 
     onIdle: function() {
         if (this.__.items.state !== 'main') return
-        if (lab.control.mission.inProgress()) return
+        if (job.control.mission.inProgress()) return
 
         // this.__.control.newGame()
 

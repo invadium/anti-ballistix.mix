@@ -8,17 +8,17 @@ function start() {
             fadein:   0,
         })
     } else if (env.config.menu) {
-        lab.control.state.transitTo('menu', {
+        job.control.state.transitTo('menu', {
             fadein: 0,
         })
     } else {
-        lab.control.state.transitTo('title', {
+        job.control.state.transitTo('title', {
             fadein: 0,
         })
     }
     /*
-    if (!lab.control.mixer.isPlaying()) {
-        lab.control.mixer.play()
+    if (!job.control.mixer.isPlaying()) {
+        job.control.mixer.play()
     }
     */
 }

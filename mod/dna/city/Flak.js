@@ -55,7 +55,7 @@ class Flak extends Platform {
 
     capture(controllerId) {
         this.activatePod('turretPadControl')
-        lab.monitor.controller.bind(controllerId, this.turretPadControl)
+        job.monitor.controller.bind(controllerId, this.turretPadControl)
     }
 
     draw() {

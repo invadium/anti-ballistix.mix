@@ -7,7 +7,7 @@ class TitleBar {
     }
 
     draw() {
-        if (!lab.control.mission.hasStarted()) return
+        if (!job.control.mission.hasStarted()) return
 
         const power = round(lab.overlord.power.getNormalPower() * 100)
 

@@ -51,7 +51,7 @@ function balanceElectricity() {
 }
 
 function evo(dt) {
-    if (!lab.control.mission.inProgress()) return
+    if (!job.control.mission.inProgress()) return
     //if (!(env.gameState === 'started')) return
 
     if (gameOverCountdown > 0) {

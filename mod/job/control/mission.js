@@ -11,18 +11,18 @@ function hasStarted() {
 function pause() {
     lab.port.pause()
     lab.overlord.pause()
-    lab.control.pause()
+    job.control.pause()
     env.pauseTimestamp = env.realTime
 }
 
 function resume() {
     lab.port.resume()
     lab.overlord.resume()
-    lab.control.resume()
+    job.control.resume()
 }
 
 function cleanUp() {
-    lab.monitor.controller.releaseAll()
+    job.monitor.controller.releaseAll()
     lab.backdrop.city.detachAll()
 
     const ls = lab.port._ls
@@ -71,7 +71,7 @@ function newScenario(scenario) {
 
 function gameOver() {
     env.gameState = 'gameOver'
-    lab.control.state.transitTo('gameOver', {
+    job.control.state.transitTo('gameOver', {
         fadein: 5,
     })
 }

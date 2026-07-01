@@ -2,7 +2,7 @@
 // gamepad controllers monitor
 //
 const bind = require('env/bind')
-const controllerMonitor = require('lab/monitor/controller')
+const controllerMonitor = require('job/monitor/controller')
 
 const USAGE_TIMEOUT = 15 * 1000
 
