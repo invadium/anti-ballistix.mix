@@ -1,7 +1,10 @@
-const FQ = .05
-const JUMP = 200
+const FQ      = .05
+const JUMP    = 200
 const JUMP_DY = 100
-const DY = 100
+const PUSH_DY = 100
+const DY      = 100
+
+const MAX_AMPLITUDE = 100
 
 class VaporDot {
 
@@ -11,8 +14,11 @@ class VaporDot {
             vPos: [0, 0],
             wPos: [0, 0],
 
-            push: 0,
-            pin:  null,
+            push:        0,
+            oscillation: 0,
+            amplitude:   0,
+            dir:         0,
+            pin:         null,
         })
         this.grid = st.grid
         this.row  = st.row
@@ -53,20 +59,71 @@ class VaporDot {
     }
 
     elevate(force) {
-        this.push += force ?? JUMP
+        log('elevate')
+        // this.push += force ?? JUMP
+    }
+
+    deform(force) {
+        const energy = 5 * force ?? JUMP
+        const amplitude = .15 * energy
+
+        const idy = this.at[1] - this.pos[1] // inverse delta Y from the neutral position
+        const amplitudeBudget = MAX_AMPLITUDE - idy
+        if (amplitudeBudget <= 0) {
+            // log('escape - no budget -- idy:${idy} -- ${amplitudeBudget}')
+            return
+        }
+
+        this.push += force
+        if (amplitudeBudget < this.push) this.push = max(amplitudeBudget, 0)
+        // log(`idy: ${idy} +${force} => ${this.push}`)
+
+        // TODO design proper-looking oscilations
+        this.oscillation += energy
+        this.amplitude += amplitude
+        this.dir = -1
     }
 
     evo(dt) {
         if (this.lead) return
 
         if (this.push) {
-            this.pos[1] += JUMP_DY * dt
-            this.push -= JUMP_DY * dt
+            // push down fast
+            const amount = PUSH_DY * dt
+            this.pos[1] -= amount
+            this.push   -= amount
             if (this.push <= 0) this.push = 0
+        /*
+        // TODO make oscillations
+        }  else if (this.oscillation) {
+            const amount = JUMP_DY * dt
+            const shift = this.dir * amount
+
+            this.pos[1] += shift
+            const delta = this.pos[1] - this.at[1]
+            if (this.dir < 0) {
+                if (delta < -this.amplitude) {
+                    this.dir = 1
+                }
+            } else if (this.dir > 0) {
+                if (delta > this.amplitude) {
+                    this.dir = -1
+                    this.amplitude *= .5
+                }
+            }
+            this.oscillation -= amount
+            if (this.oscillation <= 0) this.oscillation = 0
+        */
         } else {
+            // return to neutral state
             if (this.pos[1] > this.at[1]) {
                 this.pos[1] -= DY * dt
                 if (this.pos[1] < this.at[1]) {
+                    this.pos[1] = this.at[1]
+                }
+            } else if (this.pos[1] < this.at[1]) {
+                this.pos[1] += DY * dt
+                if (this.pos[1] > this.at[1]) {
                     this.pos[1] = this.at[1]
                 }
             }

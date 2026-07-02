@@ -33,13 +33,17 @@
     V ground hit tectonic waves in shockwave circles from the middle of the strike (not the closest - it doesn't feel right)
     V keep the score, remove bounty
     V migrate shakes to KinetixNG
+    V proper wave source point when hit power station
+    V start waves from negative depressions
+    V fix the jumping order - always target the flak to the right
+    V fix powerStation <-> grid z order at start
 
-> proper wave source point when hit power station
-> start waves from negative depressions
+> increase the initial shockwave radius to include the closest points
 > smaller seismic waves from drones
-> define coordinate spaces
+> shockwave oscillations after the initial push
 > scale power stations according to their depth
 
+> define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 
 > waves (part of scenario life cycle)
@@ -53,9 +57,7 @@
 
 # bugs
 > "intercepted 105% 35/34" - how it is even possible?
-> fix the jumping order - always target the flak to the right
 > fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
-> fix powerStation <-> grid z order at start
 
 
 

@@ -8,13 +8,17 @@ class GuidedWeapon extends Platform {
 
     gridWave(target) {
         // get the grid coordinate of the hit
-        const wx   = this.x,
-              wy   = this.y,
-              vy   = pin.cam.grid.wyToVPY(wy),      // quasi-normalized viewport Y
-              gpos = pin.cam.grid.backTrace(wx, vy)
-        // touch the gird
-        // const dot = pin.cam.grid.closestDot( gpos )
-        // if (dot) dot.elevate()
+        let gpos
+
+        if (target && target.dot) {
+            gpos = target.dot.pos
+        } else {
+            const wx   = this.x,
+                  wy   = this.y,
+                  vy   = pin.cam.grid.wyToVPY(wy)   // quasi-normalized viewport Y
+            gpos = pin.cam.grid.backTrace(wx, vy)   // grid-space coordinates
+        }
+
         const shockwave = lab.port.spawn('Shockwave', {
             x:    gpos[0],
             y:    gpos[1],

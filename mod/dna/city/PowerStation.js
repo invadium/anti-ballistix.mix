@@ -124,10 +124,12 @@ class PowerStation extends Target {
             kill(hitter, this)
 
             this.damage(hitter.force)
+            /*
             job.kinetix.tween( (v, t) => {
                     _.dy = -v * 25 * ((5 - t)/5)
                 }, (t, time) => sin(time * TAU))
                 .steps(5)
+            */
         }
     }
 

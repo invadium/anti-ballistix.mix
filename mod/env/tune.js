@@ -56,7 +56,7 @@ const tune = {
     control: {
         ffwSpeed:      8,
         ffwStep:       1.5,
-        slowDownSpeed: 0.25,
+        slowDownSpeed: 0.125,
         slowDownStep:  0.75,
     },
 
