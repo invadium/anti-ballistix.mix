@@ -73,6 +73,7 @@ class DoubleGun {
             temp:   temp,
         })
         env.stat.shot(projectile)
+        sfx('shot')
     }
 
     trigger() {

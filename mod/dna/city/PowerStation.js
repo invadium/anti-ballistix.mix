@@ -109,7 +109,12 @@ class PowerStation extends Target {
     }
 
     damage(force) {
+        const lastHP = this.hp
         this.hp -= force
+        if (lastHP > 0 && this.hp <= 0) {
+            // destroyed!
+            dsfx('power-down', 2)
+        }
         //if (this.hp <= 0) kill(this)
     }
 

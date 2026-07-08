@@ -22,6 +22,11 @@ class Drone extends GuidedWeapon {
 
             score:     5,
             cost:      50,
+
+            sfx: {
+                'air-explosion':    'drone-air-explosion',
+                'ground-explosion': 'drone-ground-explosion',
+            },
         }, st) )
 
         this.install([
@@ -69,37 +74,6 @@ class Drone extends GuidedWeapon {
         // this.targetY = coord.battleZone.wy(this.gnz)
         this.Z = lab.port.ground.Z(this.gnz)
         this.targetY = lab.port.ground.nzToWY(this.gnz)
-    }
-
-    airExplosion() {
-        lab.port.spawn(dna.city.Explosion, {
-            team: this.team + 1,
-            x: this.x,
-            y: this.y,
-        })
-    }
-
-    groundExplosion(Z, target) {
-        this.gridWave(target)
-
-        lab.port.spawn(dna.city.Explosion, {
-            Z:          Z ?? this.Z,
-            team:       this.team,
-            x:          this.x,
-            y:          this.y,
-            force:      8,
-            baseAngle:  .1 * PI,
-            spread:    .9 * PI,
-        })
-    }
-
-    hit(source) {
-        if (source instanceof dna.city.Projectile) {
-            // intercepted!!!
-            kill(this, source)
-            kill(source)
-            this.airExplosion()
-        }
     }
 
     flip() {

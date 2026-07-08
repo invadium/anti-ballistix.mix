@@ -29,4 +29,38 @@ class GuidedWeapon extends Platform {
         })
     }
 
+    airExplosion() {
+        lab.port.spawn(dna.city.Explosion, {
+            Z: this.Z,
+            team: this.team + 1,
+            x: this.x,
+            y: this.y,
+        })
+        sfx(this.sfx['air-explosion'])
+    }
+
+    groundExplosion(Z, target) {
+        this.gridWave(target)
+
+        lab.port.spawn(dna.city.Explosion, {
+            Z:          Z ?? this.Z,
+            team:       this.team,
+            x:          this.x,
+            y:          this.y,
+            force:      8,
+            baseAngle:  .1 * PI,
+            spread:    .9 * PI,
+        })
+        sfx(this.sfx['ground-explosion'])
+    }
+
+    hit(source) {
+        if (source instanceof dna.city.Projectile) {
+            // intercepted!!!
+            kill(this, source)
+            kill(source)
+            this.airExplosion()
+        }
+    }
+
 }

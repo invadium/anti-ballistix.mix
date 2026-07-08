@@ -343,7 +343,7 @@ class Menu extends sys.LabFrame {
         if (this.slideNext()) {
             // landed on the next item
             if (this.trap.onMove) this.trap.onMove(item)
-            //lib.sfx('select')
+            sfx('select')
         } else {
             this.current = prev
             if (this.trap.onBlock) this.trap.onBlock(item)
@@ -399,7 +399,7 @@ class Menu extends sys.LabFrame {
         if (this.slidePrev()) {
             // landed on the previous item
             if (this.trap.onMove) this.trap.onMove(item)
-            //lib.sfx('select')
+            sfx('select')
         } else {
             this.current = prev
             if (this.trap.onBlock) this.trap.onBlock(item)
@@ -417,7 +417,7 @@ class Menu extends sys.LabFrame {
             if (item.current < 0) item.current = item.length - 1
             if (isFun(this.items.onSwitch)) this.items.onSwitch(item, this.current)
             if (isFun(this.trap.onSwitch)) this.trap.onSwitch(item, this.current)
-            //lib.sfx('apply')
+            sfx('apply')
         } else if (isOption(item)) {
             if (!item.current) item.current = 0
             item.current --
@@ -425,7 +425,7 @@ class Menu extends sys.LabFrame {
             if (isFun(this.items.onSwitch)) this.items.onSwitch(item, this.current)
             if (isFun(this.trap.onSwitch)) this.trap.onSwitch(item, this.current)
             if (item.sync) item.sync()
-            //lib.sfx('apply')
+            sfx('apply')
         }
         if (this.trap.onMove) this.trap.onMove(item)
     }
@@ -444,7 +444,7 @@ class Menu extends sys.LabFrame {
             if (isFun(this.items.onSwitch)) this.items.onSwitch(item, this.current)
             if (isFun(this.trap.onSwitch)) this.trap.onSwitch(item, this.current)
 
-            //lib.sfx('apply')
+            sfx('apply')
         } else if (isOption(item)) {
             if (!item.current) item.current = 0
             item.current ++
@@ -453,7 +453,7 @@ class Menu extends sys.LabFrame {
             if (isFun(item.sync)) item.sync(item.current)
             if (isFun(this.items.onSwitch)) this.items.onSwitch(item, this.current)
             if (isFun(this.trap.onSwitch)) this.trap.onSwitch(item, this.current)
-            //lib.sfx('apply')
+            sfx('apply')
         }
         if (isFun(this.items.onMove)) this.items.onMove(item, this.current)
         if (isFun(this.trap.onMove)) this.trap.onMove(item, this.current)
@@ -477,7 +477,7 @@ class Menu extends sys.LabFrame {
             }
             if (isFun(this.items.onSelect)) this.items.onSelect(item, this.current)
             if (isFun(this.trap.onSelect)) this.trap.onSelect(item, this.current)
-            //lib.sfx('use')
+            sfx('use')
         }
     }
 
@@ -524,7 +524,7 @@ class Menu extends sys.LabFrame {
         if (isFun(this.items.onBack)) {
             this.items.onBack( this.currentItem() )
         }
-        //lib.sfx('back')
+        sfx('back')
     }
 
     lockAction(action) {
@@ -636,7 +636,7 @@ class Menu extends sys.LabFrame {
         if (!this.items) return // nothing to show!
         if (env.debug && this.debug) this.drawDebug()
 
-        const highlighted = this.isPressed()? false : this.highlightedItem()
+        const highlighted = this.isPressed()? -1 : this.highlightedItem()
         const n = this.items.length
         const cx = this.x
         const cy = this.y - floor(this.h/2)
@@ -737,6 +737,20 @@ class Menu extends sys.LabFrame {
             if (isFun(this.trap.onIdle)) {
                 this.trap.onIdle()
             }
+        }
+
+        const highlighted = this.isPressed()? -1 : this.highlightedItem()
+        if (highlighted >= 0) {
+            if (highlighted !== this.lastHighlighted) {
+                this.lastHighlighted = highlighted
+
+                const item = this.items[highlighted]
+                if (item && (!isObj(item) || (!item.section && !item.disabled && !item.hidden))) {
+                    sfx('select')
+                }
+            }
+        } else {
+            this.lastHighlighted = -1
         }
     }
 }

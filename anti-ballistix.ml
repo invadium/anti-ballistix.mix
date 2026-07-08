@@ -39,9 +39,7 @@
     V fix powerStation <-> grid z order at start
     V increase the initial shockwave radius to include the closest points
     V smaller seismic waves from drones
-
-> core sfx
-
+    V core sfx
 
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...

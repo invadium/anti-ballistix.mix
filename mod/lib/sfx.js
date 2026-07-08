@@ -2,24 +2,20 @@
 //
 // Sound effects are configured in /env/sfx
 //
-module.exports = function(nameOrClip, vol, pan) {
+module.exports = function(name, vol, pan) {
+    if (!env._touched || env.opt.mute || !env.opt.sfx) return // sfx is off
+
     vol = vol || 1
     vol *= env.opt.sfxVolume
 
+    const sfxConfig = env.sfx
     const container = res.sfx
 
-    let name, clip
-    if (isObj(nameOrClip)) {
-        clip = nameOrClip
-        name = clip.name
-    } else {
-        name = nameOrClip
-        clip = container[name]
-    }
-    let config = env.sfx[name]
+    let clip = container[name]
+    let config = sfxConfig[name]
 
     if (!config) {
-        config = env.sfx['default']
+        config = sfxConfig['default']
         log.warn(`missing config for sfx [${name}], using default`)
     } else {
         if (config.res) clip = container[config.res]
@@ -28,9 +24,9 @@ module.exports = function(nameOrClip, vol, pan) {
     if (config.vol) vol *= config.vol
     if (!clip) {
         clip = container['default']
+        vol  = 1
         log.warn(`missing resource for [${name}], using default tone`)
     }
 
-    //log(`plaing [${name}]`)
     sys.sfx(clip, vol, pan)
 }

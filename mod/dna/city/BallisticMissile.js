@@ -15,6 +15,11 @@ class BallisticMissile extends GuidedWeapon {
 
             score:     50,
             cost:      1000,
+
+            sfx: {
+                'air-explosion':    'missile-air-explosion',
+                'ground-explosion': 'missile-ground-explosion',
+            },
         }, st) )
 
         this.install([
@@ -55,38 +60,6 @@ class BallisticMissile extends GuidedWeapon {
         //this.targetY = coord.battleZone.wy(this.nz)
         this.Z = lab.port.ground.Z(this.gnz)
         this.targetY = lab.port.ground.nzToWY(this.gnz)
-    }
-
-    airExplosion() {
-        lab.port.spawn(dna.city.Explosion, {
-            Z: this.Z,
-            team: this.team + 1,
-            x: this.x,
-            y: this.y,
-        })
-    }
-
-    // TODO unify with Drones and others!
-    groundExplosion(Z, target) {
-        this.gridWave(target)
-
-        lab.port.spawn(dna.city.Explosion, {
-            Z:          Z ?? this.Z,
-            team:       this.team,
-            x:          this.x,
-            y:          this.y,
-            force:      8,
-            baseAngle:  .1 * PI,
-            spread:    .9 * PI,
-        })
-    }
-
-    hit(source) {
-        if (source instanceof dna.city.Projectile) {
-            kill(this, source)
-            kill(source)
-            this.airExplosion()
-        }
     }
 
     evo(dt) {
