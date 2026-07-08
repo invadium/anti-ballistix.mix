@@ -9,9 +9,9 @@ class Shockwave {
             x:      0,
             y:      0,   // y is fixed to the grid ground
             z:      0,
-            r:      0,
+            r:      20,
 
-            speed:  60,  // how fast the shockwave moves (in the grid space)
+            speed:  40,  // how fast the shockwave moves (in the grid space)
             force:  60,
 
             ranges: [],

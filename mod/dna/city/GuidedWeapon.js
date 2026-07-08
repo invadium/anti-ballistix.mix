@@ -3,7 +3,9 @@ const Platform = require('dna/city/Platform')
 class GuidedWeapon extends Platform {
 
     constructor(st) {
-        super(st)
+        super( extend({
+            shockwave: 30,
+        }, st) )
     }
 
     gridWave(target) {
@@ -20,9 +22,10 @@ class GuidedWeapon extends Platform {
         }
 
         const shockwave = lab.port.spawn('Shockwave', {
-            x:    gpos[0],
-            y:    gpos[1],
-            z:    gpos[2],
+            x:     gpos[0],
+            y:     gpos[1],
+            z:     gpos[2],
+            force: this.shockwave,
         })
     }
 

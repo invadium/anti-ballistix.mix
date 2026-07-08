@@ -6,14 +6,15 @@ class BallisticMissile extends GuidedWeapon {
 
     constructor(st) {
         super( extend({
-            team:     2,
-            name:    'ballisticMissile' + (++id),
-            stat:    'ballisticMissiles',
-            r:        15,
-            force:    500,
+            team:      2,
+            name:     'ballisticMissile' + (++id),
+            stat:     'ballisticMissiles',
+            r:         15,
+            force:     500,
+            shockwave: 100,
 
-            score:    50,
-            cost:     1000,
+            score:     50,
+            cost:      1000,
         }, st) )
 
         this.install([

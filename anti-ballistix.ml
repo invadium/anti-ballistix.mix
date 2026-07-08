@@ -37,11 +37,11 @@
     V start waves from negative depressions
     V fix the jumping order - always target the flak to the right
     V fix powerStation <-> grid z order at start
+    V increase the initial shockwave radius to include the closest points
+    V smaller seismic waves from drones
 
-> increase the initial shockwave radius to include the closest points
-> smaller seismic waves from drones
-> shockwave oscillations after the initial push
-> scale power stations according to their depth
+> core sfx
+
 
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
@@ -53,7 +53,6 @@
 
 > custom man pages with core design and structure
 > proper readme with the project structure, prerequisites, how to play, how to debug etc...
-> core sfx
 
 # bugs
 > "intercepted 105% 35/34" - how it is even possible?
@@ -74,7 +73,7 @@
 
 ### Prototype II
 
-# juice
+# spice 
 > flashy highlights when bullets leave the screen
 > cloud layer on top?
 > turn muzzle flashes into entities to leave them behind when turning
@@ -98,6 +97,7 @@
 > sparkles flying down from Score and Bounty when refilling
 > items transition animation and locks in the main menu
 > animated score counter
+> scale power stations according to their depth
 
 
 ### Prototype III

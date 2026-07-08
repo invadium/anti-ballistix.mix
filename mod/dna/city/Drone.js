@@ -16,6 +16,7 @@ class Drone extends GuidedWeapon {
             r:         15,
             powerTime: 15 + 45 * rnd(),
             force:     100,
+            shockwave: 30,
 
             diveAcceleration: 50,
 

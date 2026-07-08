@@ -1,8 +1,8 @@
 const FQ      = .05
-const JUMP    = 200
-const JUMP_DY = 100
 const PUSH_DY = 100
 const DY      = 100
+
+const DEBUG_FORCE = 100
 
 const MAX_AMPLITUDE = 100
 
@@ -15,9 +15,6 @@ class VaporDot {
             wPos: [0, 0],
 
             push:        0,
-            oscillation: 0,
-            amplitude:   0,
-            dir:         0,
             pin:         null,
         })
         this.grid = st.grid
@@ -60,13 +57,9 @@ class VaporDot {
 
     elevate(force) {
         log('elevate')
-        // this.push += force ?? JUMP
     }
 
     deform(force) {
-        const energy = 5 * force ?? JUMP
-        const amplitude = .15 * energy
-
         const idy = this.at[1] - this.pos[1] // inverse delta Y from the neutral position
         const amplitudeBudget = MAX_AMPLITUDE - idy
         if (amplitudeBudget <= 0) {
@@ -79,9 +72,9 @@ class VaporDot {
         // log(`idy: ${idy} +${force} => ${this.push}`)
 
         // TODO design proper-looking oscilations
-        this.oscillation += energy
-        this.amplitude += amplitude
-        this.dir = -1
+        // this.oscillation += energy
+        // this.amplitude += amplitude
+        // this.dir = -1
     }
 
     evo(dt) {
@@ -93,27 +86,6 @@ class VaporDot {
             this.pos[1] -= amount
             this.push   -= amount
             if (this.push <= 0) this.push = 0
-        /*
-        // TODO make oscillations
-        }  else if (this.oscillation) {
-            const amount = JUMP_DY * dt
-            const shift = this.dir * amount
-
-            this.pos[1] += shift
-            const delta = this.pos[1] - this.at[1]
-            if (this.dir < 0) {
-                if (delta < -this.amplitude) {
-                    this.dir = 1
-                }
-            } else if (this.dir > 0) {
-                if (delta > this.amplitude) {
-                    this.dir = -1
-                    this.amplitude *= .5
-                }
-            }
-            this.oscillation -= amount
-            if (this.oscillation <= 0) this.oscillation = 0
-        */
         } else {
             // return to neutral state
             if (this.pos[1] > this.at[1]) {
@@ -132,7 +104,7 @@ class VaporDot {
         if (env.debugShakes) {
             // random push up
             if (rnd() < FQ * dt) {
-                this.elevate(JUMP)
+                this.elevate(DEBUG_PUSH)
             }
         }
 
