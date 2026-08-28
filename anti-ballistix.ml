@@ -40,6 +40,7 @@
     V increase the initial shockwave radius to include the closest points
     V smaller seismic waves from drones
     V core sfx
+    V proper readme with the project structure, prerequisites, how to play, how to debug etc...
 
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
@@ -50,7 +51,6 @@
 > scenario success/fail conditions?
 
 > custom man pages with core design and structure
-> proper readme with the project structure, prerequisites, how to play, how to debug etc...
 
 # bugs
 > "intercepted 105% 35/34" - how it is even possible?

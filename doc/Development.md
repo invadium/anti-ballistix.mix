@@ -2,16 +2,26 @@
 
 ## Project Structure
 
-...
-
+We follow regular [Collider.JAM](https://collider.land) conventions -
+e.g., the main source is in the ```./mod``` folder,
+all classes and traits are in ```./dna```,
+alive entities are in ```./lab```,
+```./env``` defined the environment
+and ```./trap``` sets the traps for signals.
 
 
 ## How to Debug
 
+As a generic rule, always use the ```--debug/-d``` flag:
+
+```
+jam -d
+```
+
 ### Jump Straight to the Game
 
 Skip all preliminary screens and jump straight into the game.
-Use ```--scenario``` command line option to specify the exact scenario to jump into:
+Use the ```--scenario```command-line option to specify the exact scenario to jump into:
 
 ```
 jam -d --scenario 2
@@ -53,7 +63,7 @@ constantly aware of what is going on outside.
 
 It is advisable to turn off the sound and music from the main menu.
 
-You can run Collider.JAM in the "war mode", so it could monitor the incoming aerial threats through a web service:
+You can run Collider.JAM in "war mode", so it can monitor incoming aerial threats through a web service:
 
 ```
 jam -d --war "Kyiv"
@@ -88,6 +98,4 @@ Use ```--disableAutoFlak``` command line option or just set ```env.disableAutoFl
 * --showDimensions - hint entities visual dimensions (used for mouse picks and culling)
 * --disableAutoFlak
 * --debugShakes - randomly elevate vapor grid
-
-
 
