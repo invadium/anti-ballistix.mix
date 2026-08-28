@@ -12,11 +12,24 @@ and ```./trap``` sets the traps for signals.
 
 ## How to Debug
 
-As a generic rule, always use the ```--debug/-d``` flag:
+As a generic rule, always use the ```--debug/-d``` flag
+to run Collider.JAM in debug/development mode:
 
 ```
 jam -d
 ```
+
+
+## Concept and Development Help
+
+Launch the game in development mode with ```jam -d play```
+and when the browser finished loading the game, press ```F1```
+to open a tab with help pages.
+
+
+
+## Debug Options
+
 
 ### Jump Straight to the Game
 

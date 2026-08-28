@@ -3,6 +3,10 @@ order: 3
 tags: alert, anti-ballistix
 ------------------------------------------
 
+There could be a lot of confusion about different coordinate reference frames we use in the game.
+Especially when we translate coordinates between the screen <-> world ground <-> grid spaces. And sometimes, instead of absolute values we use quasi-normalized ones, which adds to confusion.
+
+
 == Screen Coordinate Space
 
 This coordinate space is defined by the actual browser viewport.
@@ -23,24 +27,26 @@ It matches the screen coordinate space and uses the horizon line tuning property
 
 == Arcade World (Port/Camera) Coordinate Space
 
-The arcade world coordinate space is where all the action is going. All active entities, collisions and explosions are happening in this space.
+The arcade world coordinate space is where all the action is going. All active entities live here. All collisions and explosions are happening in this space as well.
 
-This coordinate space is defined by the city port camera that centers the x-origin at the middle of the screen, y-origin is at the horizon line and y-coordinates are flipped to make them Cartesian.
+This coordinate space is defined by the city port camera that centers the x-origin at the middle of the screen, the y-origin is at the horizon line, and y-coordinates are flipped to make them Cartesian.
 
-It always pans width to match _env.playfield.width_ (2000 by default)
+It always pans the width to match _env.playfield.width_ (2000 by default)
 with height dynamically adjusted according to the current aspect ratio.
-That makes the camera viewport to pan from -1000 to 1000 horizontally.
+That makes the camera viewport pan from -1000 to 1000 horizontally.
 
-The horizon line is always going to be dynamically adjusted to match the new screen height to the normalized value set in tune.
+The horizon line dynamically adjusts to the normalized value set in /env/tune every time the screen changes dimensions.
 
-To help yourself to orient around the port/camera/world space, imagine the origin 0x0 to lie on the horizon line in the middle of the screen.
+=== How to Orient Around
+
+To help yourself to orient around the port/camera/world space, imagine the origin 0x0 to lie on the horizon line in the middle of the screen, at the intersection of the grid central line.
 The positive X goes to the right up to +1000, the negative X goes to the left to -1000.
-The positive Y goes up to whatever current screen aspect rate allows (relative to the fixed -1000 to 1000 x-axis base). And the negative Y goes down into the ground.
+The positive Y goes up to whatever the current screen aspect ratio allows (relative to the fixed -1000 to 1000 x-axis base). And the negative Y goes down into the ground.
 
 To simplify addressing in the arcade space, you can use:
 
-* [crx(xP)](#./alt/crx) - translates a percentage value into the x-coordinate, where 0 is the left edge and 100 is the right edge
-* [cry(yP)](#./alt/cry) - translates a percentage value into the y-coordinate, where 0 is the bottom and 100 is the top
+* [crx(xP)](#./alt/crx) - translates a percentage value into the x-coordinate, where 0 is the left edge, and 100 is the right edge
+* [cry(yP)](#./alt/cry) - translates a percentage value into the y-coordinate, where 0 is the bottom, and 100 is the top
 
 
 == Sky Coordinate Space
@@ -74,10 +80,29 @@ The battlezone is defined by the active area of the ground where drones and miss
 
 == Grid Coordinate Space
 
-Grid is a quasi-3D entity constructed from Z-ordered rows of dots, all connected into a lattice.
+The grid is a quasi-3D entity constructed from Z-ordered rows of dots, all connected into a lattice.
 
 === Quasi-normalized viewport coordinates
 
 === 3D Grid
 
 Each dot has actual 3D coordinates in the grid space projected into the 2D world view with Z-order properly adjusted. Since a horizontal row of dots will always have the same Z-depth relative to a fixed camera, we precalculate Z-order at the row level and render row-by-row.
+
+
+
+
+
+=== Grid Dots
+
+Each dot on the grid has [x, y, z] coordinates, where x defines the left-to-right position, y defines the height, and z defines the depth into the screen to the horizon.
+The ranges for these values are roughly defined by the /env/playfield config, though some dots potentially can be out of range (and out of screen).
+
+Each dot is connected to its peers to the left and right, and also to dots on other rows up and down the grid.
+A dot is fixed horizontally (x) and in depth (z), but can oscillate up and down by changing its *y* coordinate.
+The 0 value is the grid level and is considered to be a calm point for any dot. When y goes negative, the dot dives down and vice versa.
+
+Dots under power stations are paired as lead-follower to sync their vertical movement (so a power station will never "ride" on a single dot - it always has to be on a double-dot hill).
+
+
+
+

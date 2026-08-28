@@ -42,6 +42,7 @@
     V core sfx
     V proper readme with the project structure, prerequisites, how to play, how to debug etc...
 
+> custom man pages with core design and structure
 > define coordinate spaces
 > normalize coordinate naming - relative (0-1), percentage (0-100) etc...
 
@@ -50,9 +51,10 @@
 > wave difficulty curve (a tool to draw it visually? drone curve, ballistics curve etc...)
 > scenario success/fail conditions?
 
-> custom man pages with core design and structure
 
 # bugs
+> grid cuts short on the left and right edges, extend horizontal span to properly cover the screen
+> fix the power station "double move" on a shockwave
 > "intercepted 105% 35/34" - how it is even possible?
 > fix the flak jumping bug with a bot still controlling the flak after I jump in (something to do with IDLE status??? Is it really happening?)
 
