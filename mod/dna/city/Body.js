@@ -1,4 +1,4 @@
-class Body extends LabFrame {
+class Body extends sys.LabFrame {
 
     constructor(st) {
         super( extend({ 
