@@ -25,11 +25,15 @@ class CityConstraint {
     }
 }
 
-class CityCamera extends dna.SlideCameraNG {
+class CityCamera extends dna.ActionCameraNG {
 
     constructor(st) {
         super(st)
         this.attach( new CityConstraint() )
+    }
+
+    bindContext() {
+        this.ctx = $.lab.ctx
     }
 
     lookupZombie(targetDNA) {

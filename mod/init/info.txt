@@ -1,0 +1,3 @@
+These files are evaluated at batch-0,
+so here you can do any pre-boot actions
+to apply to all the following batches.
