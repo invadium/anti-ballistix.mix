@@ -1,7 +1,7 @@
 const Z = 0
 
 function draw() {
-    // TODO do we need to clear it? 
+    // clear the overlay canvas so we can see the GL surface
     ctx.clearRect(0, 0, ctx.w, ctx.h);
     // background(.75, .2, .2)
 }

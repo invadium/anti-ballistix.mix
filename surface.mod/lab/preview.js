@@ -12,7 +12,7 @@ function testFill(ctx) {
 }
 
 function draw() {
-    // if (!env.showBuffer) return
+    if (!$.env.showPreview) return
     const portal = lab,
           canvas = portal.canvas,
           ctx    = portal.ctx

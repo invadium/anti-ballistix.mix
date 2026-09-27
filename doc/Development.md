@@ -106,6 +106,8 @@ Use ```--disableAutoFlak``` command line option or just set ```env.disableAutoFl
 
 ### Available Flags
 
+* --plain - disable post-effects
+* --showPreview - render the original lab buffer before post-effects are applied
 * --showSolids
 * --showCoordinates
 * --showDimensions - hint entities visual dimensions (used for mouse picks and culling)
